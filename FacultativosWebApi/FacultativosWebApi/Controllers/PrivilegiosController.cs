@@ -18,25 +18,25 @@ namespace FacultativosWebApi.Controllers
             return pPrivilegios.GetPrivilegios();
         }
 
-        // GET: api/Privilegios/5
-        public string Get(int id)
-        {
-            return "value";
-        }
+        //// GET: api/Privilegios/5
+        //public string Get(int id)
+        //{
+        //    return "value";
+        //}
 
-        // POST: api/Privilegios
-        public void Post([FromBody]string value)
-        {
-        }
+        //// POST: api/Privilegios
+        //public void Post([FromBody]string value)
+        //{
+        //}
 
-        // PUT: api/Privilegios/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
+        //// PUT: api/Privilegios/5
+        //public void Put(int id, [FromBody]string value)
+        //{
+        //}
 
-        // DELETE: api/Privilegios/5
-        public void Delete(int id)
-        {
-        }
+        //// DELETE: api/Privilegios/5
+        //public void Delete(int id)
+        //{
+        //}
     }
 }
