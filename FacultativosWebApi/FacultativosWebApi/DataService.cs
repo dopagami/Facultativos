@@ -138,5 +138,45 @@ namespace FacultativosWebApi.DAL
             cnn.Close();
             return data;
         }
+
+        public static Int32 ExecuteNonQueryRV(string sql, params object[] parameters)
+        {
+            int data = -1;
+            Int32 RV = -1;
+            var cnn = new OdbcConnection();
+
+            try
+            {
+                cnn.ConnectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+                cnn.Open();
+
+                var command = new OdbcCommand(sql, cnn);
+                command.CommandTimeout = 0;
+
+                int i;
+                for (i = 0; i < parameters.Length-1; i += 2)
+                {
+                    command.Parameters.AddWithValue(parameters[i].ToString(), parameters[i + 1]);
+                }
+
+                OdbcParameter paramRV = new OdbcParameter(parameters[parameters.Length - 1].ToString(), 1);
+                paramRV.IsNullable = true;
+                paramRV.OdbcType = OdbcType.Numeric;
+                paramRV.Direction = ParameterDirection.ReturnValue;
+                paramRV.Value = 1;
+                command.Parameters.Add(paramRV);
+                data = command.ExecuteNonQuery();
+                RV = System.Convert.ToInt32(command.Parameters[i - 2].Value);
+            }
+            catch
+            {
+                if (cnn.State == ConnectionState.Open)
+                    cnn.Close();
+                throw;
+            }
+
+            cnn.Close();
+            return RV;
+        }
     }
 }
