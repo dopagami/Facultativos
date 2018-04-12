@@ -1,0 +1,30 @@
+.flex-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .flex-container > * {
+    width: 100%;
+  }
+
+  mat-toolbar{
+    background-color: #424242;
+    color:#FFFFFF;
+  }
+
+  
+  .mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+
+  button:focus{
+    outline-color: transparent;
+    outline-style: none;
+  }
+
+
+
+  .secundaryColor{
+    color:#6d6d6d;
+  }

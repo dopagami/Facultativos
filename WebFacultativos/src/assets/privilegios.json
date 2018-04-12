@@ -1,0 +1,17 @@
+[
+    {
+      "id": 1,
+      "valor": "A",
+      "descripcion": "asdfasdfasdf"
+    },
+    {
+      "id": 2,
+      "valor": "B",
+      "descripcion": "asdfasdfsdf"
+    },
+    {
+      "id":3,
+      "valor": "C",
+      "descripcion": "asdfsdfsdfsd"
+    }
+  ]

@@ -1,0 +1,14 @@
+@import url(https://fonts.googleapis.com/icon?family=Roboto);
+@import url(https://fonts.googleapis.com/icon?family=Material+Icons);
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+/* You can add global styles to this file, and also import other style files */
+body{
+  font-family: Roboto;
+  background-color: #c3d3d0;
+}
+
+.main-container{
+  margin-top:20px;
+}
+
