@@ -15,6 +15,13 @@ namespace FacultativosWebApi.Providers
             return Converter.toPrivilegios(DAL.DataService.Execute("SELECT * FROM MAESTROPRIVILEGIOS"));
         }
 
+        public Privilegio GetPrivilegio(int id)
+        {
+            return Converter.toPrivilegios(DAL.DataService.Execute("SELECT * FROM MAESTROPRIVILEGIOS" +
+                        " WHERE IDPRIVILEGIO = :pID",
+                        "pID", id)).FirstOrDefault();
+        }
+
         public Int32 PostPrivilegio(Privilegio privilegio)
         {            
             return DAL.DataService.ExecuteNonQueryRV("INSERT INTO MAESTROPRIVILEGIOS(DESCRIPCION, VALOR) " +
@@ -27,12 +34,20 @@ namespace FacultativosWebApi.Providers
 
         public Int32 PutPrivilegio(Privilegio privilegio)
         {
-            return DAL.DataService.ExecuteNonQueryRV("INSERT INTO MAESTROPRIVILEGIOS(DESCRIPCION, VALOR) " +
-                        "VALUES(:pDesc, :pValor) " +
-                        "RETURNING IDPRIVILEGIO INTO :pIDRT",
+            return DAL.DataService.ExecuteNonQuery("UPDATE MAESTROPRIVILEGIOS " +
+                        "SET DESCRIPCION = :pDesc, " +
+                        " VALOR = :pValor " +
+                        " WHERE IDPRIVILEGIO = :pID",
                         "pDesc", privilegio.Descripcion,
                         "pValor", privilegio.Valor,
-                        "pIDRT");
+                        "pID", privilegio.IDPrivilegio);
+        }
+
+        public Int32 DeletePrivilegio(int id)
+        {
+            return DAL.DataService.ExecuteNonQuery("DELETE FROM MAESTROPRIVILEGIOS " +
+                        " WHERE IDPRIVILEGIO = :pID",
+                        "pID", id);
         }
     }
 }

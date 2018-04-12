@@ -135,7 +135,7 @@ namespace FacultativosWebApi.Providers
                 "INNER JOIN MAESTROCUESTIONARIOS MC " +
                 "ON MP.IDCUESTIONARIO = MC.IDCUESTIONARIO " +
                 "WHERE MC.IDCUESTIONARIO = " + id.ToString() + " " +
-                "ORDER BY IDCUESTIONARIO, NIVEL, ORDEN; ")).First();
+                "ORDER BY IDCUESTIONARIO, NIVEL, ORDEN; ")).FirstOrDefault();
         }
     }
 }

@@ -19,7 +19,7 @@ namespace FacultativosWebApi.DAL
                 cnn.Open();
 
                 OdbcCommand command = new OdbcCommand(psql, cnn);
-                command.CommandTimeout = 0;
+                command.CommandTimeout = 15;
 
                 foreach (OdbcParameter itemOdbcParameter in pParameters)
                 {
@@ -53,7 +53,7 @@ namespace FacultativosWebApi.DAL
                 cnn.Open();
 
                 OdbcCommand command = new OdbcCommand(sql, cnn);
-                command.CommandTimeout = 0;
+                command.CommandTimeout = 15;
 
                 for (int i = 0; i < parameters.Length; i += 2)
                 {
@@ -85,7 +85,7 @@ namespace FacultativosWebApi.DAL
                 cnn.Open();
 
                 command = new OdbcCommand(sql, cnn);
-                command.CommandTimeout = 0;
+                command.CommandTimeout = 15;
 
                 for (int i = 0; i < parameters.Length; i += 2)
                 {
@@ -120,7 +120,7 @@ namespace FacultativosWebApi.DAL
                 cnn.Open();
 
                 var command = new OdbcCommand(sql, cnn);
-                command.CommandTimeout = 0;
+                command.CommandTimeout = 15;
 
                 for (int i = 0; i < parameters.Length; i += 2)
                 {
@@ -128,11 +128,11 @@ namespace FacultativosWebApi.DAL
                 }
                 data = command.ExecuteNonQuery();
             }
-            catch
+            catch (Exception ex)
             {
                 if (cnn.State == ConnectionState.Open)
                     cnn.Close();
-                throw;
+                throw ex;
             }
 
             cnn.Close();
@@ -151,7 +151,7 @@ namespace FacultativosWebApi.DAL
                 cnn.Open();
 
                 var command = new OdbcCommand(sql, cnn);
-                command.CommandTimeout = 0;
+                command.CommandTimeout = 15;
 
                 int i;
                 for (i = 0; i < parameters.Length-1; i += 2)
