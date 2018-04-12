@@ -124,7 +124,7 @@ namespace FacultativosWebApi.DAL
 
                 for (int i = 0; i < parameters.Length; i += 2)
                 {
-                    command.Parameters.AddWithValue(parameters[i].ToString(), parameters[i + 1]);
+                    command.Parameters.AddWithValue(parameters[i].ToString(), parameters[i + 1] == null ? DBNull.Value : parameters[i + 1]);
                 }
                 data = command.ExecuteNonQuery();
             }
@@ -156,7 +156,7 @@ namespace FacultativosWebApi.DAL
                 int i;
                 for (i = 0; i < parameters.Length-1; i += 2)
                 {
-                    command.Parameters.AddWithValue(parameters[i].ToString(), parameters[i + 1]);
+                    command.Parameters.AddWithValue(parameters[i].ToString(), parameters[i + 1] == null ? DBNull.Value : parameters[i + 1] );
                 }
 
                 OdbcParameter paramRV = new OdbcParameter(parameters[parameters.Length - 1].ToString(), 1);
@@ -166,7 +166,7 @@ namespace FacultativosWebApi.DAL
                 paramRV.Value = 1;
                 command.Parameters.Add(paramRV);
                 data = command.ExecuteNonQuery();
-                RV = System.Convert.ToInt32(command.Parameters[i - 2].Value);
+                RV = System.Convert.ToInt32(command.Parameters[command.Parameters.Count - 1].Value);                
             }
             catch
             {

@@ -1,50 +1,46 @@
-﻿using System;
+﻿using FacultativosWebApi.Models;
+using FacultativosWebApi.Providers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using FacultativosWebApi.Models;
-using FacultativosWebApi.Providers;
-using System.Threading.Tasks;
 
 namespace FacultativosWebApi.Controllers
 {
-    public class PrivilegiosController : ApiController
+    public class PreguntasController : ApiController
     {
-        // GET: api/Privilegios
-        public IHttpActionResult Get()
-        {            
-            PrivilegiosProvider pPrivilegios = new PrivilegiosProvider();
-            var searchResults = pPrivilegios.GetPrivilegios();
-            if (searchResults == null)
-                return NotFound();
-            return Ok(searchResults);
+        // GET: api/Preguntas
+        public IEnumerable<Pregunta> Get()
+        {
+            PreguntasProvider pPreguntas = new PreguntasProvider();
+            return pPreguntas.GetPreguntas();
         }
 
-        // GET: api/Privilegios/5
+        // GET: api/Preguntas/5
         public IHttpActionResult Get(int id)
         {
-            PrivilegiosProvider pPrivilegios = new PrivilegiosProvider();
-            var searchResults = pPrivilegios.GetPrivilegio(id);
+            PreguntasProvider pPreguntas = new PreguntasProvider();
+            var searchResults = pPreguntas.GetPregunta(id);
             if (searchResults == null)
                 return NotFound();
             return Ok(searchResults);
         }
 
-        // POST: api/Privilegios
-        public IHttpActionResult Post(Privilegio privilegio)
+        // POST: api/Preguntas
+        public IHttpActionResult Post(Pregunta pregunta)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            PrivilegiosProvider pPrivilegios = new PrivilegiosProvider();
+            PreguntasProvider pPreguntas = new PreguntasProvider();
 
             try
             {
-                privilegio.IDPrivilegio = pPrivilegios.PostPrivilegio(privilegio);
+                pregunta.IDPregunta = pPreguntas.PostPregunta(pregunta);
             }
             catch (Exception ex)
             {
@@ -58,27 +54,27 @@ namespace FacultativosWebApi.Controllers
                 }
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = privilegio.IDPrivilegio }, privilegio);
+            return CreatedAtRoute("DefaultApi", new { id = pregunta.IDPregunta }, pregunta);
         }
 
-        // PUT: api/Privilegios/5
-        public IHttpActionResult Put(int id, Privilegio privilegio)
+        // PUT: api/Preguntas/5
+        public IHttpActionResult Put(int id, Pregunta pregunta)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != privilegio.IDPrivilegio)
+            if (id != pregunta.IDPregunta)
             {
                 return BadRequest();
             }
 
-            PrivilegiosProvider pPrivilegios = new PrivilegiosProvider();
+            PreguntasProvider pPreguntas = new PreguntasProvider();
 
             try
             {
-                int i = pPrivilegios.PutPrivilegio(privilegio);
+                int i = pPreguntas.PutPregunta(pregunta);
                 if (i == 0) return NotFound();
             }
             catch (Exception ex)
@@ -94,17 +90,17 @@ namespace FacultativosWebApi.Controllers
             }
 
             //return StatusCode(HttpStatusCode.NoContent);
-            return Ok(privilegio);
+            return Ok(pregunta);
         }
 
-        //// DELETE: api/Privilegios/5
+        // DELETE: api/Preguntas/5
         public IHttpActionResult Delete(int id)
         {
-            PrivilegiosProvider pPrivilegios = new PrivilegiosProvider();
+            PreguntasProvider pPreguntas = new PreguntasProvider();
 
             try
             {
-                int i = pPrivilegios.DeletePrivilegio(id);
+                int i = pPreguntas.DeletePregunta(id);
                 if (i == 0) return NotFound();
             }
             catch (Exception ex)
@@ -113,6 +109,6 @@ namespace FacultativosWebApi.Controllers
             }
 
             return Ok();
-        }        
+        }
     }
 }

@@ -133,5 +133,28 @@ namespace FacultativosWebApi
             if (cuestionario != null) cuestionarios.Add(cuestionario);
             return cuestionarios.AsEnumerable();
         }
+
+        public static IEnumerable<Pregunta> toPreguntas(DataTable dtPreguntas)
+        {
+
+            var preguntas = new List<Pregunta>();
+            foreach (DataRow row in dtPreguntas.Rows)
+            {
+                var pregunta = new Pregunta();
+
+                pregunta.IDPregunta = System.Convert.ToInt32(row["IDPREGUNTA"]);
+                pregunta.Descripcion = System.Convert.ToString(row["DESCRIPCION"]);
+                if (!Convert.IsDBNull(row["IDGRUPO"]))
+                    pregunta.IDGupo = System.Convert.ToInt32(row["IDGRUPO"]);
+                if (!Convert.IsDBNull(row["IDAREA"]))
+                    pregunta.IDArea = System.Convert.ToInt32(row["IDAREA"]);
+                if (!Convert.IsDBNull(row["IDCUESTIONARIO"]))
+                    pregunta.IDCuestionario = System.Convert.ToInt32(row["IDCUESTIONARIO"]);
+                pregunta.Orden = System.Convert.ToInt32(row["ORDEN"]);
+
+                preguntas.Add(pregunta);
+            }
+            return preguntas.AsEnumerable();
+        }
     }
 }

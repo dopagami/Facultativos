@@ -12,17 +12,23 @@ namespace FacultativosWebApi.Controllers
     public class CuestionariosController : ApiController
     {
         // GET: api/Cuestionarios
-        public IEnumerable<Cuestionario> Get()
+        public IHttpActionResult Get()
         {
             CuestionariosProvider pCuestionarios = new CuestionariosProvider();
-            return pCuestionarios.GetCuestionarios();
+            var searchResults = pCuestionarios.GetCuestionarios();
+            if (searchResults == null)
+                return NotFound();
+            return Ok(searchResults);
         }
 
         // GET: api/Cuestionarios/5
-        public Cuestionario Get(int id)
+        public IHttpActionResult Get(int id)
         {
             CuestionariosProvider pCuestionarios = new CuestionariosProvider();
-            return pCuestionarios.GetCuestionario(id);
+            var searchResults = pCuestionarios.GetCuestionario(id);
+            if (searchResults == null)
+                return NotFound();
+            return Ok(searchResults);
         }
 
         //// POST: api/Cuestionarios
