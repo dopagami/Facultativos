@@ -14,16 +14,17 @@ namespace FacultativosWebApi.Controllers
     {
         // GET: api/Privilegios
         public IEnumerable<Privilegio> Get()
-        {
+        {            
             PrivilegiosProvider pPrivilegios = new PrivilegiosProvider();
             return pPrivilegios.GetPrivilegios();
         }
 
-        //// GET: api/Privilegios/5
-        //public string Get(int id)
-        //{
-        //    return "value";
-        //}
+        // GET: api/Privilegios/5
+        public Privilegio Get(int id)
+        {
+            PrivilegiosProvider pPrivilegios = new PrivilegiosProvider();
+            return pPrivilegios.GetPrivilegio(id);
+        }
 
         // POST: api/Privilegios
         public IHttpActionResult Post(Privilegio privilegio)
@@ -47,7 +48,7 @@ namespace FacultativosWebApi.Controllers
                 }
                 else
                 {
-                    throw;
+                    throw ex;
                 }
             }
 
@@ -71,36 +72,41 @@ namespace FacultativosWebApi.Controllers
 
             try
             {
-                //pPrivilegios.PutPrivilegio(privilegio);
+                int i = pPrivilegios.PutPrivilegio(privilegio);
+                if (i == 0) return NotFound();
             }
             catch (Exception ex)
             {
-                //if (!MAESTROPRIVILEGIOSExists(id))
-                //{
-                //    return NotFound();
-                //}
-                //else
-                //{
-                //    throw;
-                //}
+                if (ex.Message.Contains("2300")) //integrity constraint violation
+                {
+                    return Conflict();
+                }
+                else
+                {
+                    throw ex;
+                }
             }
 
-            return StatusCode(HttpStatusCode.NoContent);
+            //return StatusCode(HttpStatusCode.NoContent);
+            return Ok(privilegio);
         }
 
         //// DELETE: api/Privilegios/5
-        //public void Delete(int id)
-        //{
-        //    MAESTROPRIVILEGIOS mAESTROPRIVILEGIOS = await db.MAESTROPRIVILEGIOS.FindAsync(id);
-        //        if (mAESTROPRIVILEGIOS == null)
-        //        {
-        //            return NotFound();
-        //}
+        public IHttpActionResult Delete(int id)
+        {
+            PrivilegiosProvider pPrivilegios = new PrivilegiosProvider();
 
-        //db.MAESTROPRIVILEGIOS.Remove(mAESTROPRIVILEGIOS);
-        //        await db.SaveChangesAsync();
+            try
+            {
+                int i = pPrivilegios.DeletePrivilegio(id);
+                if (i == 0) return NotFound();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
 
-        //        return Ok(mAESTROPRIVILEGIOS);
-        //}
+            return Ok();
+        }        
     }
 }
