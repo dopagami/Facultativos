@@ -3,17 +3,17 @@
   
     <form class="mat-dialog-content" (ngSubmit)="submit" #formControl="ngForm">
   
-      <!-- <div class="form">
+      <div class="form">
         <mat-form-field color="accent">
-          <input matInput #input class="form-control" placeholder="Id" [(ngModel)]="data.id" name="id" required >
+          <input matInput #input class="form-control" placeholder="Id" [(ngModel)]="data.IDPrivilegio" name="id" >
           <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
         </mat-form-field>
       </div>
-   -->
+   
       
       <div class="form">
         <mat-form-field color="primary">
-          <input matInput #input class="form-control" placeholder="Código privilegio" [(ngModel)]="data.valor" name="valor" maxlength="1" required>
+          <input matInput #input class="form-control" placeholder="Código privilegio" [(ngModel)]="data.Valor" name="valor" maxlength="1" required>
           <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
         </mat-form-field>
       </div>
@@ -21,9 +21,9 @@
       <!--Contains mat-hint for characters count and has maxLengt set-->
       <div class="form">
         <mat-form-field color="primary">
-          <textarea matInput #inputstate class="form-control" placeholder="Descripción" [(ngModel)]="data.descripcion" name="descripcion" maxlength="100" required></textarea>
+          <textarea matInput #inputdescripcion class="form-control" placeholder="Descripción" [(ngModel)]="data.Descripcion" name="descripcion" maxlength="100" required></textarea>
           <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
-          <mat-hint align="end">{{inputstate.value?.length || 0}}/100</mat-hint>
+          <mat-hint align="end">{{inputdescripcion.value?.length || 0}}/100</mat-hint>
         </mat-form-field>
       </div>
 

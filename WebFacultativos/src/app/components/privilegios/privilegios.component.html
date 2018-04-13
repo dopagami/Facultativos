@@ -55,17 +55,17 @@
     <!-- ID Column -->
     <ng-container matColumnDef="id">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Id</mat-header-cell>
-      <mat-cell *matCellDef="let row" >{{row.id}}</mat-cell>
+      <mat-cell *matCellDef="let row" >{{row.IDPrivilegio}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="valor">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Valor</mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.valor}}</mat-cell>
+      <mat-cell *matCellDef="let row"> {{row.Valor}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="descripcion">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Descripción</mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.descripcion}}</mat-cell>
+      <mat-cell *matCellDef="let row"> {{row.Descripcion}}</mat-cell>
     </ng-container>
 
     
@@ -78,7 +78,7 @@
       </mat-header-cell>
 
       <mat-cell *matCellDef="let row; let i=index;">
-        <button mat-icon-button class="secundaryColor" (click)="startEdit(i, row.id, row.valor, row.descripcion)">
+        <button mat-icon-button class="secundaryColor" (click)="startEdit(i, row.IDPrivilegio, row.Valor, row.Descripcion)">
           <mat-icon aria-label="Edit">edit</mat-icon>
         </button>
 

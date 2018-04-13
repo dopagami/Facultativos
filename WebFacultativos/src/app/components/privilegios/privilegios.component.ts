@@ -12,7 +12,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 import {AddComponent} from './dialogs/add/add.component';
-// import {EditDialogComponent} from './dialogs/edit/edit.dialog.component';
+ import {EditComponent} from './dialogs/edit/edit.component';
 // import {DeleteDialogComponent} from './dialogs/delete/delete.dialog.component';
 
 @Component({
@@ -22,7 +22,7 @@ import {AddComponent} from './dialogs/add/add.component';
 })
 
 export class PrivilegiosComponent implements OnInit {
-  displayedColumns = ['valor', 'descripcion', 'actions'];
+  displayedColumns = ['id', 'valor', 'descripcion', 'actions'];
   exampleDatabase: PrivilegioService | null;
   dataSource: ExampleDataSource | null;
   index: number;
@@ -37,7 +37,7 @@ export class PrivilegiosComponent implements OnInit {
   @ViewChild('filter') filter: ElementRef;
 
   ngOnInit() {
-    this.loadData();
+    this.loadData();    
   }
 
   refresh() {
@@ -59,26 +59,27 @@ export class PrivilegiosComponent implements OnInit {
     });
   }
 
-  // startEdit(i: number, id: number, title: string, state: string, url: string, created_at: string, updated_at: string) {
-  //   this.id = id;
-  //   // index row is used just for debugging proposes and can be removed
-  //   this.index = i;
-  //   console.log(this.index);
-  //   const dialogRef = this.dialog.open(EditDialogComponent, {
-  //     data: {id: id, title: title, state: state, url: url, created_at: created_at, updated_at: updated_at}
-  //   });
+  startEdit(i: number, id: number, valor: string, descripcion: string) {
+    this.id = id;
+    // index row is used just for debugging proposes and can be removed
+    this.index = i;
+    console.log(this.index);
+    console.log(valor);
+    const dialogRef = this.dialog.open(EditComponent, {
+      data: {IDPrivilegio: id, Valor: valor, Descripcion: descripcion}
+    });
 
-  //   dialogRef.afterClosed().subscribe(result => {
-  //     if (result === 1) {
-  //       // When using an edit things are little different, firstly we find record inside DataService by id
-  //       const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.id === this.id);
-  //       // Then you update that record using data from dialogData (values you enetered)
-  //       this.exampleDatabase.dataChange.value[foundIndex] = this.dataService.getDialogData();
-  //       // And lastly refresh table
-  //       this.refreshTable();
-  //     }
-  //   });
-  // }
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 1) {
+        // When using an edit things are little different, firstly we find record inside DataService by id
+        const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.IDPrivilegio === this.id);
+        // Then you update that record using data from dialogData (values you enetered)
+        this.exampleDatabase.dataChange.value[foundIndex] = this.dataService.getDialogData();
+        // And lastly refresh table
+        this.refreshTable();
+      }
+    });
+  }
 
   // deleteItem(i: number, id: number, title: string, state: string, url: string) {
   //   this.index = i;
@@ -168,7 +169,7 @@ export class ExampleDataSource extends DataSource<Privilegio> {
     return Observable.merge(...displayDataChanges).map(() => {
       // Filter data
       this.filteredData = this._exampleDatabase.data.slice().filter((privilegio: Privilegio) => {
-        const searchStr = (privilegio.id + privilegio.valor + privilegio.descripcion);
+        const searchStr = (privilegio.IDPrivilegio + privilegio.Valor + privilegio.Descripcion);
         return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
       });
 
@@ -197,9 +198,9 @@ export class ExampleDataSource extends DataSource<Privilegio> {
       let propertyB: number | string = '';
 
       switch (this._sort.active) {
-        case 'id': [propertyA, propertyB] = [a.id, b.id]; break;
-        case 'valor': [propertyA, propertyB] = [a.valor, b.valor]; break;
-        case 'descripcion': [propertyA, propertyB] = [a.descripcion, b.descripcion]; break;        
+        case 'id': [propertyA, propertyB] = [a.IDPrivilegio, b.IDPrivilegio]; break;
+        case 'valor': [propertyA, propertyB] = [a.Valor, b.Valor]; break;
+        case 'descripcion': [propertyA, propertyB] = [a.Descripcion, b.Descripcion]; break;        
       }
 
       const valueA = isNaN(+propertyA) ? propertyA : +propertyA;
