@@ -26,7 +26,7 @@ namespace FacultativosWebApi.Providers
                         "VALUES(:pDesc, :pGrupo, :pArea, :pCuestionario, :pOrden) " +
                         "RETURNING IDPREGUNTA INTO :pIDRT",
                         "pDesc", pregunta.Descripcion,
-                        "pGrupo", pregunta.IDGupo,
+                        "pGrupo", pregunta.IDGrupo,
                         "pArea", pregunta.IDArea,
                         "pCuestionario", pregunta.IDCuestionario,
                         "pOrden", pregunta.Orden,
@@ -43,7 +43,7 @@ namespace FacultativosWebApi.Providers
                         " ORDEN = :pOrden " +
                         " WHERE IDPREGUNTA = :pID",
                         "pDesc", pregunta.Descripcion,
-                        "pGrupo", pregunta.IDGupo,
+                        "pGrupo", pregunta.IDGrupo,
                         "pArea", pregunta.IDArea,
                         "pCuestionario", pregunta.IDCuestionario,
                         "pOrden", pregunta.Orden,
