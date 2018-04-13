@@ -11,6 +11,8 @@ import { Privilegio } from '../../../../models/privilegio.model';
 })
 
 export class AddComponent {
+  privilegio: Privilegio[];
+  displayedColumns = ['valor', 'descripcion', 'actions'];
   constructor(public dialogRef: MatDialogRef<AddComponent>,
               @Inject(MAT_DIALOG_DATA) public data: Privilegio,
               public dataService: PrivilegioService) { }
@@ -36,6 +38,9 @@ export class AddComponent {
   }
 
   public confirmAdd(): void {
+    
+    //console.log(this.data);        
+    //this.privilegio.push(this.data);
     this.dataService.addPrivilegio(this.data);
   }
 }

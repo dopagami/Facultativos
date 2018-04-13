@@ -1,6 +1,6 @@
 export interface Privilegio {
-    id: number,
-    valor: string;
-    descripcion: string;
+    IDPrivilegio: number,
+    Valor: string;
+    Descripcion: string;
 }
 
