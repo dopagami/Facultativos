@@ -53,7 +53,7 @@ export class PrivilegiosComponent implements OnInit {
       if (result === 1) {        
         // Después de cerrar el diálogo hacemos los updates del frontend
         // Para agregar, sólo anadimos una nueva fila en el DataService        
-        this.exampleDatabase.dataChange.value.push(this.dataService.getDialogData());
+        this.exampleDatabase.dataChange.value.push(this.dataService.getDialogData());        
         this.refreshTable();
       }
     });

@@ -5,18 +5,22 @@ import { Observable } from 'rxjs';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 import { of } from 'rxjs/observable/of';
+import { Headers, RequestOptions } from '@angular/http';
 // const httpOptions = {
 //   headers: new HttpHeaders({
-//     'Content-Type':  'application/json',
-//     'Authorization': 'my-auth-token'
+//     'content-type':  'application/json'
+//     //'Authorization': 'my-auth-token'
 //   })
 // };
+
+
 
 @Injectable()
 export class PrivilegioService {
 
-
-  
+  //private headers = new Headers({ 'Content-Type': 'application/json' });
+  //private options = new RequestOptions({ headers: this.headers });
+  private  headers =  {headers: new  HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded'})};
   http: any;
   privilegio: Privilegio[];
   // Url que devuvle un JSON... cambiar por nuestra API
@@ -29,7 +33,7 @@ export class PrivilegioService {
   
   dataChange: BehaviorSubject<Privilegio[]> = new BehaviorSubject<Privilegio[]>([]);
 
-  // Property que guarda  temporalmente el data de los diÃ¡logos
+  // Property que guarda  temporalmente el data de los diálogos
   dialogData: any;
   privilegios: Privilegio[];
 
@@ -69,19 +73,19 @@ export class PrivilegioService {
    addPrivilegio(privilegio: Privilegio): any {
     
 
-    // let cluster: Privilegio = {
-    //   IDPrivilegio: 100,
-    //   Valor: "G",
-    //   Descripcion: 'nuevo cluster'
-    // };
+    let cluster: any = {
+      //IDPrivilegio: 100,
+      Valor: "G",
+      Descripcion: 'nuevo cluster'
+    };
 
-    
+    console.log(cluster);
 
-    this.httpClient.post(this.API_URL, privilegio).subscribe(data => {
+    this.httpClient.post(this.API_URL, cluster, this.headers).subscribe(data => {
       
-      this.dialogData = privilegio;
+      this.dialogData = cluster;
       //this.toasterService.showToaster('Successfully added', 3000);
-      alert("GrabaciÃ³n correcta");
+      alert("Grabación correcta");
       },
       (err: HttpErrorResponse) => {
       //this.toasterService.showToaster('Error occurred. Details: ' + err.name + ' ' + err.message, 8000);
@@ -90,10 +94,19 @@ export class PrivilegioService {
    }
 
 
+//    addPrivilegio(privilegio:Privilegio): Observable<Privilegio> {
+//     let headers = new Headers({ 'Content-Type': 'application/json' });
+//     let options = new RequestOptions({ headers: headers });
+//     return this.http.post(this.API_URL, privilegio, options)
+//                .map(this.extractData)
+//                .catch(this.handleErrorObservable);
+// } 
+
+
     // UPDATE, PUT METHOD
     updatePrivilegio(kanbanItem: Privilegio): void {
       this.httpClient.put(this.API_URL + kanbanItem.IDPrivilegio, kanbanItem).subscribe(data => {
-          this.dialogData = kanbanItem;
+          //this.dialogData = kanbanItem;
           //this.toasterService.showToaster('Successfully edited', 3000);
         },
         (err: HttpErrorResponse) => {
