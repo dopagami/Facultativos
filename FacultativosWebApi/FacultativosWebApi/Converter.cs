@@ -90,7 +90,7 @@ namespace FacultativosWebApi
 
                 }
 
-                //Privilegios
+                //Preguntas
                 if (System.Convert.ToString(row["nivel"]) == "4")
                 {
                     Pregunta pregunta = new Pregunta();
@@ -145,7 +145,7 @@ namespace FacultativosWebApi
                 pregunta.IDPregunta = System.Convert.ToInt32(row["IDPREGUNTA"]);
                 pregunta.Descripcion = System.Convert.ToString(row["DESCRIPCION"]);
                 if (!Convert.IsDBNull(row["IDGRUPO"]))
-                    pregunta.IDGupo = System.Convert.ToInt32(row["IDGRUPO"]);
+                    pregunta.IDGrupo = System.Convert.ToInt32(row["IDGRUPO"]);
                 if (!Convert.IsDBNull(row["IDAREA"]))
                     pregunta.IDArea = System.Convert.ToInt32(row["IDAREA"]);
                 if (!Convert.IsDBNull(row["IDCUESTIONARIO"]))
@@ -155,6 +155,57 @@ namespace FacultativosWebApi
                 preguntas.Add(pregunta);
             }
             return preguntas.AsEnumerable();
+        }
+
+        public static IEnumerable<Grupo> toGrupos(DataTable dtGrupos)
+        {
+
+            List<Grupo> grupos = new List<Grupo>();
+            Grupo grupo = null; ;
+            foreach (DataRow row in dtGrupos.Rows)
+            {
+                //Grupos
+                if (System.Convert.ToString(row["nivel"]) == "1")
+                {
+                    grupo = new Grupo();
+
+                    grupo.Preguntas = new List<Pregunta>();
+
+                    grupo.IDGrupo = System.Convert.ToInt32(row["IDGRUPO"]);
+
+                    grupo.Descripcion = System.Convert.ToString(row["DESCRIPCIONGRUPO"]);
+
+                    if (!Convert.IsDBNull(row["IDAREA"]))
+                        grupo.IDArea = System.Convert.ToInt32(row["IDAREA"]);
+
+                    grupo.IDCuestionario = System.Convert.ToInt32(row["IDCUESTIONARIO"]);
+
+                    grupos.Add(grupo);
+
+                }
+
+                //Preguntas
+                if (System.Convert.ToString(row["nivel"]) == "2")
+                {
+                    Pregunta pregunta = new Pregunta();
+
+                    pregunta.IDPregunta = System.Convert.ToInt32(row["IDPREGUNTA"]);
+
+                    pregunta.Descripcion = System.Convert.ToString(row["DESCRIPCIONPREGUNTA"]);
+
+                    pregunta.IDGrupo = System.Convert.ToInt32(row["IDGRUPO"]);
+
+                    if (!Convert.IsDBNull(row["IDAREA"]))
+                        pregunta.IDArea = System.Convert.ToInt32(row["IDAREA"]);
+
+                    pregunta.IDCuestionario = System.Convert.ToInt32(row["IDCUESTIONARIO"]);
+
+                    grupo.Preguntas.Add(pregunta);
+
+                }
+
+            }
+            return grupos.AsEnumerable();
         }
     }
 }
