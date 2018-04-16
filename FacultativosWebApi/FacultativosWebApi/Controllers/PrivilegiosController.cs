@@ -33,7 +33,7 @@ namespace FacultativosWebApi.Controllers
         }
 
         // POST: api/Privilegios
-        public IHttpActionResult Post(Privilegio privilegio)
+        public IHttpActionResult Post([FromBody]Privilegio privilegio)
         {
             if (!ModelState.IsValid)
             {
