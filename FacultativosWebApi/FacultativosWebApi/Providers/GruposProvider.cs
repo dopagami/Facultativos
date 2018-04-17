@@ -45,8 +45,7 @@ namespace FacultativosWebApi.Providers
         {
 
             try
-            {
-                DAL.DataService.createTransaction();
+            {                
 
                 Int32 IDGrupo = DAL.DataService.ExecuteNonQueryRV("INSERT INTO MAESTROGRUPOS(DESCRIPCION, IDAREA, IDCUESTIONARIO, ORDEN) " +
                         "VALUES(:pDesc, :pArea, :pCuestionario, :pOrden) " +
@@ -55,27 +54,23 @@ namespace FacultativosWebApi.Providers
                         "pArea", grupo.IDArea,
                         "pCuestionario", grupo.IDCuestionario,
                         "pOrden", grupo.Orden,
-                        "pIDRT");
-
-                PreguntasProvider pPreguntas = new PreguntasProvider();
+                        "pIDRT");                
 
                 if (grupo.Preguntas != null)
                 {
+                    PreguntasProvider pPreguntas = new PreguntasProvider();
+
                     foreach (Pregunta pregunta in grupo.Preguntas)
                     {
                         pregunta.IDGrupo = IDGrupo;
                         pregunta.IDPregunta = pPreguntas.PostPregunta(pregunta);
                     };
                 }                
-
-                DAL.DataService.transaction.Commit();
-                DAL.DataService.closeTransaction();
+                
                 return IDGrupo;
 
             } catch (Exception ex)
-            {
-                DAL.DataService.transaction.Rollback();
-                DAL.DataService.closeTransaction();
+            {                
                 throw ex;
             }
 

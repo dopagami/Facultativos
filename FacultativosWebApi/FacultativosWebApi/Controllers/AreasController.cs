@@ -9,40 +9,40 @@ using System.Web.Http;
 
 namespace FacultativosWebApi.Controllers
 {
-    public class GruposController : ApiController
+    public class AreasController : ApiController
     {
-        // GET: api/Grupos
-        public IEnumerable<Grupo> Get()
+        // GET: api/Areas
+        public IEnumerable<Area> Get()
         {
-            GruposProvider pGrupos = new GruposProvider();
-            return pGrupos.GetGrupos();
+            AreasProvider pAreas = new AreasProvider();
+            return pAreas.GetAreas();
         }
 
-        // GET: api/Grupos/5
+        // GET: api/Areas/5
         public IHttpActionResult Get(int id)
         {
-            GruposProvider pGrupos = new GruposProvider();
-            var searchResults = pGrupos.GetGrupo(id);
+            AreasProvider pAreas = new AreasProvider();
+            var searchResults = pAreas.GetArea(id);
             if (searchResults == null)
                 return NotFound();
             return Ok(searchResults);
         }
 
-        // POST: api/Grupos
-        public IHttpActionResult Post([FromBody]Grupo grupo)
+        // POST: api/Areas
+        public IHttpActionResult Post([FromBody]Area area)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            GruposProvider pGrupos = new GruposProvider();
+            AreasProvider pAreas = new AreasProvider();
 
             try
             {
                 DAL.DataService.createTransaction();
 
-                grupo.IDGrupo = pGrupos.PostGrupo(grupo);
+                area.IDArea = pAreas.PostArea(area);
 
                 DAL.DataService.transaction.Commit();
                 DAL.DataService.closeTransaction();
@@ -62,27 +62,27 @@ namespace FacultativosWebApi.Controllers
                 }
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = grupo.IDGrupo }, grupo);
+            return CreatedAtRoute("DefaultApi", new { id = area.IDArea }, area);
         }
 
-        // PUT: api/Grupos/5
-        public IHttpActionResult Put(int id, [FromBody]Grupo grupo)
+        // PUT: api/Areas/5
+        public IHttpActionResult Put(int id, [FromBody]Area area)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != grupo.IDGrupo)
+            if (id != area.IDArea)
             {
                 return BadRequest();
             }
 
-            GruposProvider pGrupos = new GruposProvider();
+            AreasProvider pAreas = new AreasProvider();
 
             try
             {
-                int i = pGrupos.PutGrupo(grupo);
+                int i = pAreas.PutArea(area);
                 if (i == 0) return NotFound();
             }
             catch (Exception ex)
@@ -98,17 +98,17 @@ namespace FacultativosWebApi.Controllers
             }
 
             //return StatusCode(HttpStatusCode.NoContent);
-            return Ok(grupo);
+            return Ok(area);
         }
 
-        // DELETE: api/Grupos/5
+        // DELETE: api/Areas/5
         public IHttpActionResult Delete(int id)
         {
-            GruposProvider pGrupos = new GruposProvider();
+            AreasProvider pAreas = new AreasProvider();
 
             try
             {
-                int i = pGrupos.DeleteGrupo(id);
+                int i = pAreas.DeleteArea(id);
                 if (i == 0) return NotFound();
             }
             catch (Exception ex)

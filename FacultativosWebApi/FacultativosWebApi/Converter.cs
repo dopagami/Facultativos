@@ -207,5 +207,85 @@ namespace FacultativosWebApi
             }
             return grupos.AsEnumerable();
         }
+
+        public static IEnumerable<Area> toAreas(DataTable dtAreas)
+        {
+
+            List<Area> areas = new List<Area>();
+            Area area = null; ;
+            foreach (DataRow row in dtAreas.Rows)
+            {
+                //Areas
+                if (System.Convert.ToString(row["nivel"]) == "1")
+                {
+                    area = new Area();
+
+                    area.Grupos = new List<Grupo>();
+
+                    area.Preguntas = new List<Pregunta>();
+
+                    area.IDArea = System.Convert.ToInt32(row["IDAREA"]);
+
+                    area.Descripcion = System.Convert.ToString(row["DESCRIPCIONAREA"]);
+
+                    area.IDCuestionario = System.Convert.ToInt32(row["IDCUESTIONARIO"]);
+
+                    areas.Add(area);
+
+                }
+
+                //Grupos
+                if (System.Convert.ToString(row["nivel"]) == "2")
+                {
+                    Grupo grupo = new Grupo();
+
+                    grupo.Preguntas = new List<Pregunta>();
+
+                    grupo.IDGrupo = System.Convert.ToInt32(row["IDGRUPO"]);
+
+                    grupo.Descripcion = System.Convert.ToString(row["DESCRIPCIONGRUPO"]);
+
+                    if (!Convert.IsDBNull(row["IDAREA"]))
+                        grupo.IDArea = System.Convert.ToInt32(row["IDAREA"]);
+
+                    grupo.IDCuestionario = System.Convert.ToInt32(row["IDCUESTIONARIO"]);
+
+                    area.Grupos.Add(grupo);
+
+                }
+
+                //Preguntas
+                if (System.Convert.ToString(row["nivel"]) == "3")
+                {
+                    Pregunta pregunta = new Pregunta();
+
+                    pregunta.IDPregunta = System.Convert.ToInt32(row["IDPREGUNTA"]);
+
+                    pregunta.Descripcion = System.Convert.ToString(row["DESCRIPCIONPREGUNTA"]);
+
+                    if (!Convert.IsDBNull(row["IDGRUPO"]))
+                        pregunta.IDGrupo = System.Convert.ToInt32(row["IDGRUPO"]);
+
+                    if (!Convert.IsDBNull(row["IDAREA"]))
+                        pregunta.IDArea = System.Convert.ToInt32(row["IDAREA"]);
+
+                    pregunta.IDCuestionario = System.Convert.ToInt32(row["IDCUESTIONARIO"]);
+
+                    //Si el grupo pertenece a un área se añade a ese área del cuestionario, si no se añade al cuestionario
+                    if (!string.IsNullOrEmpty(row["IDGRUPO"].ToString()))
+                    {
+                        Grupo Grupo = area.Grupos.Last();
+                        Grupo.Preguntas.Add(pregunta);
+                    }
+                    else
+                    {
+                        area.Preguntas.Add(pregunta);
+                    }                    
+
+                }
+
+            }
+            return areas.AsEnumerable();
+        }
     }
 }

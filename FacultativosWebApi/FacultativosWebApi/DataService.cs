@@ -19,7 +19,8 @@ namespace FacultativosWebApi.DAL
             transaction = connection.BeginTransaction();
         }
 
-        public static void closeTransaction() {
+        public static void closeTransaction()
+        {
             if (connection.State == ConnectionState.Open)
                 connection.Close();
             connection = null;
@@ -172,12 +173,13 @@ namespace FacultativosWebApi.DAL
                     cnn.ConnectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
                     cnn.Open();
                     command = new OdbcCommand(sql, cnn);
-                } else
+                }
+                else
                 {
                     command = new OdbcCommand(sql, connection, transaction);
-                }          
-                
-                command.CommandTimeout = 15;                
+                }
+
+                command.CommandTimeout = 15;
 
                 int i;
                 for (i = 0; i < parameters.Length - 1; i += 2)
@@ -204,8 +206,8 @@ namespace FacultativosWebApi.DAL
                     cnn.Close();
                 throw ex;
             }
-            
-        }        
+
+        }
 
     }
 }
