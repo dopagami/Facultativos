@@ -62,7 +62,7 @@ namespace FacultativosWebApi.Controllers
         }
 
         // PUT: api/Privilegios/5
-        public IHttpActionResult Put(int id, Privilegio privilegio)
+        public IHttpActionResult Put(int id, [FromBody]Privilegio privilegio)
         {
             if (!ModelState.IsValid)
             {

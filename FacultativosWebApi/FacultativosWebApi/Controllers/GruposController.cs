@@ -29,8 +29,32 @@ namespace FacultativosWebApi.Controllers
         }
 
         // POST: api/Grupos
-        public void Post([FromBody]string value)
+        public IHttpActionResult Post([FromBody]Grupo grupo)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            GruposProvider pGrupos = new GruposProvider();
+
+            try
+            {
+                grupo.IDGrupo = pGrupos.PostGrupo(grupo);
+            }
+            catch (Exception ex)
+            {
+                if (ex.Message.Contains("2300")) //integrity constraint violation
+                {
+                    return Conflict();
+                }
+                else
+                {
+                    throw ex;
+                }
+            }
+
+            return CreatedAtRoute("DefaultApi", new { id = grupo.IDGrupo }, grupo);
         }
 
         // PUT: api/Grupos/5

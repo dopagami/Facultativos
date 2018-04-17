@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Odbc;
 using System.Linq;
 using System.Web;
 
@@ -23,7 +24,7 @@ namespace FacultativosWebApi.Providers
         }
 
         public Int32 PostPrivilegio(Privilegio privilegio)
-        {            
+        {
             return DAL.DataService.ExecuteNonQueryRV("INSERT INTO MAESTROPRIVILEGIOS(DESCRIPCION, VALOR) " +
                         "VALUES(:pDesc, :pValor) " +
                         "RETURNING IDPRIVILEGIO INTO :pIDRT",
