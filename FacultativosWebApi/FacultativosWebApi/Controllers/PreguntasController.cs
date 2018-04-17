@@ -29,7 +29,7 @@ namespace FacultativosWebApi.Controllers
         }
 
         // POST: api/Preguntas
-        public IHttpActionResult Post(Pregunta pregunta)
+        public IHttpActionResult Post([FromBody]Pregunta pregunta)
         {
             if (!ModelState.IsValid)
             {
@@ -58,7 +58,7 @@ namespace FacultativosWebApi.Controllers
         }
 
         // PUT: api/Preguntas/5
-        public IHttpActionResult Put(int id, Pregunta pregunta)
+        public IHttpActionResult Put(int id, [FromBody]Pregunta pregunta)
         {
             if (!ModelState.IsValid)
             {

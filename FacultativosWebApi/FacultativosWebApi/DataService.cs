@@ -8,6 +8,25 @@ namespace FacultativosWebApi.DAL
 {
     public class DataService
     {
+        public static OdbcConnection connection = null;
+        public static OdbcTransaction transaction = null;
+
+        public static void createTransaction()
+        {
+            connection = new OdbcConnection();
+            connection.ConnectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+            connection.Open();
+            transaction = connection.BeginTransaction();
+        }
+
+        public static void closeTransaction()
+        {
+            if (connection.State == ConnectionState.Open)
+                connection.Close();
+            connection = null;
+            transaction = null;
+        }
+
         public static DataTable Execute(string psql, List<OdbcParameter> pParameters)
         {
             DataTable data = new DataTable();
@@ -143,20 +162,29 @@ namespace FacultativosWebApi.DAL
         {
             int data = -1;
             Int32 RV = -1;
-            var cnn = new OdbcConnection();
+            OdbcConnection cnn = null;
 
             try
             {
-                cnn.ConnectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
-                cnn.Open();
+                OdbcCommand command = null;
+                if (transaction == null)
+                {
+                    cnn = new OdbcConnection();
+                    cnn.ConnectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+                    cnn.Open();
+                    command = new OdbcCommand(sql, cnn);
+                }
+                else
+                {
+                    command = new OdbcCommand(sql, connection, transaction);
+                }
 
-                var command = new OdbcCommand(sql, cnn);
                 command.CommandTimeout = 15;
 
                 int i;
-                for (i = 0; i < parameters.Length-1; i += 2)
+                for (i = 0; i < parameters.Length - 1; i += 2)
                 {
-                    command.Parameters.AddWithValue(parameters[i].ToString(), parameters[i + 1] == null ? DBNull.Value : parameters[i + 1] );
+                    command.Parameters.AddWithValue(parameters[i].ToString(), parameters[i + 1] == null ? DBNull.Value : parameters[i + 1]);
                 }
 
                 OdbcParameter paramRV = new OdbcParameter(parameters[parameters.Length - 1].ToString(), 1);
@@ -166,17 +194,20 @@ namespace FacultativosWebApi.DAL
                 paramRV.Value = 1;
                 command.Parameters.Add(paramRV);
                 data = command.ExecuteNonQuery();
-                RV = System.Convert.ToInt32(command.Parameters[command.Parameters.Count - 1].Value);                
+                RV = System.Convert.ToInt32(command.Parameters[command.Parameters.Count - 1].Value);
+
+                if (transaction == null) cnn.Close();
+
+                return RV;
             }
-            catch
+            catch (Exception ex)
             {
                 if (cnn.State == ConnectionState.Open)
                     cnn.Close();
-                throw;
+                throw ex;
             }
 
-            cnn.Close();
-            return RV;
         }
+
     }
 }

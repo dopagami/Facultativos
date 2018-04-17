@@ -1,6 +1,8 @@
 ﻿using FacultativosWebApi.Models;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data.Odbc;
 using System.Linq;
 using System.Web;
 
@@ -37,6 +39,63 @@ namespace FacultativosWebApi.Providers
                         " WHERE MG.IDGRUPO = :pID " +
                         "ORDER BY IDGRUPO, NIVEL, ORDEN",
                         "pID", id)).FirstOrDefault();
+        }
+
+        public Int32 PostGrupo(Grupo grupo)
+        {
+
+            try
+            {                
+
+                Int32 IDGrupo = DAL.DataService.ExecuteNonQueryRV("INSERT INTO MAESTROGRUPOS(DESCRIPCION, IDAREA, IDCUESTIONARIO, ORDEN) " +
+                        "VALUES(:pDesc, :pArea, :pCuestionario, :pOrden) " +
+                        "RETURNING IDGRUPO INTO :pIDRT",
+                        "pDesc", grupo.Descripcion,
+                        "pArea", grupo.IDArea,
+                        "pCuestionario", grupo.IDCuestionario,
+                        "pOrden", grupo.Orden,
+                        "pIDRT");                
+
+                if (grupo.Preguntas != null)
+                {
+                    PreguntasProvider pPreguntas = new PreguntasProvider();
+
+                    foreach (Pregunta pregunta in grupo.Preguntas)
+                    {
+                        pregunta.IDGrupo = IDGrupo;
+                        pregunta.IDPregunta = pPreguntas.PostPregunta(pregunta);
+                    };
+                }                
+                
+                return IDGrupo;
+
+            } catch (Exception ex)
+            {                
+                throw ex;
+            }
+
+        }
+
+        public Int32 PutGrupo(Grupo grupo)
+        {
+            return DAL.DataService.ExecuteNonQuery("UPDATE MAESTROGRUPOS " +
+                        "SET DESCRIPCION = :pDesc, " +
+                        " IDAREA = :pArea, " +
+                        " IDCUESTIONARIO = :pCuestionario, " +
+                        " ORDEN = :pOrden " +
+                        " WHERE IDGRUPO = :pID",
+                        "pDesc", grupo.Descripcion,
+                        "pArea", grupo.IDArea,
+                        "pCuestionario", grupo.IDCuestionario,
+                        "pOrden", grupo.Orden,
+                        "pID", grupo.IDGrupo);
+        }
+
+        public Int32 DeleteGrupo(int id)
+        {
+            return DAL.DataService.ExecuteNonQuery("DELETE FROM MAESTROGRUPOS " +
+                        " WHERE IDGRUPO = :pID",
+                        "pID", id);
         }
     }
 }
