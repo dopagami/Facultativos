@@ -9,6 +9,8 @@ import { FormControl, Validators } from '@angular/forms';
   styleUrls: ['./edit.component.css']
 })
 export class EditComponent {
+  displayedColumns = ['valor', 'descripcion', 'actions'];
+  
   constructor(public dialogRef: MatDialogRef<EditComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any, public dataService: PrivilegioService) { }
 
@@ -32,7 +34,7 @@ export class EditComponent {
   }
 
   stopEdit(): void {
-    this.dataService.updatePrivilegio(this.data);
+    //this.dataService.updatePrivilegio(this.data);
   }
 
 }

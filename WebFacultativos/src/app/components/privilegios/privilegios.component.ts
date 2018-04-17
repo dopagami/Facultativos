@@ -12,8 +12,9 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 import {AddComponent} from './dialogs/add/add.component';
- import {EditComponent} from './dialogs/edit/edit.component';
-// import {DeleteDialogComponent} from './dialogs/delete/delete.dialog.component';
+import {EditComponent} from './dialogs/edit/edit.component';
+import {DeleteComponent} from './dialogs/delete/delete.component';
+
 
 @Component({
   selector: 'app-privilegios',
@@ -22,11 +23,13 @@ import {AddComponent} from './dialogs/add/add.component';
 })
 
 export class PrivilegiosComponent implements OnInit {
-  displayedColumns = ['id', 'valor', 'descripcion', 'actions'];
+  displayedColumns = ['valor', 'descripcion', 'actions'];
   exampleDatabase: PrivilegioService | null;
   dataSource: ExampleDataSource | null;
   index: number;
   id: number;
+  privilegiotemp: Privilegio;
+  
 
   constructor(public httpClient: HttpClient,
               public dialog: MatDialog,
@@ -45,19 +48,33 @@ export class PrivilegiosComponent implements OnInit {
   }
 
   addNew(privilegio: Privilegio) {
-    const dialogRef = this.dialog.open(AddComponent, {
-      data: {privilegio: privilegio }
-    });
+    
+    const dialogRef = this.dialog.open(AddComponent, {      
+      data: {privilegio: privilegio }        ,
+      height: '400px',
+      width: '600px'      
+    }
 
+  );
+  
     dialogRef.afterClosed().subscribe(result => {
-      if (result === 1) {        
-        // Después de cerrar el diálogo hacemos los updates del frontend
-        // Para agregar, sólo anadimos una nueva fila en el DataService        
-        this.exampleDatabase.dataChange.value.push(this.dataService.getDialogData());        
-        this.refreshTable();
-      }
+      
+      // Después de cerrar el diálogo hacemos los updates del frontend
+      
+      // Me suscribo al observable del post.
+      this.dataService.addPrivilegio(result).subscribe(res => {                
+        // Para agregar, sólo anadimos una nueva fila en el DataService                        
+        this.exampleDatabase.dataChange.value.push(res);      
+        this.refreshTable();       
+      }, err => {         
+        alert("Hay un conflicto") ;
+        //console.log(err.code);         
+      })
+
     });
+    
   }
+
 
   startEdit(i: number, id: number, valor: string, descripcion: string) {
     this.id = id;
@@ -70,33 +87,39 @@ export class PrivilegiosComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      debugger;
       if (result === 1) {
+        debugger;
         // When using an edit things are little different, firstly we find record inside DataService by id
         const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.IDPrivilegio === this.id);
         // Then you update that record using data from dialogData (values you enetered)
         this.exampleDatabase.dataChange.value[foundIndex] = this.dataService.getDialogData();
         // And lastly refresh table
         this.refreshTable();
+
+        this.refresh();
       }
     });
   }
 
-  // deleteItem(i: number, id: number, title: string, state: string, url: string) {
-  //   this.index = i;
-  //   this.id = id;
-  //   const dialogRef = this.dialog.open(DeleteDialogComponent, {
-  //     data: {id: id, title: title, state: state, url: url}
-  //   });
+  deleteItem(i: number, id: number, valor: string, descripcion: string) {
+    debugger;
+    this.index = i;
+    this.id = id;
+    const dialogRef = this.dialog.open(DeleteComponent, {
+      data: {id: id, valor: valor, descripcion: descripcion},
+      height: '35vh'      
+    });
 
-  //   dialogRef.afterClosed().subscribe(result => {
-  //     if (result === 1) {
-  //       const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.id === this.id);
-  //       // for delete we use splice in order to remove single object from DataService
-  //       this.exampleDatabase.dataChange.value.splice(foundIndex, 1);
-  //       this.refreshTable();
-  //     }
-  //   });
-  // }
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 1) {
+        const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.IDPrivilegio === this.id);
+        // for delete we use splice in order to remove single object from DataService
+        this.exampleDatabase.dataChange.value.splice(foundIndex, 1);
+        this.refreshTable();
+      }
+    });
+  }
 
 
   // If you don't need a filter or a pagination this can be simplified, you just use code from else block
@@ -135,6 +158,7 @@ export class PrivilegiosComponent implements OnInit {
 export class ExampleDataSource extends DataSource<Privilegio> {
   _filterChange = new BehaviorSubject('');
 
+  privilegio = [];
   get filter(): string {
     return this._filterChange.value;
   }
@@ -167,9 +191,10 @@ export class ExampleDataSource extends DataSource<Privilegio> {
     this._exampleDatabase.getAllPrivilegios();
 
     return Observable.merge(...displayDataChanges).map(() => {
+     
       // Filter data
-      this.filteredData = this._exampleDatabase.data.slice().filter((privilegio: Privilegio) => {
-        const searchStr = (privilegio.IDPrivilegio + privilegio.Valor + privilegio.Descripcion);
+      this.filteredData = this._exampleDatabase.data.slice().filter((privilegio: Privilegio) => {        
+        const searchStr = (privilegio.IDPrivilegio + privilegio.Valor + privilegio.Descripcion);        
         return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
       });
 

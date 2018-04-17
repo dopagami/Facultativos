@@ -1,3 +1,16 @@
-<p>
-  delete works!
-</p>
+<div class="container">
+  <h3 mat-dialog-title>¿Estás seguro que quieres eliminar el siguiente privilegio?</h3>
+  <div mat-dialog-content>
+    Id: {{data.id}}
+    <p></p>
+    Valor: {{data.valor}}
+    <p></p>
+    Descripción: {{data.descripcion}}
+    
+  </div>
+<hr>
+  <div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()" tabindex="-1">Cancelar</button>
+    <button mat-button [mat-dialog-close]="1" (click)="confirmDelete()">Eliminar</button>    
+  </div>
+</div>

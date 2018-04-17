@@ -23,8 +23,11 @@
     outline-style: none;
   }
 
-
-
+  .mat-table {
+    overflow: auto;
+    max-height: 350px;
+  }
+  
   .secundaryColor{
     color:#6d6d6d;
   }

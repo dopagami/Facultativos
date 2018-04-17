@@ -3,17 +3,17 @@
   
     <form class="mat-dialog-content" (ngSubmit)="submit" #formControl="ngForm">
   
-      <div class="form">
+      <!-- <div class="form" style="display: none" >
         <mat-form-field color="accent">
-          <input matInput #input class="form-control" placeholder="Id" [(ngModel)]="data.IDPrivilegio" name="id" >
+          <input matInput  class="form-control" placeholder="Id" [(ngModel)]="data.IDPrivilegio" name="id" >
           <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
         </mat-form-field>
       </div>
-   
+    -->
       
       <div class="form">
         <mat-form-field color="primary">
-          <input matInput #input class="form-control" placeholder="Código privilegio" [(ngModel)]="data.Valor" name="valor" maxlength="1" required>
+          <input matInput  class="form-control" placeholder="Código privilegio" [(ngModel)]="data.Valor" name="valor" maxlength="1" required>
           <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
         </mat-form-field>
       </div>
@@ -29,7 +29,8 @@
 
       <div mat-dialog-actions>
         <button mat-button (click)="onNoClick()" tabindex="-1">Cancelar</button>
-        <button mat-button [type]="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1" (click)="confirmAdd()">Grabar</button>        
+        <button mat-button [type]="submit" [disabled]="!formControl.valid" mat-button-close   (click)="confirmAdd()">Grabar</button>                
+        <!-- <button mat-button [type]="submit" [disabled]="!formControl.valid"  (click)="confirmAdd()">Grabar</button>                 -->
       </div>
     </form>
   </div>
