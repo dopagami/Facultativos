@@ -29,7 +29,7 @@ namespace FacultativosWebApi.Providers
                         "VALUES(:pDesc, :pValor) " +
                         "RETURNING IDPRIVILEGIO INTO :pIDRT",
                         "pDesc", privilegio.Descripcion,
-                        "pValor", privilegio.Valor, 
+                        "pValor", privilegio.Valor.ToUpper(), 
                         "pIDRT");
         }
 

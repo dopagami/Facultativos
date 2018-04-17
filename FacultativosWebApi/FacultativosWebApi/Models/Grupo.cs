@@ -11,7 +11,7 @@ namespace FacultativosWebApi.Models
         public int IDGrupo { get; set; }
         [Required]
         public string Descripcion { get; set; }
-        public int IDArea { get; set; }
+        public int? IDArea { get; set; }
         [Required]
         public int IDCuestionario { get; set; }
         [Required]

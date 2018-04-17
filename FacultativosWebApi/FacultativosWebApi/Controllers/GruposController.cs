@@ -58,13 +58,57 @@ namespace FacultativosWebApi.Controllers
         }
 
         // PUT: api/Grupos/5
-        public void Put(int id, [FromBody]string value)
+        public IHttpActionResult Put(int id, [FromBody]Grupo grupo)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            if (id != grupo.IDGrupo)
+            {
+                return BadRequest();
+            }
+
+            GruposProvider pGrupos = new GruposProvider();
+
+            try
+            {
+                int i = pGrupos.PutGrupo(grupo);
+                if (i == 0) return NotFound();
+            }
+            catch (Exception ex)
+            {
+                if (ex.Message.Contains("2300")) //integrity constraint violation
+                {
+                    return Conflict();
+                }
+                else
+                {
+                    throw ex;
+                }
+            }
+
+            //return StatusCode(HttpStatusCode.NoContent);
+            return Ok(grupo);
         }
 
         // DELETE: api/Grupos/5
-        public void Delete(int id)
+        public IHttpActionResult Delete(int id)
         {
+            GruposProvider pGrupos = new GruposProvider();
+
+            try
+            {
+                int i = pGrupos.DeleteGrupo(id);
+                if (i == 0) return NotFound();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return Ok();
         }
     }
 }

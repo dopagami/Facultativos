@@ -59,23 +59,48 @@ namespace FacultativosWebApi.Providers
 
                 PreguntasProvider pPreguntas = new PreguntasProvider();
 
-                foreach (Pregunta pregunta in grupo.Preguntas)
+                if (grupo.Preguntas != null)
                 {
-                    pregunta.IDGrupo = IDGrupo;
-                    pregunta.IDPregunta = pPreguntas.PostPregunta(pregunta);
-                };
+                    foreach (Pregunta pregunta in grupo.Preguntas)
+                    {
+                        pregunta.IDGrupo = IDGrupo;
+                        pregunta.IDPregunta = pPreguntas.PostPregunta(pregunta);
+                    };
+                }                
 
                 DAL.DataService.transaction.Commit();
                 DAL.DataService.closeTransaction();
                 return IDGrupo;
 
-            } catch
+            } catch (Exception ex)
             {
                 DAL.DataService.transaction.Rollback();
                 DAL.DataService.closeTransaction();
-                throw;
+                throw ex;
             }
 
+        }
+
+        public Int32 PutGrupo(Grupo grupo)
+        {
+            return DAL.DataService.ExecuteNonQuery("UPDATE MAESTROGRUPOS " +
+                        "SET DESCRIPCION = :pDesc, " +
+                        " IDAREA = :pArea, " +
+                        " IDCUESTIONARIO = :pCuestionario, " +
+                        " ORDEN = :pOrden " +
+                        " WHERE IDGRUPO = :pID",
+                        "pDesc", grupo.Descripcion,
+                        "pArea", grupo.IDArea,
+                        "pCuestionario", grupo.IDCuestionario,
+                        "pOrden", grupo.Orden,
+                        "pID", grupo.IDGrupo);
+        }
+
+        public Int32 DeleteGrupo(int id)
+        {
+            return DAL.DataService.ExecuteNonQuery("DELETE FROM MAESTROGRUPOS " +
+                        " WHERE IDGRUPO = :pID",
+                        "pID", id);
         }
     }
 }
