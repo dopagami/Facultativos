@@ -67,42 +67,20 @@ export class PrivilegioService {
     return this.httpClient.post<any>(this.API_URL, privilegio, {headers: headers}).map(res=>res);
   }
 
-  // deletePrivilegio (id: number): Observable<any>{
-  //   return this.httpClient.delete(this.API_URL);
-  // }
 
-  // DELETE METHOD
-  deleteItem(id: number): void {
+  // DELETE, DELETE METHOD 
+  deleteItem(id: number): Observable<any> {
+    debugger;
     let headers = new HttpHeaders().set('Content-Type', 'application/json; charset=UTF-8');
   
-    this.httpClient.delete(this.API_URL + "/" +  id, {headers: headers}).subscribe(data => {
-      //console.log(data['']);
-      //this.toasterService.showToaster('Successfully deleted', 3000);
-      alert("Borrado correcto.");
-    },
-      (err: HttpErrorResponse) => {
-        //this.toasterService.showToaster('Error occurred. Details: ' + err.name + ' ' + err.message, 8000);
-        alert(err.name);
-      }
-    );
+    return this.httpClient.delete(this.API_URL + "/" +  id, {headers: headers}).map(res=>res);
   }
 
   // UPDATE, PUT METHOD
   updatePrivilegio(privilegio: Privilegio): Observable<any> {
     let headers = new HttpHeaders().set('Content-Type', 'application/json; charset=UTF-8');
 
-
-    return this.httpClient.put<any>(this.API_URL + "/" + privilegio.IDPrivilegio, privilegio, {headers: headers}).map(res=>res)
-    // this.httpClient.put<any>(this.API_URL + "/" + privilegio.IDPrivilegio, privilegio, {headers: headers}).subscribe(data => {
-    //     this.dialogData = privilegio;
-    //     alert("Actualización correcta");
-    //     //this.toasterService.showToaster('Successfully edited', 3000);
-    //   },
-    //   (err: HttpErrorResponse) => {
-    //     alert(err.status);
-    //     //this.toasterService.showToaster('Error occurred. Details: ' + err.name + ' ' + err.message, 8000);
-    //   }
-    // );
+    return this.httpClient.put<any>(this.API_URL + "/" + privilegio.IDPrivilegio, privilegio, {headers: headers}).map(res=>res)    
   }
 
 }
