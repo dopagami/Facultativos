@@ -101,18 +101,34 @@ export class PrivilegiosComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
+   
       debugger;
-      if (result === 1) {
-        debugger;
-        // When using an edit things are little different, firstly we find record inside DataService by id
+      this.dataService.dialogData = result;
+      this.dataService.updatePrivilegio(result).subscribe(res => {               
+            // When using an edit things are little different, firstly we find record inside DataService by id
         const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.IDPrivilegio === this.id);
         // Then you update that record using data from dialogData (values you enetered)
         this.exampleDatabase.dataChange.value[foundIndex] = this.dataService.getDialogData();
         // And lastly refresh table
-        this.refreshTable();
-
-        this.refresh();
+        this.refreshTable();        
+      },(err:HttpErrorResponse) => {     
+        this.errorCodes(err.status);
       }
+    )
+
+
+
+      // if (result === 1) {
+      //   debugger;
+      //   // When using an edit things are little different, firstly we find record inside DataService by id
+      //   const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.IDPrivilegio === this.id);
+      //   // Then you update that record using data from dialogData (values you enetered)
+      //   this.exampleDatabase.dataChange.value[foundIndex] = this.dataService.getDialogData();
+      //   // And lastly refresh table
+      //   this.refreshTable();
+
+      //   this.refresh();
+      // }
     });
   }
 

@@ -30,11 +30,12 @@ export class EditComponent {
   }
 
   onNoClick(): void {
-    this.dialogRef.close();
+    this.dialogRef.close("1");
   }
 
   stopEdit(): void {
     //this.dataService.updatePrivilegio(this.data);
+    this.dialogRef.close(this.data);    
   }
 
 }
