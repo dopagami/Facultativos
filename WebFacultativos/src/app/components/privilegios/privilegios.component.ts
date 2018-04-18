@@ -1,19 +1,19 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {PrivilegioService} from '../../services/privilegio.service';
-import {HttpClient, HttpErrorResponse} from '@angular/common/http';
-import {MatDialog, MatPaginator, MatSort} from '@angular/material';
-import {Privilegio} from '../../models/privilegio.model';
-import {Observable} from 'rxjs/Observable';
-import {BehaviorSubject} from 'rxjs/BehaviorSubject';
-import {DataSource} from '@angular/cdk/collections';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { PrivilegioService } from '../../services/privilegio.service';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { MatDialog, MatPaginator, MatSort } from '@angular/material';
+import { Privilegio } from '../../models/privilegio.model';
+import { Observable } from 'rxjs/Observable';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { DataSource } from '@angular/cdk/collections';
 import 'rxjs/add/observable/merge';
 import 'rxjs/add/observable/fromEvent';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
-import {AddComponent} from './dialogs/add/add.component';
-import {EditComponent} from './dialogs/edit/edit.component';
-import {DeleteComponent} from './dialogs/delete/delete.component';
+import { AddComponent } from './dialogs/add/add.component';
+import { EditComponent } from './dialogs/edit/edit.component';
+import { DeleteComponent } from './dialogs/delete/delete.component';
 
 
 @Component({
@@ -29,18 +29,18 @@ export class PrivilegiosComponent implements OnInit {
   index: number;
   id: number;
   privilegiotemp: Privilegio;
-  
+
 
   constructor(public httpClient: HttpClient,
-              public dialog: MatDialog,
-              public dataService: PrivilegioService) {}
+    public dialog: MatDialog,
+    public dataService: PrivilegioService) { }
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild('filter') filter: ElementRef;
 
   ngOnInit() {
-    this.loadData();    
+    this.loadData();
   }
 
   refresh() {
@@ -48,93 +48,105 @@ export class PrivilegiosComponent implements OnInit {
   }
 
 
-  errorCodes(code:number){
+  // Función genérica para mostrar errors devueltos del Backend
+  // todo pasar a genérico
+  errorCodes(code: number) {
     switch (code) {
       case 409:
         alert("Conflicto. Este código ya existe");
         break;
-    
+
       default:
         break;
     }
 
   }
 
+  // ADD 
   addNew(privilegio: Privilegio) {
-    
-    const dialogRef = this.dialog.open(AddComponent, {      
-      data: {privilegio: privilegio }        ,
-      height: '400px',
-      width: '600px'      
-    }
 
-  );
-  
+    const dialogRef = this.dialog.open(AddComponent, {
+      data: { privilegio: privilegio },
+      height: '400px',
+      width: '600px'
+    }
+    );
+
     dialogRef.afterClosed().subscribe(result => {
-            
+
       // botón cancelar
-      if (result === "1") return; 
-      
+      if (result === "1") return;
+
       // Después de cerrar el diálogo hacemos los updates del frontend      
       // Me suscribo al observable del post.
-      this.dataService.addPrivilegio(result).subscribe(res => {                
+      this.dataService.addPrivilegio(result).subscribe(res => {
         // Para agregar, sólo anadimos una nueva fila en el DataService                        
-        this.exampleDatabase.dataChange.value.push(res);      
-        this.refreshTable();       
-      }, (err:HttpErrorResponse) => {     
-          this.errorCodes(err.status);
+        this.exampleDatabase.dataChange.value.push(res);
+        this.refreshTable();
+      }, (err: HttpErrorResponse) => {
+        this.errorCodes(err.status);
       })
 
     });
-    
+
   }
 
-
+  // EDIT
   startEdit(i: number, id: number, valor: string, descripcion: string) {
     this.id = id;
-    // index row is used just for debugging proposes and can be removed
+    // index row es usado sólo para debugar
     this.index = i;
     console.log(this.index);
     console.log(valor);
     const dialogRef = this.dialog.open(EditComponent, {
-      data: {IDPrivilegio: id, Valor: valor, Descripcion: descripcion}
+      data: { IDPrivilegio: id, Valor: valor, Descripcion: descripcion }
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      debugger;
-      if (result === 1) {
-        debugger;
-        // When using an edit things are little different, firstly we find record inside DataService by id
-        const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.IDPrivilegio === this.id);
-        // Then you update that record using data from dialogData (values you enetered)
-        this.exampleDatabase.dataChange.value[foundIndex] = this.dataService.getDialogData();
-        // And lastly refresh table
-        this.refreshTable();
 
-        this.refresh();
+      // botón cancelar
+      if (result === "1") return;
+
+      this.dataService.dialogData = result;
+      this.dataService.updatePrivilegio(result).subscribe(res => {
+        // Buscamos por ID el  registro dentro del DataService 
+        const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.IDPrivilegio === this.id);
+        // Entonces update del registro usando el DialogData (valores de la modal)
+
+        this.exampleDatabase.dataChange.value[foundIndex] = this.dataService.getDialogData();
+        // Refrescamos la tabla
+        this.refreshTable();
+      }, (err: HttpErrorResponse) => {
+        this.errorCodes(err.status);
       }
+      )
     });
   }
 
+  // DELETE
   deleteItem(i: number, id: number, valor: string, descripcion: string) {
     debugger;
     this.index = i;
     this.id = id;
     const dialogRef = this.dialog.open(DeleteComponent, {
-      data: {id: id, valor: valor, descripcion: descripcion},
-      height: '35vh'      
+      data: { id: id, valor: valor, descripcion: descripcion },
+      height: '35vh'
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result === 1) {
+      // botón cancelar
+      if (result === "1") return;
+
+      this.dataService.deleteItem(result.id).subscribe(res => {
         const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.IDPrivilegio === this.id);
-        // for delete we use splice in order to remove single object from DataService
+        // Para borrar usamos "splice". Así podemos borrar un sólo objeto del DataService
         this.exampleDatabase.dataChange.value.splice(foundIndex, 1);
         this.refreshTable();
-      }
-    });
-  }
+      })
 
+    })
+
+  }
 
   // If you don't need a filter or a pagination this can be simplified, you just use code from else block
   private refreshTable() {
@@ -185,8 +197,8 @@ export class ExampleDataSource extends DataSource<Privilegio> {
   renderedData: Privilegio[] = [];
 
   constructor(public _exampleDatabase: PrivilegioService,
-              public _paginator: MatPaginator,
-              public _sort: MatSort) {
+    public _paginator: MatPaginator,
+    public _sort: MatSort) {
     super();
     // Reset to the first page when the user changes the filter.
     this._filterChange.subscribe(() => this._paginator.pageIndex = 0);
@@ -205,11 +217,11 @@ export class ExampleDataSource extends DataSource<Privilegio> {
     this._exampleDatabase.getAllPrivilegios();
 
     return Observable.merge(...displayDataChanges).map(() => {
-     
+
       // Filter data
-      this.filteredData = this._exampleDatabase.data.slice().filter((privilegio: Privilegio) => {        
+      this.filteredData = this._exampleDatabase.data.slice().filter((privilegio: Privilegio) => {
         //const searchStr = (privilegio.IDPrivilegio + privilegio.Valor + privilegio.Descripcion);        
-        const searchStr = (privilegio.Valor + privilegio.Descripcion);        
+        const searchStr = (privilegio.Valor + privilegio.Descripcion);
         return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
       });
 
@@ -240,7 +252,7 @@ export class ExampleDataSource extends DataSource<Privilegio> {
       switch (this._sort.active) {
         //case 'id': [propertyA, propertyB] = [a.IDPrivilegio, b.IDPrivilegio]; break;
         case 'valor': [propertyA, propertyB] = [a.Valor, b.Valor]; break;
-        case 'descripcion': [propertyA, propertyB] = [a.Descripcion, b.Descripcion]; break;        
+        case 'descripcion': [propertyA, propertyB] = [a.Descripcion, b.Descripcion]; break;
       }
 
       const valueA = isNaN(+propertyA) ? propertyA : +propertyA;

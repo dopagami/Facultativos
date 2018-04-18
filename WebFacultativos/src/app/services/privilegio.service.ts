@@ -14,8 +14,7 @@ import 'rxjs/add/operator/finally';
 @Injectable()
 export class PrivilegioService {
 
-  //private headers = new Headers({ 'Content-Type': 'application/json' });
-
+  
   http: any;
 
   // Url que devuvle un JSON... cambiar por nuestra API
@@ -25,8 +24,7 @@ export class PrivilegioService {
   // JSON EN LOCAL
   // private readonly API_URL = "./assets/privilegios.json";
   private readonly API_URL = "http://mk22788p/api/Privilegios";
-  private headers = new HttpHeaders().set('Content-Type', 'application/json; charset=UTF-8');
-
+  
   dataChange: BehaviorSubject<Privilegio[]> = new BehaviorSubject<Privilegio[]>([]);
 
   // Property que guarda  temporalmente el data de los diálogos
@@ -40,6 +38,7 @@ export class PrivilegioService {
   }
 
   getDialogData() {
+    debugger;
     return this.dialogData;
   }
 
@@ -55,47 +54,34 @@ export class PrivilegioService {
       });
   }
 
-  // AÃ±adir privilegio (almacena de manera temportal)
+  // AÃ±adir privilegio (almacena de manera temportal (para pruebas)
   addPrivilegiotemp(privilegio: Privilegio): void {
     this.dialogData = privilegio;
   }
 
-
   // Añade un privilegio. Devuleve un Observable (ADD, POST METHOD)
   addPrivilegio (privilegio: Privilegio): Observable<any>{    
-    //let headers = new HttpHeaders().set('Content-Type', 'application/json; charset=UTF-8');
+    
+    let headers = new HttpHeaders().set('Content-Type', 'application/json; charset=UTF-8');
 
-    return this.httpClient.post<any>(this.API_URL, privilegio, {headers: this.headers}).map(res=>res);
+    return this.httpClient.post<any>(this.API_URL, privilegio, {headers: headers}).map(res=>res);
   }
 
-  // deletePrivilegio (id: number): Observable<any>{
-  //   return this.httpClient.delete(this.API_URL)
 
-  // }
-
-  // DELETE METHOD
-  deleteItem(id: number): void {
-    this.httpClient.delete(this.API_URL + id).subscribe(data => {
-      console.log(data['']);
-      //this.toasterService.showToaster('Successfully deleted', 3000);
-    },
-      (err: HttpErrorResponse) => {
-        //this.toasterService.showToaster('Error occurred. Details: ' + err.name + ' ' + err.message, 8000);
-      }
-    );
+  // DELETE, DELETE METHOD 
+  deleteItem(id: number): Observable<any> {
+    debugger;
+    let headers = new HttpHeaders().set('Content-Type', 'application/json; charset=UTF-8');
+  
+    return this.httpClient.delete(this.API_URL + "/" +  id, {headers: headers}).map(res=>res);
   }
 
   // UPDATE, PUT METHOD
-  // updatePrivilegio(kanbanItem: Privilegio): void {
-  //   this.httpClient.put(this.API_URL + kanbanItem.IDPrivilegio, kanbanItem).subscribe(data => {
-  //       //this.dialogData = kanbanItem;
-  //       //this.toasterService.showToaster('Successfully edited', 3000);
-  //     },
-  //     (err: HttpErrorResponse) => {
-  //       //this.toasterService.showToaster('Error occurred. Details: ' + err.name + ' ' + err.message, 8000);
-  //     }
-  //   );
-  // }
+  updatePrivilegio(privilegio: Privilegio): Observable<any> {
+    let headers = new HttpHeaders().set('Content-Type', 'application/json; charset=UTF-8');
+
+    return this.httpClient.put<any>(this.API_URL + "/" + privilegio.IDPrivilegio, privilegio, {headers: headers}).map(res=>res)    
+  }
 
 }
 

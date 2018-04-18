@@ -14,10 +14,11 @@ export class DeleteComponent {
               public dataService: PrivilegioService) { }
 
   onNoClick(): void {
-    this.dialogRef.close();
+    this.dialogRef.close("1");
   }
 
   confirmDelete(): void {
-    this.dataService.deleteItem(this.data.id);
+    //his.dataService.deleteItem(this.data.id);
+    this.dialogRef.close(this.data);        
   }
 }
