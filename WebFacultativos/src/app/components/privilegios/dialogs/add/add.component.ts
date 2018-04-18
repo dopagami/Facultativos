@@ -27,21 +27,16 @@ export class AddComponent {
   getErrorMessage() {
     return this.formControl.hasError('required') ? 'Campo requerido' : '';
     // Para validar Emails 
-    // this.formControl.hasError('email') ? 'Formato de Email inválido' :
-       
+    // this.formControl.hasError('email') ? 'Formato de Email inválido' :       
   }
 
   submit() {    
-  // emppty stuff    
-  
+  // emppty stuff      
   }
 
   onNoClick(): void {    
     this.dialogRef.close("1");       
   }
-
-  
-
 
   public confirmAdd(): any {              
     this.dialogRef.close(this.data);        

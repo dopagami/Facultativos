@@ -60,7 +60,7 @@
 
     <ng-container matColumnDef="valor">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Valor</mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.Valor}}</mat-cell>
+      <mat-cell *matCellDef="let row"> {{row.Valor | uppercase}} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="descripcion">

@@ -25,6 +25,7 @@ export class PrivilegioService {
   // JSON EN LOCAL
   // private readonly API_URL = "./assets/privilegios.json";
   private readonly API_URL = "http://mk22788p/api/Privilegios";
+  private headers = new HttpHeaders().set('Content-Type', 'application/json; charset=UTF-8');
 
   dataChange: BehaviorSubject<Privilegio[]> = new BehaviorSubject<Privilegio[]>([]);
 
@@ -62,10 +63,15 @@ export class PrivilegioService {
 
   // Añade un privilegio. Devuleve un Observable (ADD, POST METHOD)
   addPrivilegio (privilegio: Privilegio): Observable<any>{    
-    let headers = new HttpHeaders().set('Content-Type', 'application/json; charset=UTF-8');
+    //let headers = new HttpHeaders().set('Content-Type', 'application/json; charset=UTF-8');
 
-    return this.httpClient.post<any>(this.API_URL, privilegio, {headers:headers}).map(res=>res);
+    return this.httpClient.post<any>(this.API_URL, privilegio, {headers: this.headers}).map(res=>res);
   }
+
+  // deletePrivilegio (id: number): Observable<any>{
+  //   return this.httpClient.delete(this.API_URL)
+
+  // }
 
   // DELETE METHOD
   deleteItem(id: number): void {
