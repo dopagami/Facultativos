@@ -11,6 +11,8 @@ namespace FacultativosWebApi.Models
         public int IDCuestionario { get; set; }
         [Required]
         public string Descripcion { get; set; }
+        [Required]
+        public int IDDepartamento { get; set; }
 
         public List<Area> Areas { get; set; }
 

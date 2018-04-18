@@ -83,18 +83,8 @@ namespace FacultativosWebApi.Providers
                     foreach (Grupo grupo in area.Grupos)
                     {
                         grupo.IDArea = IDArea;
+                        grupo.IDCuestionario = area.IDCuestionario;
                         grupo.IDGrupo = pGrupos.PostGrupo(grupo);
-
-                        if (grupo.Preguntas != null)
-                        {
-                            PreguntasProvider pPreguntasGrupo = new PreguntasProvider();
-
-                            foreach (Pregunta pregunta in grupo.Preguntas)
-                            {
-                                pregunta.IDGrupo = grupo.IDGrupo;
-                                pregunta.IDPregunta = pPreguntasGrupo.PostPregunta(pregunta);
-                            };
-                        }
                     };
                 }                
 
@@ -105,6 +95,7 @@ namespace FacultativosWebApi.Providers
                     foreach (Pregunta pregunta in area.Preguntas)
                     {
                         pregunta.IDArea = IDArea;
+                        pregunta.IDCuestionario = area.IDCuestionario;
                         pregunta.IDPregunta = pPreguntasArea.PostPregunta(pregunta);
                     };
                 }
