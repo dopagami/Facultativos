@@ -61,9 +61,9 @@ export class PrivilegioService {
 
 
   // Añade un privilegio. Devuleve un Observable (ADD, POST METHOD)
-  addPrivilegio (privilegio: Privilegio): Observable<any>{
-    debugger;
+  addPrivilegio (privilegio: Privilegio): Observable<any>{    
     let headers = new HttpHeaders().set('Content-Type', 'application/json; charset=UTF-8');
+
     return this.httpClient.post<any>(this.API_URL, privilegio, {headers:headers}).map(res=>res);
   }
 

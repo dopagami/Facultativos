@@ -1,6 +1,6 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {PrivilegioService} from '../../services/privilegio.service';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {MatDialog, MatPaginator, MatSort} from '@angular/material';
 import {Privilegio} from '../../models/privilegio.model';
 import {Observable} from 'rxjs/Observable';
@@ -47,6 +47,19 @@ export class PrivilegiosComponent implements OnInit {
     this.loadData();
   }
 
+
+  errorCodes(code:number){
+    switch (code) {
+      case 409:
+        alert("Conflicto. Este código ya existe");
+        break;
+    
+      default:
+        break;
+    }
+
+  }
+
   addNew(privilegio: Privilegio) {
     
     const dialogRef = this.dialog.open(AddComponent, {      
@@ -58,17 +71,18 @@ export class PrivilegiosComponent implements OnInit {
   );
   
     dialogRef.afterClosed().subscribe(result => {
+            
+      // botón cancelar
+      if (result === "1") return; 
       
-      // Después de cerrar el diálogo hacemos los updates del frontend
-      
+      // Después de cerrar el diálogo hacemos los updates del frontend      
       // Me suscribo al observable del post.
       this.dataService.addPrivilegio(result).subscribe(res => {                
         // Para agregar, sólo anadimos una nueva fila en el DataService                        
         this.exampleDatabase.dataChange.value.push(res);      
         this.refreshTable();       
-      }, err => {         
-        alert("Hay un conflicto") ;
-        //console.log(err.code);         
+      }, (err:HttpErrorResponse) => {     
+          this.errorCodes(err.status);
       })
 
     });
@@ -194,7 +208,8 @@ export class ExampleDataSource extends DataSource<Privilegio> {
      
       // Filter data
       this.filteredData = this._exampleDatabase.data.slice().filter((privilegio: Privilegio) => {        
-        const searchStr = (privilegio.IDPrivilegio + privilegio.Valor + privilegio.Descripcion);        
+        //const searchStr = (privilegio.IDPrivilegio + privilegio.Valor + privilegio.Descripcion);        
+        const searchStr = (privilegio.Valor + privilegio.Descripcion);        
         return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
       });
 
@@ -223,7 +238,7 @@ export class ExampleDataSource extends DataSource<Privilegio> {
       let propertyB: number | string = '';
 
       switch (this._sort.active) {
-        case 'id': [propertyA, propertyB] = [a.IDPrivilegio, b.IDPrivilegio]; break;
+        //case 'id': [propertyA, propertyB] = [a.IDPrivilegio, b.IDPrivilegio]; break;
         case 'valor': [propertyA, propertyB] = [a.Valor, b.Valor]; break;
         case 'descripcion': [propertyA, propertyB] = [a.Descripcion, b.Descripcion]; break;        
       }

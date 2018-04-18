@@ -33,26 +33,17 @@ export class AddComponent {
 
   submit() {    
   // emppty stuff    
-  this.dialogRef.close(this.data);
+  
   }
 
   onNoClick(): void {    
-    this.dialogRef.close();       
+    this.dialogRef.close("1");       
   }
 
   
 
 
-  public confirmAdd(): any {  
-    debugger;        
-    
-    //this.dataPost = this.dataService.addPrivilegioObservable(this.data);    
-
-   
-
-    this.dialogRef.close(this.data);
-    
-    //return this.data;
-    //this.dataService.addPrivilegio(this.data);
+  public confirmAdd(): any {              
+    this.dialogRef.close(this.data);        
   }
 }

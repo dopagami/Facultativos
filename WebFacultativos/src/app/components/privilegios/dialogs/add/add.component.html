@@ -29,7 +29,7 @@
 
       <div mat-dialog-actions>
         <button mat-button (click)="onNoClick()" tabindex="-1">Cancelar</button>
-        <button mat-button [type]="submit" [disabled]="!formControl.valid" mat-button-close   (click)="confirmAdd()">Grabar</button>                
+        <button mat-button [type]="submit" [disabled]="!formControl.valid" mat-button-close="true"   (click)="confirmAdd()">Grabar</button>                
         <!-- <button mat-button [type]="submit" [disabled]="!formControl.valid"  (click)="confirmAdd()">Grabar</button>                 -->
       </div>
     </form>
