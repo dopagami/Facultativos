@@ -48,6 +48,8 @@ export class PrivilegiosComponent implements OnInit {
   }
 
 
+  // Función genérica para mostrar errors devueltos del Backend
+  // todo pasar a genérico
   errorCodes(code:number){
     switch (code) {
       case 409:
@@ -60,6 +62,7 @@ export class PrivilegiosComponent implements OnInit {
 
   }
 
+  // ADD 
   addNew(privilegio: Privilegio) {
     
     const dialogRef = this.dialog.open(AddComponent, {      
@@ -67,7 +70,6 @@ export class PrivilegiosComponent implements OnInit {
       height: '400px',
       width: '600px'      
     }
-
   );
   
     dialogRef.afterClosed().subscribe(result => {
@@ -89,10 +91,10 @@ export class PrivilegiosComponent implements OnInit {
     
   }
 
-
+  // EDIT
   startEdit(i: number, id: number, valor: string, descripcion: string) {
     this.id = id;
-    // index row is used just for debugging proposes and can be removed
+    // index row es usado sólo para debugar
     this.index = i;
     console.log(this.index);
     console.log(valor);
@@ -102,36 +104,26 @@ export class PrivilegiosComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
    
-      debugger;
+      // botón cancelar
+      if (result === "1") return; 
+
       this.dataService.dialogData = result;
-      this.dataService.updatePrivilegio(result).subscribe(res => {               
-            // When using an edit things are little different, firstly we find record inside DataService by id
+      this.dataService.updatePrivilegio(result).subscribe(res => {                       
+        // Buscamos por ID el  registro dentro del DataService 
         const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.IDPrivilegio === this.id);
-        // Then you update that record using data from dialogData (values you enetered)
+        // Entonces update del registro usando el DialogData (valores de la modal)
+        
         this.exampleDatabase.dataChange.value[foundIndex] = this.dataService.getDialogData();
-        // And lastly refresh table
+        // Refrescamos la tabla
         this.refreshTable();        
       },(err:HttpErrorResponse) => {     
         this.errorCodes(err.status);
       }
-    )
-
-
-
-      // if (result === 1) {
-      //   debugger;
-      //   // When using an edit things are little different, firstly we find record inside DataService by id
-      //   const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.IDPrivilegio === this.id);
-      //   // Then you update that record using data from dialogData (values you enetered)
-      //   this.exampleDatabase.dataChange.value[foundIndex] = this.dataService.getDialogData();
-      //   // And lastly refresh table
-      //   this.refreshTable();
-
-      //   this.refresh();
-      // }
+    )    
     });
   }
 
+  // DELETE
   deleteItem(i: number, id: number, valor: string, descripcion: string) {
     debugger;
     this.index = i;
@@ -143,8 +135,8 @@ export class PrivilegiosComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result === 1) {
-        const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.IDPrivilegio === this.id);
-        // for delete we use splice in order to remove single object from DataService
+        const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.IDPrivilegio === this.id);        
+        // Para borrar usamos "splice". Así podemos borrar un sólo objeto del DataService
         this.exampleDatabase.dataChange.value.splice(foundIndex, 1);
         this.refreshTable();
       }
