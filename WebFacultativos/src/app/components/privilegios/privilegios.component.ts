@@ -53,7 +53,7 @@ export class PrivilegiosComponent implements OnInit {
   errorCodes(code: number) {
     switch (code) {
       case 409:
-        alert("Conflicto. Este código ya existe");
+        alert('Conflicto. Este código ya existe');
         break;
 
       default:
@@ -62,7 +62,7 @@ export class PrivilegiosComponent implements OnInit {
 
   }
 
-  // ADD 
+  // ADD
   addNew(privilegio: Privilegio) {
 
     const dialogRef = this.dialog.open(AddComponent, {
@@ -75,17 +75,17 @@ export class PrivilegiosComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
 
       // botón cancelar
-      if (result === "1") return;
+      if (result === '1') { return; }
 
-      // Después de cerrar el diálogo hacemos los updates del frontend      
+      // Después de cerrar el diálogo hacemos los updates del frontend
       // Me suscribo al observable del post.
       this.dataService.addPrivilegio(result).subscribe(res => {
-        // Para agregar, sólo anadimos una nueva fila en el DataService                        
+        // Para agregar, sólo anadimos una nueva fila en el DataService
         this.exampleDatabase.dataChange.value.push(res);
         this.refreshTable();
       }, (err: HttpErrorResponse) => {
         this.errorCodes(err.status);
-      })
+      });
 
     });
 
@@ -105,11 +105,11 @@ export class PrivilegiosComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
 
       // botón cancelar
-      if (result === "1") return;
+      if (result === '1') { return; }
 
       this.dataService.dialogData = result;
       this.dataService.updatePrivilegio(result).subscribe(res => {
-        // Buscamos por ID el  registro dentro del DataService 
+        // Buscamos por ID el  registro dentro del DataService
         const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.IDPrivilegio === this.id);
         // Entonces update del registro usando el DialogData (valores de la modal)
 
@@ -119,13 +119,12 @@ export class PrivilegiosComponent implements OnInit {
       }, (err: HttpErrorResponse) => {
         this.errorCodes(err.status);
       }
-      )
+      );
     });
   }
 
   // DELETE
   deleteItem(i: number, id: number, valor: string, descripcion: string) {
-    debugger;
     this.index = i;
     this.id = id;
     const dialogRef = this.dialog.open(DeleteComponent, {
@@ -135,16 +134,16 @@ export class PrivilegiosComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       // botón cancelar
-      if (result === "1") return;
+      if (result === '1') { return; }
 
       this.dataService.deleteItem(result.id).subscribe(res => {
         const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.IDPrivilegio === this.id);
         // Para borrar usamos "splice". Así podemos borrar un sólo objeto del DataService
         this.exampleDatabase.dataChange.value.splice(foundIndex, 1);
         this.refreshTable();
-      })
+      });
 
-    })
+    });
 
   }
 
@@ -220,7 +219,7 @@ export class ExampleDataSource extends DataSource<Privilegio> {
 
       // Filter data
       this.filteredData = this._exampleDatabase.data.slice().filter((privilegio: Privilegio) => {
-        //const searchStr = (privilegio.IDPrivilegio + privilegio.Valor + privilegio.Descripcion);        
+        // const searchStr = (privilegio.IDPrivilegio + privilegio.Valor + privilegio.Descripcion);
         const searchStr = (privilegio.Valor + privilegio.Descripcion);
         return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
       });
@@ -250,7 +249,7 @@ export class ExampleDataSource extends DataSource<Privilegio> {
       let propertyB: number | string = '';
 
       switch (this._sort.active) {
-        //case 'id': [propertyA, propertyB] = [a.IDPrivilegio, b.IDPrivilegio]; break;
+        // case 'id': [propertyA, propertyB] = [a.IDPrivilegio, b.IDPrivilegio]; break;
         case 'valor': [propertyA, propertyB] = [a.Valor, b.Valor]; break;
         case 'descripcion': [propertyA, propertyB] = [a.Descripcion, b.Descripcion]; break;
       }

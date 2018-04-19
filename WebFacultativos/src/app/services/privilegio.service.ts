@@ -1,21 +1,19 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Privilegio } from '../models/privilegio.model';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 import { of } from 'rxjs/observable/of';
 import { LoadedRouterConfig } from '@angular/router/src/config';
 import { observableToBeFn } from 'rxjs/testing/TestScheduler';
 import 'rxjs/add/operator/finally';
+import { Globals } from '../../shared/globals';
 
 // import { Headers, RequestOptions } from '@angular/http';
 
 @Injectable()
 export class PrivilegioService {
-
-  
-  http: any;
 
   // Url que devuvle un JSON... cambiar por nuestra API
   // private readonly API_URL = 'https://api.github.com/repos/angular/angular/issues';
@@ -23,8 +21,8 @@ export class PrivilegioService {
 
   // JSON EN LOCAL
   // private readonly API_URL = "./assets/privilegios.json";
-  private readonly API_URL = "http://mk22788p/api/Privilegios";
-  
+  private readonly API_URL = 'http://mk22788p/api/Privilegios';
+  http: any;
   dataChange: BehaviorSubject<Privilegio[]> = new BehaviorSubject<Privilegio[]>([]);
 
   // Property que guarda  temporalmente el data de los diálogos
@@ -38,7 +36,6 @@ export class PrivilegioService {
   }
 
   getDialogData() {
-    debugger;
     return this.dialogData;
   }
 
@@ -46,7 +43,6 @@ export class PrivilegioService {
   /** CRUD METHODS */
   getAllPrivilegios(): void {
     this.httpClient.get<Privilegio[]>(this.API_URL).subscribe(data => {
-      debugger;
       this.dataChange.next(data);
     },
       (error: HttpErrorResponse) => {
@@ -60,28 +56,28 @@ export class PrivilegioService {
   }
 
   // Añade un privilegio. Devuleve un Observable (ADD, POST METHOD)
-  addPrivilegio (privilegio: Privilegio): Observable<any>{    
-    
-    let headers = new HttpHeaders().set('Content-Type', 'application/json; charset=UTF-8');
+  addPrivilegio(privilegio: Privilegio): Observable<any> {
+    const headers = new HttpHeaders().set('Content-Type', 'application/json; charset=UTF-8');
 
-    return this.httpClient.post<any>(this.API_URL, privilegio, {headers: headers}).map(res=>res);
+    return this.httpClient.post<any>(this.API_URL, privilegio, { headers: headers })
+      .map(res => res);
   }
 
 
-  // DELETE, DELETE METHOD 
+  // DELETE, DELETE METHOD
   deleteItem(id: number): Observable<any> {
-    debugger;
-    let headers = new HttpHeaders().set('Content-Type', 'application/json; charset=UTF-8');
-  
-    return this.httpClient.delete(this.API_URL + "/" +  id, {headers: headers}).map(res=>res);
+    const headers = new HttpHeaders().set('Content-Type', 'application/json; charset=UTF-8');
+
+    return this.httpClient.delete(this.API_URL + '/' + id, { headers: headers })
+      .map(res => res);
   }
 
   // UPDATE, PUT METHOD
   updatePrivilegio(privilegio: Privilegio): Observable<any> {
-    let headers = new HttpHeaders().set('Content-Type', 'application/json; charset=UTF-8');
+    const headers = new HttpHeaders().set('Content-Type', 'application/json; charset=UTF-8');
 
-    return this.httpClient.put<any>(this.API_URL + "/" + privilegio.IDPrivilegio, privilegio, {headers: headers}).map(res=>res)    
+    return this.httpClient.put<any>(this.API_URL + '/' + privilegio.IDPrivilegio, privilegio, { headers: headers })
+      .map(res => res);
   }
-
 }
 

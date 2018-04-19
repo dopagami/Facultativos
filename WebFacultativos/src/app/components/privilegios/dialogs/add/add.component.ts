@@ -14,7 +14,7 @@ export class AddComponent {
   privilegio: Privilegio[];
   dataPost: any;
 
-  displayedColumns = ['valor', 'descripcion', 'actions'];
+  displayedColumns = ['valor', 'descripcion', 'actions'];ñ
   constructor(public dialogRef: MatDialogRef<AddComponent>,
               @Inject(MAT_DIALOG_DATA) public data: Privilegio,
               public dataService: PrivilegioService) { }

@@ -10,15 +10,15 @@ import { PrivilegioService } from '../../../../services/privilegio.service';
 export class DeleteComponent {
 
   constructor(public dialogRef: MatDialogRef<DeleteComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: any, 
+              @Inject(MAT_DIALOG_DATA) public data: any,
               public dataService: PrivilegioService) { }
 
   onNoClick(): void {
-    this.dialogRef.close("1");
+    this.dialogRef.close('1');
   }
 
   confirmDelete(): void {
-    //his.dataService.deleteItem(this.data.id);
-    this.dialogRef.close(this.data);        
+    // this.dataService.deleteItem(this.data.id);
+    this.dialogRef.close(this.data);
   }
 }
