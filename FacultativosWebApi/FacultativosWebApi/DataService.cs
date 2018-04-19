@@ -162,17 +162,17 @@ namespace FacultativosWebApi.DAL
         {
             int data = -1;
             Int32 RV = -1;
-            OdbcConnection cnn = null;
+            //OdbcConnection cnn = null;
 
             try
             {
                 OdbcCommand command = null;
                 if (transaction == null)
                 {
-                    cnn = new OdbcConnection();
-                    cnn.ConnectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
-                    cnn.Open();
-                    command = new OdbcCommand(sql, cnn);
+                    connection = new OdbcConnection();
+                    connection.ConnectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+                    connection.Open();
+                    command = new OdbcCommand(sql, connection);
                 }
                 else
                 {
@@ -196,14 +196,14 @@ namespace FacultativosWebApi.DAL
                 data = command.ExecuteNonQuery();
                 RV = System.Convert.ToInt32(command.Parameters[command.Parameters.Count - 1].Value);
 
-                if (transaction == null) cnn.Close();
+                if (transaction == null) connection.Close();
 
                 return RV;
             }
             catch (Exception ex)
             {
-                if (cnn.State == ConnectionState.Open)
-                    cnn.Close();
+                if (transaction == null && connection.State == ConnectionState.Open)
+                    connection.Close();
                 throw ex;
             }
 

@@ -1,0 +1,9 @@
+D:\Proyectos\CUN\Facultativos\FacultativosEscritorio\FacultativosEscritorio\bin\Debug\FacultativosEscritorio.exe.config
+D:\Proyectos\CUN\Facultativos\FacultativosEscritorio\FacultativosEscritorio\bin\Debug\FacultativosEscritorio.exe
+D:\Proyectos\CUN\Facultativos\FacultativosEscritorio\FacultativosEscritorio\bin\Debug\FacultativosEscritorio.pdb
+D:\Proyectos\CUN\Facultativos\FacultativosEscritorio\FacultativosEscritorio\obj\Debug\FacultativosEscritorio.csprojResolveAssemblyReference.cache
+D:\Proyectos\CUN\Facultativos\FacultativosEscritorio\FacultativosEscritorio\obj\Debug\FacultativosEscritorio.Properties.Resources.resources
+D:\Proyectos\CUN\Facultativos\FacultativosEscritorio\FacultativosEscritorio\obj\Debug\FacultativosEscritorio.csproj.GenerateResource.Cache
+D:\Proyectos\CUN\Facultativos\FacultativosEscritorio\FacultativosEscritorio\obj\Debug\FacultativosEscritorio.exe
+D:\Proyectos\CUN\Facultativos\FacultativosEscritorio\FacultativosEscritorio\obj\Debug\FacultativosEscritorio.pdb
+D:\Proyectos\CUN\Facultativos\FacultativosEscritorio\FacultativosEscritorio\obj\Debug\FacultativosEscritorio.Form1.resources

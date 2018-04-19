@@ -6,11 +6,19 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Description;
 
 namespace FacultativosWebApi.Controllers
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class AreasController : ApiController
     {
+        /// <summary>
+        /// Obtiene todas las áreas.
+        /// </summary>
+        [ResponseType(typeof(Area))]
         // GET: api/Areas
         public IEnumerable<Area> Get()
         {
@@ -18,6 +26,11 @@ namespace FacultativosWebApi.Controllers
             return pAreas.GetAreas();
         }
 
+        /// <summary>
+        /// Obtiene un área por identificador.
+        /// </summary>
+        /// <param name="id">Identificador del área.</param>
+        [ResponseType(typeof(IEnumerable<Area>))]
         // GET: api/Areas/5
         public IHttpActionResult Get(int id)
         {
@@ -28,6 +41,11 @@ namespace FacultativosWebApi.Controllers
             return Ok(searchResults);
         }
 
+        /// <summary>
+        /// Crea un nuevo área.
+        /// </summary>
+        /// <param name="area">El campo IDArea será ignorado en la petición</param>
+        [ResponseType(typeof(Privilegio))]
         // POST: api/Areas
         public IHttpActionResult Post([FromBody]Area area)
         {
@@ -65,6 +83,12 @@ namespace FacultativosWebApi.Controllers
             return CreatedAtRoute("DefaultApi", new { id = area.IDArea }, area);
         }
 
+        /// <summary>
+        /// Modifica un área por identificador.
+        /// </summary>
+        /// <param name="id">Identificador del área.</param>
+        /// <param name="area"></param>
+        [ResponseType(typeof(Area))]
         // PUT: api/Areas/5
         public IHttpActionResult Put(int id, [FromBody]Area area)
         {
@@ -101,6 +125,11 @@ namespace FacultativosWebApi.Controllers
             return Ok(area);
         }
 
+        /// <summary>
+        /// Elimina un área por identificador.
+        /// </summary>
+        /// <param name="id">Identificador del área.</param>
+        [ResponseType(typeof(void))]
         // DELETE: api/Areas/5
         public IHttpActionResult Delete(int id)
         {

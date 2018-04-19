@@ -63,6 +63,8 @@ namespace FacultativosWebApi.Providers
                     foreach (Pregunta pregunta in grupo.Preguntas)
                     {
                         pregunta.IDGrupo = IDGrupo;
+                        pregunta.IDArea = grupo.IDArea;
+                        pregunta.IDCuestionario = grupo.IDCuestionario;
                         pregunta.IDPregunta = pPreguntas.PostPregunta(pregunta);
                     };
                 }                

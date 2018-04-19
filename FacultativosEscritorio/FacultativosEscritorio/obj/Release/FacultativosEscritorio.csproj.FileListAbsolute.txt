@@ -1,0 +1,13 @@
+D:\Proyectos\CUN\Facultativos\FacultativosEscritorio\FacultativosEscritorio\bin\Release\FacultativosEscritorio.exe.config
+D:\Proyectos\CUN\Facultativos\FacultativosEscritorio\FacultativosEscritorio\bin\Release\FacultativosEscritorio.exe
+D:\Proyectos\CUN\Facultativos\FacultativosEscritorio\FacultativosEscritorio\bin\Release\FacultativosEscritorio.pdb
+D:\Proyectos\CUN\Facultativos\FacultativosEscritorio\FacultativosEscritorio\obj\Release\FacultativosEscritorio.Form1.resources
+D:\Proyectos\CUN\Facultativos\FacultativosEscritorio\FacultativosEscritorio\obj\Release\FacultativosEscritorio.Properties.Resources.resources
+D:\Proyectos\CUN\Facultativos\FacultativosEscritorio\FacultativosEscritorio\obj\Release\FacultativosEscritorio.csproj.GenerateResource.Cache
+D:\Proyectos\CUN\Facultativos\FacultativosEscritorio\FacultativosEscritorio\obj\Release\FacultativosEscritorio.exe
+D:\Proyectos\CUN\Facultativos\FacultativosEscritorio\FacultativosEscritorio\obj\Release\FacultativosEscritorio.pdb
+D:\Proyectos\CUN\Facultativos\FacultativosEscritorio\FacultativosEscritorio\bin\Release\FacultativosEscritorio.exe.manifest
+D:\Proyectos\CUN\Facultativos\FacultativosEscritorio\FacultativosEscritorio\bin\Release\FacultativosEscritorio.application
+D:\Proyectos\CUN\Facultativos\FacultativosEscritorio\FacultativosEscritorio\obj\Release\FacultativosEscritorio.csprojResolveAssemblyReference.cache
+D:\Proyectos\CUN\Facultativos\FacultativosEscritorio\FacultativosEscritorio\obj\Release\FacultativosEscritorio.exe.manifest
+D:\Proyectos\CUN\Facultativos\FacultativosEscritorio\FacultativosEscritorio\obj\Release\FacultativosEscritorio.application
