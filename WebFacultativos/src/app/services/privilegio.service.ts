@@ -28,10 +28,7 @@ export class PrivilegioService {
 
   // Property que guarda  temporalmente el data de los diálogos
   public dialogData: any;
-  // privilegios: Privilegio[];
 
-
-  // constructor(private httpClient: HttpClient) { }
   constructor(private httpClient: HttpClient) { }
 
   get data(): Privilegio[] {

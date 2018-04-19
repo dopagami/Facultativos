@@ -60,12 +60,12 @@ export class UsertableComponent implements OnInit {
 
 }
 
-class UserDataSource extends DataSource<any> {
-  constructor(private userService: UserService) {
-    super();
-  }
-  connect(): Observable<User[]> {
-    return this.userService.getUser();
-  }
-  disconnect() { }
-}
+// class UserDataSource extends DataSource<any> {
+//   constructor(private userService: UserService) {
+//     super();
+//   }
+//   connect(): Observable<User[]> {
+//     return this.userService.getUser();
+//   }
+//   disconnect() { }
+// }

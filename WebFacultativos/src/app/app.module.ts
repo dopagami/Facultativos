@@ -39,6 +39,9 @@ import { DeleteComponent } from './components/privilegios/dialogs/delete/delete.
 import { UserService } from './services/user.service';
 import { PrivilegioService } from './services/privilegio.service';
 
+// Globals
+import { Globals } from '../shared/globals';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -73,6 +76,7 @@ import { PrivilegioService } from './services/privilegio.service';
   ],
   providers: [  UserService,
                 PrivilegioService,
+                Globals,
               { provide: MatPaginatorIntl, useClass: MatPaginatorIntlSpanish}
             ],
   bootstrap: [AppComponent],
