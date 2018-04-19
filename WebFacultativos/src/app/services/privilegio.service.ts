@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Optional } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Privilegio } from '../models/privilegio.model';
 import { Observable } from 'rxjs/Observable';
@@ -8,9 +8,10 @@ import { of } from 'rxjs/observable/of';
 import { LoadedRouterConfig } from '@angular/router/src/config';
 import { observableToBeFn } from 'rxjs/testing/TestScheduler';
 import 'rxjs/add/operator/finally';
-import { Globals } from '../../shared/globals';
 
-// import { Headers, RequestOptions } from '@angular/http';
+// Variables Globales
+import * as myGlobals from '../../shared/globals';
+
 
 @Injectable()
 export class PrivilegioService {
@@ -21,7 +22,7 @@ export class PrivilegioService {
 
   // JSON EN LOCAL
   // private readonly API_URL = "./assets/privilegios.json";
-  private readonly API_URL = 'http://mk22788p/api/Privilegios';
+  // private readonly API_URL = 'http://mk22788p/api/Privilegios';
   http: any;
   dataChange: BehaviorSubject<Privilegio[]> = new BehaviorSubject<Privilegio[]>([]);
 
@@ -29,6 +30,8 @@ export class PrivilegioService {
   public dialogData: any;
   // privilegios: Privilegio[];
 
+
+  // constructor(private httpClient: HttpClient) { }
   constructor(private httpClient: HttpClient) { }
 
   get data(): Privilegio[] {
@@ -42,7 +45,7 @@ export class PrivilegioService {
 
   /** CRUD METHODS */
   getAllPrivilegios(): void {
-    this.httpClient.get<Privilegio[]>(this.API_URL).subscribe(data => {
+    this.httpClient.get<Privilegio[]>(myGlobals.API_URL).subscribe(data => {
       this.dataChange.next(data);
     },
       (error: HttpErrorResponse) => {
@@ -59,7 +62,7 @@ export class PrivilegioService {
   addPrivilegio(privilegio: Privilegio): Observable<any> {
     const headers = new HttpHeaders().set('Content-Type', 'application/json; charset=UTF-8');
 
-    return this.httpClient.post<any>(this.API_URL, privilegio, { headers: headers })
+    return this.httpClient.post<any>(myGlobals.API_URL, privilegio, { headers: headers })
       .map(res => res);
   }
 
@@ -68,7 +71,7 @@ export class PrivilegioService {
   deleteItem(id: number): Observable<any> {
     const headers = new HttpHeaders().set('Content-Type', 'application/json; charset=UTF-8');
 
-    return this.httpClient.delete(this.API_URL + '/' + id, { headers: headers })
+    return this.httpClient.delete(myGlobals.API_URL + '/' + id, { headers: headers })
       .map(res => res);
   }
 
@@ -76,7 +79,7 @@ export class PrivilegioService {
   updatePrivilegio(privilegio: Privilegio): Observable<any> {
     const headers = new HttpHeaders().set('Content-Type', 'application/json; charset=UTF-8');
 
-    return this.httpClient.put<any>(this.API_URL + '/' + privilegio.IDPrivilegio, privilegio, { headers: headers })
+    return this.httpClient.put<any>(myGlobals.API_URL + '/' + privilegio.IDPrivilegio, privilegio, { headers: headers })
       .map(res => res);
   }
 }

@@ -14,7 +14,7 @@ export class AddComponent {
   privilegio: Privilegio[];
   dataPost: any;
 
-  displayedColumns = ['valor', 'descripcion', 'actions'];ñ
+  displayedColumns = ['valor', 'descripcion', 'actions'];
   constructor(public dialogRef: MatDialogRef<AddComponent>,
               @Inject(MAT_DIALOG_DATA) public data: Privilegio,
               public dataService: PrivilegioService) { }
@@ -26,19 +26,20 @@ export class AddComponent {
 
   getErrorMessage() {
     return this.formControl.hasError('required') ? 'Campo requerido' : '';
-    // Para validar Emails 
-    // this.formControl.hasError('email') ? 'Formato de Email inválido' :       
+    // Para validar Emails
+    // this.formControl.hasError('email') ? 'Formato de Email inválido' :
   }
 
-  submit() {    
-  // emppty stuff      
+  submit() {
+  // emppty stuff
+    console.log('submit');
   }
 
-  onNoClick(): void {    
-    this.dialogRef.close("1");       
+  onNoClick(): void {
+    this.dialogRef.close('1');
   }
 
-  public confirmAdd(): any {              
-    this.dialogRef.close(this.data);        
+  public confirmAdd(): any {
+    this.dialogRef.close(this.data);
   }
 }

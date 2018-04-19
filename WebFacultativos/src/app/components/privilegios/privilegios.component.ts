@@ -113,7 +113,8 @@ export class PrivilegiosComponent implements OnInit {
         const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.IDPrivilegio === this.id);
         // Entonces update del registro usando el DialogData (valores de la modal)
 
-        this.exampleDatabase.dataChange.value[foundIndex] = this.dataService.getDialogData();
+        // this.exampleDatabase.dataChange.value[foundIndex] = this.dataService.getDialogData();
+        this.exampleDatabase.dataChange.value[foundIndex] = res;
         // Refrescamos la tabla
         this.refreshTable();
       }, (err: HttpErrorResponse) => {
