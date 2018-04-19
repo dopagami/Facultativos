@@ -108,9 +108,10 @@ D:\Proyectos\CUN\Facultativos\FacultativosWebApi\FacultativosWebApi\bin\es\Micro
 D:\Proyectos\CUN\Facultativos\FacultativosWebApi\FacultativosWebApi\bin\es\Microsoft.Owin.Security.Twitter.resources.dll
 D:\Proyectos\CUN\Facultativos\FacultativosWebApi\FacultativosWebApi\bin\es\Microsoft.Owin.Security.MicrosoftAccount.resources.dll
 D:\Proyectos\CUN\Facultativos\FacultativosWebApi\FacultativosWebApi\bin\es\System.Web.Http.Owin.resources.dll
-D:\Proyectos\CUN\Facultativos\FacultativosWebApi\FacultativosWebApi\obj\Debug\FacultativosWebApi.csprojResolveAssemblyReference.cache
 D:\Proyectos\CUN\Facultativos\FacultativosWebApi\FacultativosWebApi\obj\Debug\FacultativosWebApi.dll
 D:\Proyectos\CUN\Facultativos\FacultativosWebApi\FacultativosWebApi\obj\Debug\FacultativosWebApi.pdb
 D:\Proyectos\CUN\Facultativos\FacultativosWebApi\FacultativosWebApi\bin\System.Web.Cors.dll
 D:\Proyectos\CUN\Facultativos\FacultativosWebApi\FacultativosWebApi\bin\System.Web.Http.Cors.dll
 D:\Proyectos\CUN\Facultativos\FacultativosWebApi\FacultativosWebApi\bin\System.Web.Http.Cors.xml
+D:\Proyectos\CUN\Facultativos\FacultativosWebApi\FacultativosWebApi\bin\XmlDocument.xml
+D:\Proyectos\CUN\Facultativos\FacultativosWebApi\FacultativosWebApi\obj\Debug\FacultativosWebApi.csprojResolveAssemblyReference.cache

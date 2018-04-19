@@ -6,11 +6,19 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Description;
 
 namespace FacultativosWebApi.Controllers
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class GruposController : ApiController
     {
+        /// <summary>
+        /// Obtiene todos los grupos.
+        /// </summary>
+        [ResponseType(typeof(Grupo))]
         // GET: api/Grupos
         public IEnumerable<Grupo> Get()
         {
@@ -18,7 +26,11 @@ namespace FacultativosWebApi.Controllers
             return pGrupos.GetGrupos();
         }
 
-        // GET: api/Grupos/5
+        /// <summary>
+        /// Obtiene un grupo por identificador.
+        /// </summary>
+        /// <param name="id">Identificador del grupo.</param>
+        [ResponseType(typeof(IEnumerable<Grupo>))]
         public IHttpActionResult Get(int id)
         {
             GruposProvider pGrupos = new GruposProvider();
@@ -28,6 +40,11 @@ namespace FacultativosWebApi.Controllers
             return Ok(searchResults);
         }
 
+        /// <summary>
+        /// Crea un nuevo grupo.
+        /// </summary>
+        /// <param name="area">El campo IDGrupo será ignorado en la petición</param>
+        [ResponseType(typeof(Grupo))]
         // POST: api/Grupos
         public IHttpActionResult Post([FromBody]Grupo grupo)
         {
@@ -65,6 +82,12 @@ namespace FacultativosWebApi.Controllers
             return CreatedAtRoute("DefaultApi", new { id = grupo.IDGrupo }, grupo);
         }
 
+        /// <summary>
+        /// Modifica un grupo por identificador.
+        /// </summary>
+        /// <param name="id">Identificador del grupo.</param>
+        /// <param name="grupo"></param>
+        [ResponseType(typeof(Area))]
         // PUT: api/Grupos/5
         public IHttpActionResult Put(int id, [FromBody]Grupo grupo)
         {
@@ -101,6 +124,11 @@ namespace FacultativosWebApi.Controllers
             return Ok(grupo);
         }
 
+        /// <summary>
+        /// Elimina un grupo por identificador.
+        /// </summary>
+        /// <param name="id">Identificador del grupo.</param>
+        [ResponseType(typeof(void))]
         // DELETE: api/Grupos/5
         public IHttpActionResult Delete(int id)
         {

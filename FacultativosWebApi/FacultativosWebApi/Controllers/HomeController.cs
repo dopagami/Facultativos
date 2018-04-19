@@ -10,7 +10,7 @@ namespace FacultativosWebApi.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.Title = "Home Page";
+            ViewBag.Title = "Facultativos Web Api Home Page";
 
             return View();
         }

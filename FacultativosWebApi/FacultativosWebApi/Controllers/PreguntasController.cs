@@ -6,18 +6,34 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Description;
 
 namespace FacultativosWebApi.Controllers
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class PreguntasController : ApiController
     {
+        /// <summary>
+        /// Obtiene todas las preguntas.
+        /// </summary>
+        [ResponseType(typeof(Pregunta))]
         // GET: api/Preguntas
-        public IEnumerable<Pregunta> Get()
+        public IHttpActionResult Get()
         {
             PreguntasProvider pPreguntas = new PreguntasProvider();
-            return pPreguntas.GetPreguntas();
+            var searchResults = pPreguntas.GetPreguntas();
+            if (searchResults == null)
+                return NotFound();
+            return Ok(searchResults);
         }
 
+        /// <summary>
+        /// Obtiene una pregunta por identificador.
+        /// </summary>
+        /// <param name="id">Identificador de la pregunta.</param>
+        [ResponseType(typeof(IEnumerable<Pregunta>))]
         // GET: api/Preguntas/5
         public IHttpActionResult Get(int id)
         {
@@ -28,6 +44,11 @@ namespace FacultativosWebApi.Controllers
             return Ok(searchResults);
         }
 
+        /// <summary>
+        /// Crea una nueva pregunta.
+        /// </summary>
+        /// <param name="pregunta">El campo IDPregunta será ignorado en la petición</param>
+        [ResponseType(typeof(Pregunta))]
         // POST: api/Preguntas
         public IHttpActionResult Post([FromBody]Pregunta pregunta)
         {
@@ -57,6 +78,12 @@ namespace FacultativosWebApi.Controllers
             return CreatedAtRoute("DefaultApi", new { id = pregunta.IDPregunta }, pregunta);
         }
 
+        /// <summary>
+        /// Modifica una pregunta por identificador.
+        /// </summary>
+        /// <param name="id">Identificador de la pregunta.</param>
+        /// <param name="pregunta"></param>
+        [ResponseType(typeof(Pregunta))]
         // PUT: api/Preguntas/5
         public IHttpActionResult Put(int id, [FromBody]Pregunta pregunta)
         {
@@ -93,6 +120,11 @@ namespace FacultativosWebApi.Controllers
             return Ok(pregunta);
         }
 
+        /// <summary>
+        /// Elimina una pregunta por identificador.
+        /// </summary>
+        /// <param name="id">Identificador de la pregunta.</param>
+        [ResponseType(typeof(void))]
         // DELETE: api/Preguntas/5
         public IHttpActionResult Delete(int id)
         {

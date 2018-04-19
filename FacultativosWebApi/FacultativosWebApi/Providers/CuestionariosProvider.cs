@@ -6,8 +6,14 @@ using System.Web;
 
 namespace FacultativosWebApi.Providers
 {
+    /// <summary>
+    /// Controlador de cuestionarios.
+    /// </summary>
     public class CuestionariosProvider
     {
+        /// <summary>
+        /// Looks up some data by ID.
+        /// </summary>
         public IEnumerable<Cuestionario> GetCuestionarios()
         {
             return Converter.toCuestionarios(DAL.DataService.Execute("SELECT MC.IDCUESTIONARIO, " +
@@ -74,7 +80,10 @@ namespace FacultativosWebApi.Providers
                 "ON MP.IDCUESTIONARIO = MC.IDCUESTIONARIO " +
                 "ORDER BY IDCUESTIONARIO, NIVEL, ORDEN; "));
         }
-
+        /// <summary>
+        /// Looks up some data by ID.
+        /// </summary>
+        /// <param name="id">The ID of the data.</param>
         public Cuestionario GetCuestionario(int id)
         {
             return Converter.toCuestionarios(DAL.DataService.Execute("SELECT MC.IDCUESTIONARIO, " +
@@ -145,7 +154,9 @@ namespace FacultativosWebApi.Providers
                 "WHERE MC.IDCUESTIONARIO = " + id.ToString() + " " +
                 "ORDER BY IDCUESTIONARIO, NIVEL, ORDEN; ")).FirstOrDefault();
         }
-
+        /// <summary>
+        /// Looks up some data by ID.
+        /// </summary>
         public Int32 PostCuestionario(Cuestionario cuestionario)
         {
 
@@ -205,7 +216,9 @@ namespace FacultativosWebApi.Providers
             }
 
         }
-
+        /// <summary>
+        /// Looks up some data by ID.
+        /// </summary>
         public Int32 PutCuestionario(Cuestionario cuestionario)
         {
             return DAL.DataService.ExecuteNonQuery("UPDATE MAESTROCUESTIONARIOS " +
@@ -216,7 +229,9 @@ namespace FacultativosWebApi.Providers
                         "pDepartamento", cuestionario.IDDepartamento,
                         "pID", cuestionario.IDCuestionario);
         }
-
+        /// <summary>
+        /// Looks up some data by ID.
+        /// </summary>
         public Int32 DeleteCuestionario(int id)
         {
             return DAL.DataService.ExecuteNonQuery("DELETE FROM MAESTROCUESTIONARIOS " +

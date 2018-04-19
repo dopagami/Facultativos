@@ -7,11 +7,20 @@ using System.Web.Http;
 using FacultativosWebApi.Models;
 using FacultativosWebApi.Providers;
 using System.Threading.Tasks;
+using System.Web.Http.Description;
+using System.Collections;
 
 namespace FacultativosWebApi.Controllers
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class PrivilegiosController : ApiController
     {
+        /// <summary>
+        /// Obtiene todos los privilegios.
+        /// </summary>
+        [ResponseType(typeof(Privilegio))]
         // GET: api/Privilegios
         public IHttpActionResult Get()
         {            
@@ -22,6 +31,11 @@ namespace FacultativosWebApi.Controllers
             return Ok(searchResults);
         }
 
+        /// <summary>
+        /// Obtiene un privilegio por identificador.
+        /// </summary>
+        /// <param name="id">Identificador del privilegio.</param>
+        [ResponseType(typeof(IEnumerable<Privilegio>))]
         // GET: api/Privilegios/5
         public IHttpActionResult Get(int id)
         {
@@ -32,6 +46,11 @@ namespace FacultativosWebApi.Controllers
             return Ok(searchResults);
         }
 
+        /// <summary>
+        /// Crea un nuevo privilegio.
+        /// </summary>
+        /// <param name="privilegio">El campo IDPrivilegio será ignorado en la petición</param>
+        [ResponseType(typeof(Privilegio))]
         // POST: api/Privilegios
         public IHttpActionResult Post([FromBody]Privilegio privilegio)
         {
@@ -61,6 +80,12 @@ namespace FacultativosWebApi.Controllers
             return CreatedAtRoute("DefaultApi", new { id = privilegio.IDPrivilegio }, privilegio);
         }
 
+        /// <summary>
+        /// Modifica un privilegio por identificador.
+        /// </summary>
+        /// <param name="id">Identificador del privilegio.</param>
+        /// <param name="privilegio"></param>
+        [ResponseType(typeof(Privilegio))]
         // PUT: api/Privilegios/5
         public IHttpActionResult Put(int id, [FromBody]Privilegio privilegio)
         {
@@ -97,6 +122,11 @@ namespace FacultativosWebApi.Controllers
             return Ok(privilegio);
         }
 
+        /// <summary>
+        /// Elimina un privilegio por identificador.
+        /// </summary>
+        /// <param name="id">Identificador del privilegio.</param>
+        [ResponseType(typeof(void))]
         //// DELETE: api/Privilegios/5
         public IHttpActionResult Delete(int id)
         {

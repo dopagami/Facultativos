@@ -6,12 +6,20 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using FacultativosWebApi.Models;
+using System.Web.Http.Description;
 
 namespace FacultativosWebApi.Controllers
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class CuestionariosController : ApiController
     {
+        /// <summary>
+        /// Obtiene todos los cuestionarios.
+        /// </summary>
         // GET: api/Cuestionarios
+        [ResponseType(typeof(Cuestionario))]
         public IHttpActionResult Get()
         {
             CuestionariosProvider pCuestionarios = new CuestionariosProvider();
@@ -21,6 +29,11 @@ namespace FacultativosWebApi.Controllers
             return Ok(searchResults);
         }
 
+        /// <summary>
+        /// Obtiene un cuestionario por identificador.
+        /// </summary>
+        /// <param name="id">ID del cuestionario</param>
+        [ResponseType(typeof(IEnumerable<Cuestionario>))]
         // GET: api/Cuestionarios/5
         public IHttpActionResult Get(int id)
         {
@@ -31,7 +44,12 @@ namespace FacultativosWebApi.Controllers
             return Ok(searchResults);
         }
 
+        /// <summary>
+        /// Crear un nuevo cuestionario.
+        /// </summary>
+        /// <param name="cuestionario"></param>
         // POST: api/Cuestionarios
+        [ResponseType(typeof(Cuestionario))]
         public IHttpActionResult Post([FromBody]Cuestionario cuestionario)
         {
             if (!ModelState.IsValid)
@@ -68,7 +86,12 @@ namespace FacultativosWebApi.Controllers
             return CreatedAtRoute("DefaultApi", new { id = cuestionario.IDCuestionario }, cuestionario);
         }
 
-        // PUT: api/Cuestionarios/5
+        /// <summary>
+        /// Modifica un cuestionario por identificador.
+        /// </summary>
+        /// <param name="id">Identificador del cuestionario.</param>
+        /// <param name="cuestionario"></param>
+        [ResponseType(typeof(Cuestionario))]
         public IHttpActionResult Put(int id, [FromBody]Cuestionario cuestionario)
         {
             if (!ModelState.IsValid)
@@ -104,6 +127,11 @@ namespace FacultativosWebApi.Controllers
             return Ok(cuestionario);
         }
 
+        /// <summary>
+        /// Elimina un cuestionario por identificador.
+        /// </summary>
+        /// <param name="id">Identificador del cuestionario.</param>
+        [ResponseType(typeof(void))]
         // DELETE: api/Cuestionarios/5
         public IHttpActionResult Delete(int id)
         {
