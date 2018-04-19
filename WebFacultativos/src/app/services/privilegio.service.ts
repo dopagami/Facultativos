@@ -15,6 +15,8 @@ import { Globals } from '../../shared/globals';
 @Injectable()
 export class PrivilegioService {
 
+
+  
   // Url que devuvle un JSON... cambiar por nuestra API
   // private readonly API_URL = 'https://api.github.com/repos/angular/angular/issues';
 
