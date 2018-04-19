@@ -34,5 +34,10 @@ namespace FacultativosEscritorio
         {
 
         }
+
+        private void Form1_Resize(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Maximized;
+        }
     }
 }
