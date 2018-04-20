@@ -9,7 +9,7 @@ export class Globals {
     constructor() { }
 
 
-    // Función genérica para mostrar errors devueltos del Backend    
+    // Función genérica para mostrar errors devueltos del Backend
     errorCodes(code: number) {
         switch (code) {
             case 409:

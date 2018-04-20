@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 
 import {
   MatToolbarModule,
@@ -17,7 +17,8 @@ import {
   MatSortModule,
   MatPaginatorModule,
   MatPaginatorIntl,
-  MatDialogModule
+  MatDialogModule,
+  MatSnackBarModule
 } from '@angular/material';
 
 
@@ -27,6 +28,7 @@ import { APP_ROUTING } from './app.routes';
 // Componentes
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
+import { NavbarStaticComponent } from './components/shared/navbar-static/navbar-static.component';
 import { PrivilegiosComponent } from './components/privilegios/privilegios.component';
 import { HomeComponent } from './components/home/home.component';
 import { UsertableComponent } from './components/usertable/usertable.component';
@@ -34,10 +36,15 @@ import { MatPaginatorIntlSpanish } from './components/locale/spanish-paginator-i
 import { AddComponent } from './components/privilegios/dialogs/add/add.component';
 import { EditComponent } from './components/privilegios/dialogs/edit/edit.component';
 import { DeleteComponent } from './components/privilegios/dialogs/delete/delete.component';
+import { LoginComponent } from './components/login/login.component';
+
+
 
 // Servicios
 import { UserService } from './services/user.service';
 import { PrivilegioService } from './services/privilegio.service';
+import { LoginService } from './services/login.service';
+import { AuthGuardService } from './services/auth-guard.service';
 
 // Globals
 import { Globals } from '../shared/globals';
@@ -51,8 +58,9 @@ import { Globals } from '../shared/globals';
     UsertableComponent,
     AddComponent,
     DeleteComponent,
-    EditComponent
-
+    EditComponent,
+    LoginComponent,
+    NavbarStaticComponent
   ],
   imports: [
     BrowserModule,
@@ -72,10 +80,20 @@ import { Globals } from '../shared/globals';
     MatPaginatorModule,
     BrowserModule,
     FormsModule,
-    MatDialogModule
+    MatDialogModule,
+    ReactiveFormsModule,
+    MatSnackBarModule
+  ],
+  exports: [
+    FormsModule,
+    ReactiveFormsModule
+    
   ],
   providers: [  UserService,
                 PrivilegioService,
+                LoginService,
+                AuthGuardService,
+                MatSnackBarModule,
                 Globals,
               { provide: MatPaginatorIntl, useClass: MatPaginatorIntlSpanish}
             ],
