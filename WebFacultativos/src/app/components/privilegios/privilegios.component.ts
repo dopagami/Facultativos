@@ -14,6 +14,7 @@ import 'rxjs/add/operator/distinctUntilChanged';
 import { AddComponent } from './dialogs/add/add.component';
 import { EditComponent } from './dialogs/edit/edit.component';
 import { DeleteComponent } from './dialogs/delete/delete.component';
+import { debug } from 'util';
 
 
 @Component({
@@ -74,21 +75,13 @@ export class PrivilegiosComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
 
-      // botón cancelar
+      // Botón cancelar
       if (result === '1') { return; }
 
-      // Después de cerrar el diálogo hacemos los updates del frontend
-      // Me suscribo al observable del post.
-      this.dataService.addPrivilegio(result).subscribe(res => {
-        // Para agregar, sólo anadimos una nueva fila en el DataService
-        this.exampleDatabase.dataChange.value.push(res);
-        this.refreshTable();
-      }, (err: HttpErrorResponse) => {
-        this.errorCodes(err.status);
-      });
-
+      // Para agregar, sólo anadimos una nueva fila en el DataService
+      this.exampleDatabase.dataChange.value.push(result);
+      this.refreshTable();
     });
-
   }
 
   // EDIT
@@ -96,8 +89,6 @@ export class PrivilegiosComponent implements OnInit {
     this.id = id;
     // index row es usado sólo para debugar
     this.index = i;
-    console.log(this.index);
-    console.log(valor);
     const dialogRef = this.dialog.open(EditComponent, {
       data: { IDPrivilegio: id, Valor: valor, Descripcion: descripcion }
     });
@@ -108,18 +99,13 @@ export class PrivilegiosComponent implements OnInit {
       if (result === '1') { return; }
 
       this.dataService.dialogData = result;
-      this.dataService.updatePrivilegio(result).subscribe(res => {
-        // Buscamos por ID el  registro dentro del DataService
-        const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.IDPrivilegio === this.id);
-        // Entonces update del registro usando el DialogData (valores de la modal)
+     // Buscamos por ID el  registro dentro del DataService
+     const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.IDPrivilegio === this.id);
 
-        this.exampleDatabase.dataChange.value[foundIndex] = this.dataService.getDialogData();
-        // Refrescamos la tabla
-        this.refreshTable();
-      }, (err: HttpErrorResponse) => {
-        this.errorCodes(err.status);
-      }
-      );
+     // Entonces update del registro usando el DialogData (valores de la modal)
+     this.exampleDatabase.dataChange.value[foundIndex] = result;
+     // Refrescamos la tabla
+     this.refreshTable();
     });
   }
 
@@ -136,13 +122,10 @@ export class PrivilegiosComponent implements OnInit {
       // botón cancelar
       if (result === '1') { return; }
 
-      this.dataService.deleteItem(result.id).subscribe(res => {
-        const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.IDPrivilegio === this.id);
-        // Para borrar usamos "splice". Así podemos borrar un sólo objeto del DataService
-        this.exampleDatabase.dataChange.value.splice(foundIndex, 1);
-        this.refreshTable();
-      });
-
+      const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.IDPrivilegio === this.id);
+      // Para borrar usamos "splice". Así podemos borrar un sólo objeto del DataService
+      this.exampleDatabase.dataChange.value.splice(foundIndex, 1);
+      this.refreshTable();
     });
 
   }

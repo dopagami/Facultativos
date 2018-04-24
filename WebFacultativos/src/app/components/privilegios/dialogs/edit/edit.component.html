@@ -30,7 +30,8 @@
   
     <div mat-dialog-actions>
       <button mat-button (click)="onNoClick()" tabindex="-1">Cancelar</button>
-      <button mat-button [type]="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1" (click)="stopEdit()">Grabar</button>      
+      <!-- <button mat-button [type]="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1" (click)="stopEdit()">Grabar</button>       -->
+      <button mat-button [type]="submit" [disabled]="!formControl.valid" (click)="stopEdit()">Grabar</button>      
     </div>
   </form>
 </div>

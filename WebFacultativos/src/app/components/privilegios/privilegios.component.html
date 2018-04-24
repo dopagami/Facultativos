@@ -59,7 +59,7 @@
     </ng-container>
 
     <ng-container matColumnDef="valor">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Valor</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Código</mat-header-cell>
       <mat-cell *matCellDef="let row"> {{row.Valor | uppercase}} </mat-cell>
     </ng-container>
 
@@ -72,9 +72,16 @@
     <!-- actions -->
     <ng-container matColumnDef="actions">
       <mat-header-cell *matHeaderCellDef>
-        <button mat-icon-button color="primary" (click)="addNew()">
+
+          <div fxLayout="row" fxLayoutAlign="end end">
+       
+              <a class="addNewButton"><button  mat-mini-fab (click)="addNew()" class="primary"><mat-icon>add</mat-icon></button></a>
+         </div>
+         <br>
+       
+        <!-- <button mat-icon-button color="primary" (click)="addNew()">
           <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
-        </button>
+        </button> -->
       </mat-header-cell>
 
       <mat-cell *matCellDef="let row; let i=index;">

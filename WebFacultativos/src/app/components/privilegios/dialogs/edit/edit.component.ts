@@ -2,6 +2,9 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { Component, Inject } from '@angular/core';
 import { PrivilegioService } from '../../../../services/privilegio.service';
 import { FormControl, Validators } from '@angular/forms';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+// Variables Globales
+import * as myGlobals from '../../../../../shared/globals';
 
 @Component({
   selector: 'app-edit',
@@ -10,9 +13,11 @@ import { FormControl, Validators } from '@angular/forms';
 })
 export class EditComponent {
   displayedColumns = ['valor', 'descripcion', 'actions'];
-  
+
   constructor(public dialogRef: MatDialogRef<EditComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any, public dataService: PrivilegioService) { }
+              @Inject(MAT_DIALOG_DATA) public data: any,
+              public dataService: PrivilegioService,
+              public global: myGlobals.Globals) { }
 
   formControl = new FormControl('', [
     Validators.required
@@ -30,12 +35,14 @@ export class EditComponent {
   }
 
   onNoClick(): void {
-    this.dialogRef.close("1");
+    this.dialogRef.close('1');
   }
 
   stopEdit(): void {
-    //this.dataService.updatePrivilegio(this.data);
-    this.dialogRef.close(this.data);    
+    this.dataService.updatePrivilegio(this.data).subscribe(res => {
+      this.dialogRef.close(res);
+    }, (err: HttpErrorResponse) => {
+      this.global.errorCodes(err.status);
+    });
   }
-
 }
