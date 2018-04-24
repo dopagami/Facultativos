@@ -1,12 +1,20 @@
+
 mat-card {
   max-width: 400px;
   margin: 2em auto;
   text-align: center;
-  }
+}
+
+/* Al hacer mat-elevation, el mat-card dibuja una doble línea... con esto se lo quitamos*/
+.mat-card:not([class*=mat-elevation-z]) {
+  box-shadow: none;
+}
 
 .signin-content {
   padding: 60px 1rem;
+
 }
+
 .full-width-input {
   width: 100%;
 }
@@ -15,3 +23,18 @@ mat-toolbar{
   background-color: #424242;
   color:#FFFFFF;
 }
+
+/* Para poder cambiar el fondo de un snackbar*/
+/* ::ng-deep snack-bar-container.white-snackbar {
+  background: yellow;
+} */
+
+::ng-deep .white-snackbar .mat-simple-snackbar-action {
+  color: #F05545;  
+}
+
+.btnPrimary{
+  background-color: #b2b6cc;
+  color: #000000;
+}
+
