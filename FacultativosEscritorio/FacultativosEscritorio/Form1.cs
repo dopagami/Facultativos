@@ -19,10 +19,11 @@ namespace FacultativosEscritorio
 
         private void Form1_LostFocus(object sender, EventArgs e)
         {
-            if (!this.Focused)
-            {
-                this.Focus();
-            }
+            //if (!this.Focused)
+            //{
+            //    this.Focus();
+            //}
+            this.Focus();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -37,7 +38,12 @@ namespace FacultativosEscritorio
 
         private void Form1_Resize(object sender, EventArgs e)
         {
-            this.WindowState = FormWindowState.Maximized;
+            //this.WindowState = FormWindowState.Maximized;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("http://mk22788p:81");
         }
     }
 }
