@@ -13,6 +13,7 @@ namespace FacultativosWebApi.Controllers
     /// <summary>
     /// 
     /// </summary>
+    ///[Authorize]
     public class GruposController : ApiController
     {
         /// <summary>

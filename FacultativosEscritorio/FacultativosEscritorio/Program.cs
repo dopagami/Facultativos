@@ -17,7 +17,7 @@ namespace FacultativosEscritorio
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Form1 formulario = new Form1();
-            formulario.WindowState = FormWindowState.Maximized;
+            //formulario.WindowState = FormWindowState.Maximized;
             formulario.FormBorderStyle = FormBorderStyle.FixedSingle;
             formulario.MaximizeBox = false;
             formulario.MinimizeBox = false;

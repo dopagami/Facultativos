@@ -7,3 +7,7 @@ D:\Proyectos\CUN\Facultativos\FacultativosEscritorio\FacultativosEscritorio\obj\
 D:\Proyectos\CUN\Facultativos\FacultativosEscritorio\FacultativosEscritorio\obj\Debug\FacultativosEscritorio.exe
 D:\Proyectos\CUN\Facultativos\FacultativosEscritorio\FacultativosEscritorio\obj\Debug\FacultativosEscritorio.pdb
 D:\Proyectos\CUN\Facultativos\FacultativosEscritorio\FacultativosEscritorio\obj\Debug\FacultativosEscritorio.Form1.resources
+D:\Proyectos\CUN\Facultativos\FacultativosEscritorio\FacultativosEscritorio\bin\Debug\FacultativosEscritorio.exe.manifest
+D:\Proyectos\CUN\Facultativos\FacultativosEscritorio\FacultativosEscritorio\bin\Debug\FacultativosEscritorio.application
+D:\Proyectos\CUN\Facultativos\FacultativosEscritorio\FacultativosEscritorio\obj\Debug\FacultativosEscritorio.exe.manifest
+D:\Proyectos\CUN\Facultativos\FacultativosEscritorio\FacultativosEscritorio\obj\Debug\FacultativosEscritorio.application
