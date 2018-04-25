@@ -1,8 +1,7 @@
 ﻿using Microsoft.Owin;
-using Owin;
-
-using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security;
+using Microsoft.Owin.Security.Cookies;
+using Owin;
 using Owin.Security.Keycloak;
 
 [assembly: OwinStartup(typeof(FacultativosWebApi.Startup))]
@@ -13,7 +12,7 @@ namespace FacultativosWebApi
     {
         public void Configuration(IAppBuilder app)
         {
-            //ConfigureAuth(app);
+            ConfigureAuth(app);
 
             // Name of the persistent authentication middleware for lookup
             const string persistentAuthType = "KeycloakOwinAuthenticationSample_cookie_auth";

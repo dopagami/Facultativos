@@ -9,13 +9,12 @@ using FacultativosWebApi.Providers;
 using System.Threading.Tasks;
 using System.Web.Http.Description;
 using System.Collections;
-using System.Security.Claims;
 
 namespace FacultativosWebApi.Controllers
 {
     /// <summary>
     /// 
-    /// </summary>    
+    /// </summary>
     public class PrivilegiosController : ApiController
     {
         /// <summary>
@@ -24,7 +23,7 @@ namespace FacultativosWebApi.Controllers
         [ResponseType(typeof(Privilegio))]
         // GET: api/Privilegios
         public IHttpActionResult Get()
-        {
+        {            
             PrivilegiosProvider pPrivilegios = new PrivilegiosProvider();
             var searchResults = pPrivilegios.GetPrivilegios();
             if (searchResults == null)
