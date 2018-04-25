@@ -482,10 +482,9 @@
             <param name="documentPath">The physical path to XML document.</param>
         </member>
         <member name="T:FacultativosWebApi.Controllers.AreasController">
-             <summary>
-             
-             </summary>
-            [Authorize]
+            <summary>
+            
+            </summary>
         </member>
         <member name="M:FacultativosWebApi.Controllers.AreasController.Get">
             <summary>
@@ -518,10 +517,9 @@
             <param name="id">Identificador del área.</param>
         </member>
         <member name="T:FacultativosWebApi.Controllers.CuestionariosController">
-             <summary>
-             
-             </summary>
-            [Authorize]
+            <summary>
+            
+            </summary>
         </member>
         <member name="M:FacultativosWebApi.Controllers.CuestionariosController.Get">
             <summary>
@@ -554,10 +552,9 @@
             <param name="id">Identificador del cuestionario.</param>
         </member>
         <member name="T:FacultativosWebApi.Controllers.GruposController">
-             <summary>
-             
-             </summary>
-            [Authorize]
+            <summary>
+            
+            </summary>
         </member>
         <member name="M:FacultativosWebApi.Controllers.GruposController.Get">
             <summary>
@@ -589,14 +586,10 @@
             </summary>
             <param name="id">Identificador del grupo.</param>
         </member>
-        <member name="T:FacultativosWebApi.Controllers.HomeController">
-            [Authorize]
-        </member>
         <member name="T:FacultativosWebApi.Controllers.PreguntasController">
-             <summary>
-             
-             </summary>
-            [Authorize]
+            <summary>
+            
+            </summary>
         </member>
         <member name="M:FacultativosWebApi.Controllers.PreguntasController.Get">
             <summary>
@@ -631,7 +624,7 @@
         <member name="T:FacultativosWebApi.Controllers.PrivilegiosController">
             <summary>
             
-            </summary>    
+            </summary>
         </member>
         <member name="M:FacultativosWebApi.Controllers.PrivilegiosController.Get">
             <summary>

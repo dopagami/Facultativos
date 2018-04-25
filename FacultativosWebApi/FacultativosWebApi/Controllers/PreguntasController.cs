@@ -13,7 +13,6 @@ namespace FacultativosWebApi.Controllers
     /// <summary>
     /// 
     /// </summary>
-    ///[Authorize]
     public class PreguntasController : ApiController
     {
         /// <summary>

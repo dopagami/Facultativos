@@ -43,7 +43,7 @@ namespace FacultativosEscritorio
 
         private void button2_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("http://mk22788p:81");
+            System.Diagnostics.Process.Start("www.cun.es");
         }
     }
 }

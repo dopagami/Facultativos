@@ -7,7 +7,6 @@ using System.Web.Mvc;
 
 namespace FacultativosWebApi.Controllers
 {
-    ///[Authorize]
     public class HomeController : Controller
     {
         public ActionResult Index()
@@ -16,10 +15,11 @@ namespace FacultativosWebApi.Controllers
 
             return View();
         }
-        
+
+        [Authorize]
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "Facultativos Web Api Home Page";
 
             var userPrinciple = User as ClaimsPrincipal;
 
