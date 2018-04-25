@@ -1,9 +1,13 @@
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
+
+// Keycloak
+import { KeycloakService, KeycloakAngularModule } from 'keycloak-angular';
+import { initializer } from './shared/app-init';
 
 import {
   MatToolbarModule,
@@ -49,6 +53,7 @@ import { AuthGuardService } from './services/auth-guard.service';
 // Globals
 import { Globals } from '../shared/globals';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -82,12 +87,13 @@ import { Globals } from '../shared/globals';
     FormsModule,
     MatDialogModule,
     ReactiveFormsModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    [KeycloakAngularModule]
   ],
   exports: [
     FormsModule,
     ReactiveFormsModule
-    
+
   ],
   providers: [  UserService,
                 PrivilegioService,
@@ -95,7 +101,13 @@ import { Globals } from '../shared/globals';
                 AuthGuardService,
                 MatSnackBarModule,
                 Globals,
-              { provide: MatPaginatorIntl, useClass: MatPaginatorIntlSpanish}
+              { provide: MatPaginatorIntl, useClass: MatPaginatorIntlSpanish},
+              {
+                provide: APP_INITIALIZER,
+                useFactory: initializer,
+                multi: true,
+                deps: [KeycloakService]
+              }
             ],
   bootstrap: [AppComponent],
   entryComponents: [

@@ -2,17 +2,16 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { User } from '../models/user.model';
-import {MatSnackBar} from '@angular/material';
-
-
+import { LoginComponent } from '../components/login/login.component';
 
 @Injectable()
 export class LoginService {
 
   private username = 'cun';
   private password = 'cun';
+  private isLogged = false;
 
-  private loggedIn = new BehaviorSubject<boolean>(false); // {1}
+  private loggedIn = new BehaviorSubject<boolean>(false); // {1} Representa un valor que cambia en el tiempo
 
   get isLoggedIn() {
       const isAuthorized: boolean = !!localStorage.getItem('accessToken');
@@ -21,17 +20,19 @@ export class LoginService {
   }
 
   constructor(
-    private router: Router,
-    public snackBar: MatSnackBar
+    private router: Router
   ) {}
 
   login(user: User) {
+    alert();
     // tslint:disable-next-line:max-line-length
     if (user.userName.toUpperCase() === this.username.toUpperCase()  && user.password.toUpperCase() === this.password.toUpperCase() ) { // Login
       this.loggedIn.next(true);
       this.router.navigate(['/']);
+      return this.isLogged;
     } else {
-      this.snackBar.open('Acceso denegado');
+      this.isLogged = true;
+      return this.isLogged;
     }
   }
 

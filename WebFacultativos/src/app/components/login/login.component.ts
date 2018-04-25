@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { LoginService } from '../../services/login.service';
+import { MatSnackBar } from '@angular/material';
 
 
 @Component({
@@ -12,10 +13,12 @@ export class LoginComponent implements OnInit {
 
   form: FormGroup;                    // {1}
   private formSubmitAttempt: boolean; // {2}
+  private isLogged = false;
 
   constructor(
     private fb: FormBuilder,         // {3}
-    private authService: LoginService // {4}
+    private authService: LoginService, // {4}
+    public snackBar: MatSnackBar
   ) {}
 
   ngOnInit() {
@@ -34,7 +37,14 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     if (this.form.valid) {
-      this.authService.login(this.form.value); // {7}
+      this.isLogged = this.authService.login(this.form.value); // {7}
+      if (this.isLogged) {
+           this.snackBar.open('Acceso denegado', 'Cerrar', {
+              duration: 4000,
+              extraClasses: ['white-snackbar'],
+      });
+
+      }
     }
     this.formSubmitAttempt = true;             // {8}
   }
