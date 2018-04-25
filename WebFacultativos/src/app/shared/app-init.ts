@@ -1,5 +1,6 @@
 import { KeycloakService } from 'keycloak-angular';
 
+
 export function initializer(keycloak: KeycloakService): () => Promise<any> {
   return (): Promise<any> => {
     return new Promise(async (resolve, reject) => {
@@ -11,7 +12,7 @@ export function initializer(keycloak: KeycloakService): () => Promise<any> {
             clientId: 'demo-app',
             'credentials': {
               'secret': '5b834700-2f8a-4622-bb51-9eb80a5f52dd'
-          }
+            }
           },
           initOptions: {
             onLoad: 'login-required',
@@ -23,7 +24,7 @@ export function initializer(keycloak: KeycloakService): () => Promise<any> {
           ],
         });
         resolve();
-      } catch (error) {}
+      } catch (error) { }
     });
   };
 }

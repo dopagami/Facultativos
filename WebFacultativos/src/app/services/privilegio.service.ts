@@ -13,6 +13,8 @@ import 'rxjs/add/operator/finally';
 import * as myGlobals from '../../shared/globals';
 
 
+import { KeycloakService } from 'keycloak-angular';
+
 @Injectable()
 export class PrivilegioService {
 
@@ -29,7 +31,8 @@ export class PrivilegioService {
   // Property que guarda  temporalmente el data de los diálogos
   public dialogData: any;
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient,
+              private keycloak?: KeycloakService) { }
 
   get data(): Privilegio[] {
     return this.dataChange.value;
@@ -43,10 +46,9 @@ export class PrivilegioService {
   // setHeader('Access-Control-Allow-Origin', 'http://localhost:8888');
   /** CRUD METHODS */
   getAllPrivilegios(): void {
-    const headers = new HttpHeaders().set('Content-Type', 'application/json; charset=UTF-8');
 
-
-    this.httpClient.get<Privilegio[]>(myGlobals.API_URL,  { headers: headers }).subscribe(data => {
+    debugger;
+    this.httpClient.get<Privilegio[]>(myGlobals.API_URL).subscribe(data => {
       this.dataChange.next(data);
     },
       (error: HttpErrorResponse) => {
