@@ -221,7 +221,6 @@ namespace FacultativosWebApi
                     area.IDCuestionario = System.Convert.ToInt32(row["IDCUESTIONARIO"]);
 
                     areas.Add(area);
-
                 }
 
                 //Grupos

@@ -57,10 +57,8 @@ namespace FacultativosWebApi.Providers
 
         public Int32 PostGrupo(Grupo grupo)
         {
-
             try
             {                
-
                 Int32 IDGrupo = DAL.DataService.ExecuteNonQueryRV("INSERT INTO MAESTROGRUPOS(DESCRIPCION, IDAREA, IDCUESTIONARIO, ORDEN) " +
                         "VALUES(:pDesc, :pArea, :pCuestionario, :pOrden) " +
                         "RETURNING IDGRUPO INTO :pIDRT",

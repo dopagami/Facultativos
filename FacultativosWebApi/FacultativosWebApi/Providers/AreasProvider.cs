@@ -72,7 +72,6 @@ namespace FacultativosWebApi.Providers
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
         }
