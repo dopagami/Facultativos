@@ -9,8 +9,8 @@ namespace FacultativosWebApi
 {
     public static class Converter
     {
-        public static IEnumerable<Privilegio> toPrivilegios(DataTable dtPrivilegios) {
-
+        public static IEnumerable<Privilegio> toPrivilegios(DataTable dtPrivilegios)
+        {
             var privilegios = new List<Privilegio>();
             foreach (DataRow row in dtPrivilegios.Rows)
             {
@@ -27,9 +27,8 @@ namespace FacultativosWebApi
 
         public static IEnumerable<Cuestionario> toCuestionarios(DataTable dtCuestionarios)
         {
-
             List<Cuestionario> cuestionarios = new List<Cuestionario>();
-            Cuestionario cuestionario = null; ;
+            Cuestionario cuestionario = null;
 
             foreach (DataRow row in dtCuestionarios.Rows)
             {
@@ -64,7 +63,6 @@ namespace FacultativosWebApi
                     area.Descripcion = System.Convert.ToString(row["DESCRIPCIONAREA"]);
 
                     cuestionario.Areas.Add(area);
-
                 }
 
                 //Grupos
@@ -87,7 +85,6 @@ namespace FacultativosWebApi
                     {
                         cuestionario.Grupos.Add(grupo);
                     }                    
-
                 }
 
                 //Preguntas
@@ -126,7 +123,6 @@ namespace FacultativosWebApi
                             area.Preguntas.Add(pregunta);
                         }
                     }                    
-
                 }
             }
 
@@ -136,7 +132,6 @@ namespace FacultativosWebApi
 
         public static IEnumerable<Pregunta> toPreguntas(DataTable dtPreguntas)
         {
-
             var preguntas = new List<Pregunta>();
             foreach (DataRow row in dtPreguntas.Rows)
             {
@@ -159,9 +154,8 @@ namespace FacultativosWebApi
 
         public static IEnumerable<Grupo> toGrupos(DataTable dtGrupos)
         {
-
             List<Grupo> grupos = new List<Grupo>();
-            Grupo grupo = null; ;
+            Grupo grupo = null;
             foreach (DataRow row in dtGrupos.Rows)
             {
                 //Grupos
@@ -181,7 +175,6 @@ namespace FacultativosWebApi
                     grupo.IDCuestionario = System.Convert.ToInt32(row["IDCUESTIONARIO"]);
 
                     grupos.Add(grupo);
-
                 }
 
                 //Preguntas
@@ -201,18 +194,15 @@ namespace FacultativosWebApi
                     pregunta.IDCuestionario = System.Convert.ToInt32(row["IDCUESTIONARIO"]);
 
                     grupo.Preguntas.Add(pregunta);
-
                 }
-
             }
             return grupos.AsEnumerable();
         }
 
         public static IEnumerable<Area> toAreas(DataTable dtAreas)
         {
-
             List<Area> areas = new List<Area>();
-            Area area = null; ;
+            Area area = null;
             foreach (DataRow row in dtAreas.Rows)
             {
                 //Areas
@@ -231,7 +221,6 @@ namespace FacultativosWebApi
                     area.IDCuestionario = System.Convert.ToInt32(row["IDCUESTIONARIO"]);
 
                     areas.Add(area);
-
                 }
 
                 //Grupos
@@ -251,7 +240,6 @@ namespace FacultativosWebApi
                     grupo.IDCuestionario = System.Convert.ToInt32(row["IDCUESTIONARIO"]);
 
                     area.Grupos.Add(grupo);
-
                 }
 
                 //Preguntas
@@ -281,9 +269,7 @@ namespace FacultativosWebApi
                     {
                         area.Preguntas.Add(pregunta);
                     }                    
-
                 }
-
             }
             return areas.AsEnumerable();
         }

@@ -13,6 +13,7 @@ namespace FacultativosWebApi.Controllers
     /// <summary>
     /// 
     /// </summary>
+    [Authorize(Roles = "facultativos")]
     public class GruposController : ApiController
     {
         /// <summary>
@@ -23,7 +24,14 @@ namespace FacultativosWebApi.Controllers
         public IEnumerable<Grupo> Get()
         {
             GruposProvider pGrupos = new GruposProvider();
-            return pGrupos.GetGrupos();
+            try
+            {
+                return pGrupos.GetGrupos();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         /// <summary>
@@ -34,10 +42,17 @@ namespace FacultativosWebApi.Controllers
         public IHttpActionResult Get(int id)
         {
             GruposProvider pGrupos = new GruposProvider();
-            var searchResults = pGrupos.GetGrupo(id);
-            if (searchResults == null)
-                return NotFound();
-            return Ok(searchResults);
+            try
+            {
+                var searchResults = pGrupos.GetGrupo(id);
+                if (searchResults == null)
+                    return NotFound();
+                return Ok(searchResults);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         /// <summary>

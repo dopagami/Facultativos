@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 
-export const API_URL = 'http://mk22788p/api/Privilegios';
+export const API_URL = 'http://localhost:49729/api/Privilegios';
 
 @Injectable()
 export class Globals {
