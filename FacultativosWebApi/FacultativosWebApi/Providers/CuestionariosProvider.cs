@@ -230,7 +230,6 @@ namespace FacultativosWebApi.Providers
             {
                 throw ex;
             }
-
         }
         /// <summary>
         /// Looks up some data by ID.

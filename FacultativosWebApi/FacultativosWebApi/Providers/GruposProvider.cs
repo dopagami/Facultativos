@@ -91,7 +91,6 @@ namespace FacultativosWebApi.Providers
             {                
                 throw ex;
             }
-
         }
 
         public Int32 PutGrupo(Grupo grupo)

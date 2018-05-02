@@ -123,7 +123,6 @@ namespace FacultativosWebApi.Providers
             {                
                 throw ex;
             }
-
         }
 
         public Int32 PutArea(Area area)

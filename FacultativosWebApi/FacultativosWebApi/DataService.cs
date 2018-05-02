@@ -45,8 +45,6 @@ namespace FacultativosWebApi.DAL
                     command.Parameters.Add(itemOdbcParameter);
                 }
 
-
-
                 var da = new OdbcDataAdapter(command);
                 da.Fill(data);
             }
@@ -206,8 +204,6 @@ namespace FacultativosWebApi.DAL
                     connection.Close();
                 throw ex;
             }
-
         }
-
     }
 }
