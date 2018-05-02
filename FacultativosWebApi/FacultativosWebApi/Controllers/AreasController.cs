@@ -13,6 +13,7 @@ namespace FacultativosWebApi.Controllers
     /// <summary>
     /// 
     /// </summary>
+    [Authorize(Roles = "facultativos")]
     public class AreasController : ApiController
     {
         /// <summary>
@@ -23,7 +24,15 @@ namespace FacultativosWebApi.Controllers
         public IEnumerable<Area> Get()
         {
             AreasProvider pAreas = new AreasProvider();
-            return pAreas.GetAreas();
+            try
+            {                
+                return pAreas.GetAreas();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         /// <summary>
@@ -35,10 +44,18 @@ namespace FacultativosWebApi.Controllers
         public IHttpActionResult Get(int id)
         {
             AreasProvider pAreas = new AreasProvider();
-            var searchResults = pAreas.GetArea(id);
-            if (searchResults == null)
-                return NotFound();
-            return Ok(searchResults);
+            try
+            {                
+                var searchResults = pAreas.GetArea(id);
+                if (searchResults == null)
+                    return NotFound();
+                return Ok(searchResults);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         /// <summary>

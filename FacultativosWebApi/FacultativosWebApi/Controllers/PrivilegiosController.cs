@@ -9,26 +9,36 @@ using FacultativosWebApi.Providers;
 using System.Threading.Tasks;
 using System.Web.Http.Description;
 using System.Collections;
+using FacultativosWebApi.Jwt.Filters;
 
 namespace FacultativosWebApi.Controllers
 {
     /// <summary>
     /// 
     /// </summary>
+    [Authorize(Roles = "facultativos")]
     public class PrivilegiosController : ApiController
     {
         /// <summary>
         /// Obtiene todos los privilegios.
         /// </summary>
         [ResponseType(typeof(Privilegio))]
-        // GET: api/Privilegios
+        // GET: api/Privilegios        
         public IHttpActionResult Get()
         {            
             PrivilegiosProvider pPrivilegios = new PrivilegiosProvider();
-            var searchResults = pPrivilegios.GetPrivilegios();
-            if (searchResults == null)
-                return NotFound();
-            return Ok(searchResults);
+            try
+            {
+                var searchResults = pPrivilegios.GetPrivilegios();
+                if (searchResults == null)
+                    return NotFound();
+                return Ok(searchResults);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         /// <summary>
@@ -40,10 +50,18 @@ namespace FacultativosWebApi.Controllers
         public IHttpActionResult Get(int id)
         {
             PrivilegiosProvider pPrivilegios = new PrivilegiosProvider();
-            var searchResults = pPrivilegios.GetPrivilegio(id);
-            if (searchResults == null)
-                return NotFound();
-            return Ok(searchResults);
+            try
+            {
+                var searchResults = pPrivilegios.GetPrivilegio(id);
+                if (searchResults == null)
+                    return NotFound();
+                return Ok(searchResults);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex; 
+            }
         }
 
         /// <summary>

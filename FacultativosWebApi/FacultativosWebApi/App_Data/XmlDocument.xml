@@ -847,5 +847,12 @@
             Looks up some data by ID.
             </summary>
         </member>
+        <member name="F:WebApi.Jwt.JwtManager.Secret">
+            <summary>
+            Use the below code to generate symmetric Secret Key
+                var hmac = new HMACSHA256();
+                var key = Convert.ToBase64String(hmac.Key);
+            </summary>
+        </member>
     </members>
 </doc>

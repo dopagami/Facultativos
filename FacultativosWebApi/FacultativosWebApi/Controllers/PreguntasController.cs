@@ -13,6 +13,7 @@ namespace FacultativosWebApi.Controllers
     /// <summary>
     /// 
     /// </summary>
+    [Authorize(Roles = "facultativos")]
     public class PreguntasController : ApiController
     {
         /// <summary>
@@ -23,10 +24,18 @@ namespace FacultativosWebApi.Controllers
         public IHttpActionResult Get()
         {
             PreguntasProvider pPreguntas = new PreguntasProvider();
-            var searchResults = pPreguntas.GetPreguntas();
-            if (searchResults == null)
-                return NotFound();
-            return Ok(searchResults);
+            try
+            {
+                var searchResults = pPreguntas.GetPreguntas();
+                if (searchResults == null)
+                    return NotFound();
+                return Ok(searchResults);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         /// <summary>
@@ -38,10 +47,18 @@ namespace FacultativosWebApi.Controllers
         public IHttpActionResult Get(int id)
         {
             PreguntasProvider pPreguntas = new PreguntasProvider();
-            var searchResults = pPreguntas.GetPregunta(id);
-            if (searchResults == null)
-                return NotFound();
-            return Ok(searchResults);
+            try
+            {
+                var searchResults = pPreguntas.GetPregunta(id);
+                if (searchResults == null)
+                    return NotFound();
+                return Ok(searchResults);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         /// <summary>

@@ -10,56 +10,72 @@ namespace FacultativosWebApi.Providers
     {
         public IEnumerable<Area> GetAreas()
         {
-            return Converter.toAreas(DAL.DataService.Execute("SELECT MA.IDAREA, " +
-                        "MA.DESCRIPCION DESCRIPCIONAREA, MA.IDCUESTIONARIO IDCUESTIONARIO, NULL IDGRUPO, NULL DESCRIPCIONGRUPO, NULL IDPREGUNTA, " +
-                        "NULL DESCRIPCIONPREGUNTA, 1 NIVEL, MA.ORDEN ORDEN " +
-                        "FROM MAESTROAREAS MA " +
-                        "UNION ALL " +
-                        "SELECT MA.IDAREA, " +
-                        "MA.DESCRIPCION DESCRIPCIONAREA, MA.IDCUESTIONARIO IDCUESTIONARIO, MG.IDGRUPO, MG.DESCRIPCION DESCRIPCIONGRUPO, " +
-                        "NULL IDPREGUNTA, NULL DESCRIPCIONPREGUNTA, 2 NIVEL, MG.ORDEN ORDEN " +
-                        "FROM MAESTROGRUPOS MG " +
-                        "INNER JOIN MAESTROAREAS MA " +
-                        "ON MG.IDAREA = MA.IDAREA " +
-                        "UNION ALL " +
-                        "SELECT MA.IDAREA, " +
-                        "MA.DESCRIPCION DESCRIPCIONAREA, MA.IDCUESTIONARIO IDCUESTIONARIO, MG.IDGRUPO, MG.DESCRIPCION DESCRIPCIONGRUPO, " +
-                        "MP.IDPREGUNTA, MP.DESCRIPCION DESCRIPCIONPREGUNTA, 3 NIVEL, MP.ORDEN ORDEN " +
-                        "FROM MAESTROPREGUNTAS MP " +
-                        "INNER JOIN MAESTROGRUPOS MG " +
-                        "ON MP.IDGRUPO = MG.IDGRUPO " +
-                        "INNER JOIN MAESTROAREAS MA " +
-                        "ON MP.IDAREA = MA.IDAREA " +
-                        "ORDER BY IDAREA, NIVEL, ORDEN"));
+            try
+            {
+                return Converter.toAreas(DAL.DataService.Execute("SELECT MA.IDAREA, " +
+                                "MA.DESCRIPCION DESCRIPCIONAREA, MA.IDCUESTIONARIO IDCUESTIONARIO, NULL IDGRUPO, NULL DESCRIPCIONGRUPO, NULL IDPREGUNTA, " +
+                                "NULL DESCRIPCIONPREGUNTA, 1 NIVEL, MA.ORDEN ORDEN " +
+                                "FROM MAESTROAREAS MA " +
+                                "UNION ALL " +
+                                "SELECT MA.IDAREA, " +
+                                "MA.DESCRIPCION DESCRIPCIONAREA, MA.IDCUESTIONARIO IDCUESTIONARIO, MG.IDGRUPO, MG.DESCRIPCION DESCRIPCIONGRUPO, " +
+                                "NULL IDPREGUNTA, NULL DESCRIPCIONPREGUNTA, 2 NIVEL, MG.ORDEN ORDEN " +
+                                "FROM MAESTROGRUPOS MG " +
+                                "INNER JOIN MAESTROAREAS MA " +
+                                "ON MG.IDAREA = MA.IDAREA " +
+                                "UNION ALL " +
+                                "SELECT MA.IDAREA, " +
+                                "MA.DESCRIPCION DESCRIPCIONAREA, MA.IDCUESTIONARIO IDCUESTIONARIO, MG.IDGRUPO, MG.DESCRIPCION DESCRIPCIONGRUPO, " +
+                                "MP.IDPREGUNTA, MP.DESCRIPCION DESCRIPCIONPREGUNTA, 3 NIVEL, MP.ORDEN ORDEN " +
+                                "FROM MAESTROPREGUNTAS MP " +
+                                "INNER JOIN MAESTROGRUPOS MG " +
+                                "ON MP.IDGRUPO = MG.IDGRUPO " +
+                                "INNER JOIN MAESTROAREAS MA " +
+                                "ON MP.IDAREA = MA.IDAREA " +
+                                "ORDER BY IDAREA, NIVEL, ORDEN"));
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         public Area GetArea(int id)
         {
-            return Converter.toAreas(DAL.DataService.Execute("SELECT MA.IDAREA, " +
-                        "MA.DESCRIPCION DESCRIPCIONAREA, MA.IDCUESTIONARIO IDCUESTIONARIO, NULL IDGRUPO, NULL DESCRIPCIONGRUPO, NULL IDPREGUNTA, " +
-                        "NULL DESCRIPCIONPREGUNTA, 1 NIVEL, MA.ORDEN ORDEN " +
-                        "FROM MAESTROAREAS MA " +
-                        "WHERE MA.IDAREA = :pID " +
-                        "UNION ALL " +
-                        "SELECT MA.IDAREA, " +
-                        "MA.DESCRIPCION DESCRIPCIONAREA, MA.IDCUESTIONARIO IDCUESTIONARIO, MG.IDGRUPO, MG.DESCRIPCION DESCRIPCIONGRUPO, " +
-                        "NULL IDPREGUNTA, NULL DESCRIPCIONPREGUNTA, 2 NIVEL, MG.ORDEN ORDEN " +
-                        "FROM MAESTROGRUPOS MG " +
-                        "INNER JOIN MAESTROAREAS MA " +
-                        "ON MG.IDAREA = MA.IDAREA " +
-                        "WHERE MA.IDAREA = :pID " +
-                        "UNION ALL " +
-                        "SELECT MA.IDAREA, " +
-                        "MA.DESCRIPCION DESCRIPCIONAREA, MA.IDCUESTIONARIO IDCUESTIONARIO, MG.IDGRUPO, MG.DESCRIPCION DESCRIPCIONGRUPO, " +
-                        "MP.IDPREGUNTA, MP.DESCRIPCION DESCRIPCIONPREGUNTA, 3 NIVEL, MP.ORDEN ORDEN " +
-                        "FROM MAESTROPREGUNTAS MP " +
-                        "INNER JOIN MAESTROGRUPOS MG " +
-                        "ON MP.IDGRUPO = MG.IDGRUPO " +
-                        "INNER JOIN MAESTROAREAS MA " +
-                        "ON MP.IDAREA = MA.IDAREA " +
-                        "WHERE MA.IDAREA = :pID " +
-                        "ORDER BY IDAREA, NIVEL, ORDEN",
-                        "pID", id)).FirstOrDefault();
+            try
+            {
+                return Converter.toAreas(DAL.DataService.Execute("SELECT MA.IDAREA, " +
+                                "MA.DESCRIPCION DESCRIPCIONAREA, MA.IDCUESTIONARIO IDCUESTIONARIO, NULL IDGRUPO, NULL DESCRIPCIONGRUPO, NULL IDPREGUNTA, " +
+                                "NULL DESCRIPCIONPREGUNTA, 1 NIVEL, MA.ORDEN ORDEN " +
+                                "FROM MAESTROAREAS MA " +
+                                "WHERE MA.IDAREA = :pID " +
+                                "UNION ALL " +
+                                "SELECT MA.IDAREA, " +
+                                "MA.DESCRIPCION DESCRIPCIONAREA, MA.IDCUESTIONARIO IDCUESTIONARIO, MG.IDGRUPO, MG.DESCRIPCION DESCRIPCIONGRUPO, " +
+                                "NULL IDPREGUNTA, NULL DESCRIPCIONPREGUNTA, 2 NIVEL, MG.ORDEN ORDEN " +
+                                "FROM MAESTROGRUPOS MG " +
+                                "INNER JOIN MAESTROAREAS MA " +
+                                "ON MG.IDAREA = MA.IDAREA " +
+                                "WHERE MA.IDAREA = :pID " +
+                                "UNION ALL " +
+                                "SELECT MA.IDAREA, " +
+                                "MA.DESCRIPCION DESCRIPCIONAREA, MA.IDCUESTIONARIO IDCUESTIONARIO, MG.IDGRUPO, MG.DESCRIPCION DESCRIPCIONGRUPO, " +
+                                "MP.IDPREGUNTA, MP.DESCRIPCION DESCRIPCIONPREGUNTA, 3 NIVEL, MP.ORDEN ORDEN " +
+                                "FROM MAESTROPREGUNTAS MP " +
+                                "INNER JOIN MAESTROGRUPOS MG " +
+                                "ON MP.IDGRUPO = MG.IDGRUPO " +
+                                "INNER JOIN MAESTROAREAS MA " +
+                                "ON MP.IDAREA = MA.IDAREA " +
+                                "WHERE MA.IDAREA = :pID " +
+                                "ORDER BY IDAREA, NIVEL, ORDEN",
+                                "pID", id)).FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         public Int32 PostArea(Area area)
@@ -112,22 +128,38 @@ namespace FacultativosWebApi.Providers
 
         public Int32 PutArea(Area area)
         {
-            return DAL.DataService.ExecuteNonQuery("UPDATE MAESTROAREAS " +
-                        "SET DESCRIPCION = :pDesc, " +
-                        " IDCUESTIONARIO = :pCuestionario, " +
-                        " ORDEN = :pOrden " +
-                        " WHERE IDAREA = :pID",
-                        "pDesc", area.Descripcion,
-                        "pCuestionario", area.IDCuestionario,
-                        "pOrden", area.Orden,
-                        "pID", area.IDArea);
+            try
+            {
+                return DAL.DataService.ExecuteNonQuery("UPDATE MAESTROAREAS " +
+                                "SET DESCRIPCION = :pDesc, " +
+                                " IDCUESTIONARIO = :pCuestionario, " +
+                                " ORDEN = :pOrden " +
+                                " WHERE IDAREA = :pID",
+                                "pDesc", area.Descripcion,
+                                "pCuestionario", area.IDCuestionario,
+                                "pOrden", area.Orden,
+                                "pID", area.IDArea);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         public Int32 DeleteArea(int id)
         {
-            return DAL.DataService.ExecuteNonQuery("DELETE FROM MAESTROAREAS " +
-                        " WHERE IDAREA = :pID",
-                        "pID", id);
+            try
+            {
+                return DAL.DataService.ExecuteNonQuery("DELETE FROM MAESTROAREAS " +
+                                " WHERE IDAREA = :pID",
+                                "pID", id);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
     }
 }
