@@ -2,8 +2,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+// Este import sirve para anular las animaciones nativas
+// import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 // Keycloak
 import { KeycloakService, KeycloakAngularModule } from 'keycloak-angular';
@@ -22,7 +24,9 @@ import {
   MatPaginatorModule,
   MatPaginatorIntl,
   MatDialogModule,
-  MatSnackBarModule
+  MatSnackBarModule,
+  MatSidenavModule,
+  MatListModule
 } from '@angular/material';
 
 
@@ -35,23 +39,28 @@ import { NavbarComponent } from './components/shared/navbar/navbar.component';
 import { NavbarStaticComponent } from './components/shared/navbar-static/navbar-static.component';
 import { PrivilegiosComponent } from './components/privilegios/privilegios.component';
 import { HomeComponent } from './components/home/home.component';
-import { UsertableComponent } from './components/usertable/usertable.component';
+import { FacultativosComponent } from './components/facultativos/facultativos.component';
 import { MatPaginatorIntlSpanish } from './components/locale/spanish-paginator-intl';
 import { AddComponent } from './components/privilegios/dialogs/add/add.component';
 import { EditComponent } from './components/privilegios/dialogs/edit/edit.component';
 import { DeleteComponent } from './components/privilegios/dialogs/delete/delete.component';
 import { LoginComponent } from './components/login/login.component';
-
+import { UsertableComponent } from './components/usertable/usertable.component';
 
 
 // Servicios
-import { UserService } from './services/user.service';
 import { PrivilegioService } from './services/privilegio.service';
 import { LoginService } from './services/login.service';
 import { AuthGuardService } from './services/auth-guard.service';
+import { FacultativoService } from './services/facultativo.service';
+
 
 // Globals
 import { Globals } from '../shared/globals';
+import { HeaderComponent } from './components/shared/header/header.component';
+import { SidenavComponent } from './components/shared/sidenav/sidenav.component';
+import { FacultativoComponent } from './components/facultativo/facultativo.component';
+
 
 
 @NgModule({
@@ -60,12 +69,16 @@ import { Globals } from '../shared/globals';
     NavbarComponent,
     PrivilegiosComponent,
     HomeComponent,
-    UsertableComponent,
+    FacultativosComponent,
     AddComponent,
     DeleteComponent,
     EditComponent,
     LoginComponent,
-    NavbarStaticComponent
+    NavbarStaticComponent,
+    HeaderComponent,
+    SidenavComponent,
+    UsertableComponent,
+    FacultativoComponent
   ],
   imports: [
     BrowserModule,
@@ -76,7 +89,7 @@ import { Globals } from '../shared/globals';
     MatIconModule,
     MatCardModule,
     BrowserAnimationsModule,
-    NoopAnimationsModule,
+    // NoopAnimationsModule,
     HttpClientModule,
     MatTableModule,
     MatFormFieldModule,
@@ -88,6 +101,9 @@ import { Globals } from '../shared/globals';
     MatDialogModule,
     ReactiveFormsModule,
     MatSnackBarModule,
+    MatSidenavModule,
+    MatListModule,
+    FlexLayoutModule,
     [KeycloakAngularModule]
   ],
   exports: [
@@ -95,11 +111,12 @@ import { Globals } from '../shared/globals';
     ReactiveFormsModule
 
   ],
-  providers: [  UserService,
+  providers: [  FacultativoService,
                 PrivilegioService,
                 LoginService,
                 AuthGuardService,
                 MatSnackBarModule,
+                UsertableComponent,
                 Globals,
               { provide: MatPaginatorIntl, useClass: MatPaginatorIntlSpanish},
               {

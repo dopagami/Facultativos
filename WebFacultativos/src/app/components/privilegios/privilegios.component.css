@@ -22,6 +22,10 @@
     outline-style: none;
   }
 
+  button{
+    margin-top: 20px;
+  }
+
   /* .mat-table {
     overflow: auto;
     max-height: 350px;

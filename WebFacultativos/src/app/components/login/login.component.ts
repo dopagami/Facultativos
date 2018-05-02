@@ -35,19 +35,19 @@ export class LoginComponent implements OnInit {
     );
   }
 
-  onSubmit() {
-    if (this.form.valid) {
-      this.isLogged = this.authService.login(this.form.value); // {7}
-      if (this.isLogged) {
-           this.snackBar.open('Acceso denegado', 'Cerrar', {
-              duration: 4000,
-              extraClasses: ['white-snackbar'],
-      });
+  // onSubmit() {
+  //   if (this.form.valid) {
+  //     this.isLogged = this.authService.login(this.form.value); // {7}
+  //     if (this.isLogged) {
+  //          this.snackBar.open('Acceso denegado', 'Cerrar', {
+  //             duration: 4000,
+  //             extraClasses: ['white-snackbar'],
+  //     });
 
-      }
-    }
-    this.formSubmitAttempt = true;             // {8}
-  }
+  //     }
+  //   }
+  //   this.formSubmitAttempt = true;             // {8}
+  // }
 }
 
 

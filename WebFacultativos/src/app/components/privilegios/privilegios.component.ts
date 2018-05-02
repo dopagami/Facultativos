@@ -68,8 +68,8 @@ export class PrivilegiosComponent implements OnInit {
 
     const dialogRef = this.dialog.open(AddComponent, {
       data: { privilegio: privilegio },
-      height: '400px',
-      width: '600px'
+     // height: '400px',
+     // width: '600px'
     }
     );
 

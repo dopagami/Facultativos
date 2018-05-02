@@ -47,7 +47,7 @@ export class PrivilegioService {
   /** CRUD METHODS */
   getAllPrivilegios(): void {
 
-    debugger;
+
     this.httpClient.get<Privilegio[]>(myGlobals.API_URL).subscribe(data => {
       this.dataChange.next(data);
     },

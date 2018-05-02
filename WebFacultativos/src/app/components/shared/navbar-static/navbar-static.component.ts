@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { LoginService } from '../../../services/login.service';
 import { KeycloakService } from 'keycloak-angular';
+import { MatSidenavModule, MatListModule } from '@angular/material';
 
 @Component({
   selector: 'app-navbar-static',

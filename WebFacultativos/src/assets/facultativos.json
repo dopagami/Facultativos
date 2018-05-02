@@ -1,0 +1,34 @@
+[
+    {
+      "id": 1,
+      "nombre": "Fermín",
+      "apellido1": "García",
+      "apellido2": "Alonso",
+      "categoria": "Consultor",
+      "departamento": "Cirujía general"
+    },
+    {
+      "id": 2,
+      "nombre": "María",
+      "apellido1": "Santerín",
+      "apellido2": "Gama",
+      "categoria": "Consultor",
+      "departamento": "Cirujía general"
+    },
+    {
+      "id": 3,
+      "nombre": "Mercedes",
+      "apellido1": "Oriol",
+      "apellido2": "Santos",
+      "categoria": "Consultor",
+      "departamento": "Cirujía general"
+    },
+    {
+      "id": 4,
+      "nombre": "Josué",
+      "apellido1": "Abdhul",
+      "apellido2": "Marcos",
+      "categoria": "Consultor",
+      "departamento": "Cirujía general"
+    }
+  ]

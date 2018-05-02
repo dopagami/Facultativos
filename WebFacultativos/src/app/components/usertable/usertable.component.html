@@ -1,43 +1,36 @@
-
 <div class="flex-container mat-elevation-z8">
   <div class="flex-header">
-   <mat-form-field>
-     <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Búsqueda">
-   </mat-form-field>
- </div>
-  <mat-table  [dataSource]= "tbDataSource" matSort>
-    <ng-container matColumnDef="name">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </mat-header-cell>
-      <mat-cell *matCellDef="let user"> {{user.name}} </mat-cell>
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Búsqueda por facultativo y/o departamento">
+    </mat-form-field>
+  </div>
+  <mat-table [dataSource]="tbDataSource" matSort>
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> id </mat-header-cell>
+      <mat-cell *matCellDef="let user"> {{user.id}} </mat-cell>
     </ng-container>
-    <ng-container matColumnDef="email">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> E-Mail </mat-header-cell>
-      <mat-cell *matCellDef="let user"> {{user.email}} </mat-cell>
+    <ng-container matColumnDef="apellido1">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Primer apellido </mat-header-cell>
+      <mat-cell *matCellDef="let user"> {{user.apellido1}} </mat-cell>
     </ng-container>
-    <ng-container matColumnDef="phone">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Teléfono </mat-header-cell>
-      <mat-cell *matCellDef="let user"> {{user.phone}} </mat-cell>
+    <ng-container matColumnDef="apellido2">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Segundo apellido </mat-header-cell>
+      <mat-cell *matCellDef="let user"> {{user.apellido2}} </mat-cell>
     </ng-container>
-    <ng-container matColumnDef="website">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Website </mat-header-cell>
-      <mat-cell *matCellDef="let user"> {{user.website}} </mat-cell>
+    <ng-container matColumnDef="categoria">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Categoría </mat-header-cell>
+      <mat-cell *matCellDef="let user"> {{user.categoria}} </mat-cell>
     </ng-container>
-    <!-- <ng-container matColumnDef="company">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Compañia </mat-header-cell>
-      <mat-cell *matCellDef="let user"> {{user.company.name}} </mat-cell>
-    </ng-container> -->
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <!-- Add ngClass and click event here -->
 
-    <mat-row *matRowDef="let row; columns: displayedColumns;"
-      [ngClass]="{'highlight': selectedRowIndex == row.id}"
-      (click)="highlight(row)">
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+
+
+    <mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="{'highlight': selectedRowIndex == row.id}" (click)="highlight(row)">
     </mat-row>
 
   </mat-table>
-  <mat-paginator #paginator
-                 [pageSize]="5"
-                 [pageSizeOptions]="[5, 10, 20]"
-                 [showFirstLastButtons]="true">
+  <mat-paginator #paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 20]" [showFirstLastButtons]="true">
   </mat-paginator>
 </div>
+
+

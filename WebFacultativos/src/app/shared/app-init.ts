@@ -18,6 +18,7 @@ export function initializer(keycloak: KeycloakService): () => Promise<any> {
             onLoad: 'login-required',
             checkLoginIframe: false
           },
+          // Aquí incluiremos las urls que queremos que no envíen Token en el header
           bearerExcludedUrls: [
             '/assets',
             '/clients/public'

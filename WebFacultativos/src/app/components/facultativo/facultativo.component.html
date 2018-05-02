@@ -1,0 +1,27 @@
+<div class="container">
+<mat-tab-group  >
+  <mat-tab label="Datos generales">
+    <pre>{{element.id}}</pre>
+    <pre>{{element.apellid1}}</pre>
+    <pre>{{element.apellid2}}</pre>
+    <pre>{{element.categoria}}</pre>
+    <pre>{{element.departamento}}</pre>
+
+
+    <mat-card>
+      <mat-card-header>
+        <img mat-card-avatar src="https://source.unsplash.com/user/erondu/200x200">
+        <mat-card-title>Datos generales</mat-card-title>
+        <mat-card-subtitle>Really, they are!</mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image src="https://source.unsplash.com/user/erondu/400x400">
+      <mat-card-content>
+        <p>Something pretty...</p>
+      </mat-card-content>
+    </mat-card>
+
+  </mat-tab>
+  <mat-tab label="Competencias">Áreas de competencia en asistencia de {{element.nombre}} </mat-tab>
+</mat-tab-group> 
+
+</div>
