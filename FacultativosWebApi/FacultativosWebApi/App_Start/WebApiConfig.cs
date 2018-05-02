@@ -13,7 +13,7 @@ namespace FacultativosWebApi
         public static void Register(HttpConfiguration config)
         {
             //Habilitar CORS
-            var corsAttribute = new EnableCorsAttribute("http://localhost:4200", "*", "*");
+            var corsAttribute = new EnableCorsAttribute("*", "*", "*");
             config.EnableCors(corsAttribute);
 
             //Quitar formateadores sobrantes
