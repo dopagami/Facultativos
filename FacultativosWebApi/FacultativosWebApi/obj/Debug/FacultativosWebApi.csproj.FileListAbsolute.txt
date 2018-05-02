@@ -161,4 +161,3 @@ D:\Proyectos\CUN\Facultativos\FacultativosWebApi\FacultativosWebApi\bin\es\Syste
 D:\Proyectos\CUN\Facultativos\FacultativosWebApi\FacultativosWebApi\bin\es\System.Web.WebPages.Razor.resources.dll
 D:\Proyectos\CUN\Facultativos\FacultativosWebApi\FacultativosWebApi\obj\Debug\FacultativosWebApi.dll
 D:\Proyectos\CUN\Facultativos\FacultativosWebApi\FacultativosWebApi\obj\Debug\FacultativosWebApi.pdb
-D:\Proyectos\CUN\Facultativos\FacultativosWebApi\FacultativosWebApi\obj\Debug\FacultativosWebApi.csprojResolveAssemblyReference.cache
