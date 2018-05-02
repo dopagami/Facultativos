@@ -9,8 +9,8 @@ namespace FacultativosWebApi
 {
     public static class Converter
     {
-        public static IEnumerable<Privilegio> toPrivilegios(DataTable dtPrivilegios) {
-
+        public static IEnumerable<Privilegio> toPrivilegios(DataTable dtPrivilegios)
+        {
             var privilegios = new List<Privilegio>();
             foreach (DataRow row in dtPrivilegios.Rows)
             {
@@ -27,9 +27,8 @@ namespace FacultativosWebApi
 
         public static IEnumerable<Cuestionario> toCuestionarios(DataTable dtCuestionarios)
         {
-
             List<Cuestionario> cuestionarios = new List<Cuestionario>();
-            Cuestionario cuestionario = null; ;
+            Cuestionario cuestionario = null;
 
             foreach (DataRow row in dtCuestionarios.Rows)
             {
@@ -157,7 +156,7 @@ namespace FacultativosWebApi
         public static IEnumerable<Grupo> toGrupos(DataTable dtGrupos)
         {
             List<Grupo> grupos = new List<Grupo>();
-            Grupo grupo = null; ;
+            Grupo grupo = null;
             foreach (DataRow row in dtGrupos.Rows)
             {
                 //Grupos
@@ -206,7 +205,7 @@ namespace FacultativosWebApi
         public static IEnumerable<Area> toAreas(DataTable dtAreas)
         {
             List<Area> areas = new List<Area>();
-            Area area = null; ;
+            Area area = null;
             foreach (DataRow row in dtAreas.Rows)
             {
                 //Areas

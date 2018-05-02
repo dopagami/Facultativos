@@ -27,7 +27,6 @@ namespace FacultativosWebApi.Providers
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
         }
@@ -52,7 +51,6 @@ namespace FacultativosWebApi.Providers
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
         }
@@ -82,7 +80,7 @@ namespace FacultativosWebApi.Providers
                         pregunta.IDArea = grupo.IDArea;
                         pregunta.IDCuestionario = grupo.IDCuestionario;
                         pregunta.IDPregunta = pPreguntas.PostPregunta(pregunta);
-                    };
+                    }
                 }                
                 
                 return IDGrupo;
@@ -111,7 +109,6 @@ namespace FacultativosWebApi.Providers
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
         }
@@ -126,7 +123,6 @@ namespace FacultativosWebApi.Providers
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
         }

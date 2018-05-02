@@ -84,7 +84,6 @@ namespace FacultativosWebApi.Providers
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
         }
@@ -166,7 +165,6 @@ namespace FacultativosWebApi.Providers
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
         }
@@ -175,10 +173,8 @@ namespace FacultativosWebApi.Providers
         /// </summary>
         public Int32 PostCuestionario(Cuestionario cuestionario)
         {
-
             try
             {
-
                 Int32 IDCuestionario = DAL.DataService.ExecuteNonQueryRV("INSERT INTO MAESTROCUESTIONARIOS(DESCRIPCION, IDDEPARTAMENTO) " +
                         "VALUES(:pDesc, :pDepartamento) " +
                         "RETURNING IDCUESTIONARIO INTO :pIDRT",
@@ -206,9 +202,8 @@ namespace FacultativosWebApi.Providers
                     foreach (Grupo grupo in cuestionario.Grupos)
                     {
                         grupo.IDCuestionario = IDCuestionario;
-                        grupo.IDGrupo = pGrupos.PostGrupo(grupo);
-                        
-                    };
+                        grupo.IDGrupo = pGrupos.PostGrupo(grupo);                        
+                    }
                 }
 
                 //Preguntas
@@ -220,11 +215,10 @@ namespace FacultativosWebApi.Providers
                     {
                         pregunta.IDCuestionario = IDCuestionario;
                         pregunta.IDPregunta = pPreguntas.PostPregunta(pregunta);
-                    };
+                    }
                 }
 
                 return IDCuestionario;
-
             }
             catch (Exception ex)
             {
@@ -248,7 +242,6 @@ namespace FacultativosWebApi.Providers
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
         }
@@ -265,7 +258,6 @@ namespace FacultativosWebApi.Providers
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
         }

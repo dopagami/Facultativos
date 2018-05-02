@@ -127,7 +127,6 @@ namespace FacultativosWebApi.Jwt
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
         }

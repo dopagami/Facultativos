@@ -30,7 +30,6 @@ namespace FacultativosWebApi.Controllers
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
         }
@@ -52,7 +51,6 @@ namespace FacultativosWebApi.Controllers
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
         }

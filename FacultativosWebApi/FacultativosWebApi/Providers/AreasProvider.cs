@@ -36,7 +36,6 @@ namespace FacultativosWebApi.Providers
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
         }
@@ -101,7 +100,7 @@ namespace FacultativosWebApi.Providers
                         grupo.IDArea = IDArea;
                         grupo.IDCuestionario = area.IDCuestionario;
                         grupo.IDGrupo = pGrupos.PostGrupo(grupo);
-                    };
+                    }
                 }                
 
                 if (area.Preguntas != null)
@@ -113,7 +112,7 @@ namespace FacultativosWebApi.Providers
                         pregunta.IDArea = IDArea;
                         pregunta.IDCuestionario = area.IDCuestionario;
                         pregunta.IDPregunta = pPreguntasArea.PostPregunta(pregunta);
-                    };
+                    }
                 }
                
                 return IDArea;
@@ -141,7 +140,6 @@ namespace FacultativosWebApi.Providers
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
         }
@@ -156,7 +154,6 @@ namespace FacultativosWebApi.Providers
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
         }
