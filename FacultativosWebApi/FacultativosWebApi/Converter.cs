@@ -63,7 +63,6 @@ namespace FacultativosWebApi
                     area.Descripcion = System.Convert.ToString(row["DESCRIPCIONAREA"]);
 
                     cuestionario.Areas.Add(area);
-
                 }
 
                 //Grupos
@@ -176,7 +175,6 @@ namespace FacultativosWebApi
                     grupo.IDCuestionario = System.Convert.ToInt32(row["IDCUESTIONARIO"]);
 
                     grupos.Add(grupo);
-
                 }
 
                 //Preguntas
@@ -196,7 +194,6 @@ namespace FacultativosWebApi
                     pregunta.IDCuestionario = System.Convert.ToInt32(row["IDCUESTIONARIO"]);
 
                     grupo.Preguntas.Add(pregunta);
-
                 }
             }
             return grupos.AsEnumerable();
@@ -244,7 +241,6 @@ namespace FacultativosWebApi
                     grupo.IDCuestionario = System.Convert.ToInt32(row["IDCUESTIONARIO"]);
 
                     area.Grupos.Add(grupo);
-
                 }
 
                 //Preguntas

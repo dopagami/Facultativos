@@ -21,7 +21,6 @@ namespace FacultativosWebApi
             config.Formatters.Add(new JsonMediaTypeFormatter());
             config.Formatters.Add(new XmlMediaTypeFormatter());
 
-
             // Configuración y servicios de Web API
             // Configure Web API para usar solo la autenticación de token de portador.
             //config.SuppressDefaultHostAuthentication();

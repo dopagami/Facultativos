@@ -79,10 +79,8 @@ namespace FacultativosWebApi.Providers
 
         public Int32 PostArea(Area area)
         {
-
             try
             {                
-
                 Int32 IDArea = DAL.DataService.ExecuteNonQueryRV("INSERT INTO MAESTROAREAS(DESCRIPCION, IDCUESTIONARIO, ORDEN) " +
                         "VALUES(:pDesc, :pCuestionario, :pOrden) " +
                         "RETURNING IDAREA INTO :pIDRT",
@@ -116,7 +114,6 @@ namespace FacultativosWebApi.Providers
                 }
                
                 return IDArea;
-
             }
             catch (Exception ex)
             {                

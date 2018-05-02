@@ -81,7 +81,6 @@ namespace FacultativosWebApi.Jwt
 
                 return principal;
             }
-
             catch (Exception ex)
             {
                 throw ex;

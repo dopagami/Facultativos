@@ -41,8 +41,6 @@ namespace FacultativosWebApi.Jwt.Filters
             }
         }
 
-
-
         private static bool ValidateToken(string token, out string username, out ClaimsIdentity identity)
         {
             try
@@ -72,7 +70,6 @@ namespace FacultativosWebApi.Jwt.Filters
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
         }
@@ -107,9 +104,7 @@ namespace FacultativosWebApi.Jwt.Filters
                                 claims.Add(new Claim(ClaimTypes.Email, claim.Value));
                                 break;
                         }
-
                     }
-
 
                     var identity = new ClaimsIdentity(claims, "Jwt");
                     IPrincipal user = new ClaimsPrincipal(identity);
@@ -121,7 +116,6 @@ namespace FacultativosWebApi.Jwt.Filters
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
         }
