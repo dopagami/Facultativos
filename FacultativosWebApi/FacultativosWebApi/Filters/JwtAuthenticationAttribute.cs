@@ -21,7 +21,7 @@ namespace FacultativosWebApi.Jwt.Filters
             {                
                 var authorization = request.Headers.Authorization;
 
-                if (authorization == null || authorization.Scheme != "Bearer")
+                if (authorization == null || authorization.Scheme.ToLower() != "bearer")
                     return;
 
                 if (string.IsNullOrEmpty(authorization.Parameter))
