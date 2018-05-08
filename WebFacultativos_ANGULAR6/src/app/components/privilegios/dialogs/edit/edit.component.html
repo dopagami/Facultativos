@@ -1,0 +1,37 @@
+<div class="container">
+  <!-- <h3 mat-dialog-title>Privilegio id: {{data.IDPrivilegio}}</h3> -->
+
+  <form class="mat-dialog-content" (ngSubmit)="submit" #formControl="ngForm">
+
+    <div class="form d-none">
+      <mat-form-field color="accent">
+        <input matInput #input class="form-control" placeholder="Id" [(ngModel)]="data.IDPrivilegio" name="id" readonly >
+        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+    </div>
+
+    <!--Textarea for demo purposes-->
+    <div class="form">
+      <mat-form-field color="accent">
+        <textarea matInput #input class="form-control" placeholder="Valor" [(ngModel)]="data.Valor" name="valor" maxlength="1" required ></textarea>
+        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+    </div>
+
+    <!--Contains mat-hint for characters count and has maxLengt set-->
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput #inputdescripcion class="form-control" placeholder="Descripción" [(ngModel)]="data.Descripcion" name="descripcion" maxlength="100" required >
+        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+        <mat-hint align="end">{{inputdescripcion.value?.length || 0}}/100</mat-hint>
+      </mat-form-field>
+    </div>
+
+  
+    <div mat-dialog-actions>
+      <button mat-button (click)="onNoClick()" tabindex="-1">Cancelar</button>
+      <!-- <button mat-button [type]="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1" (click)="stopEdit()">Grabar</button>       -->
+      <button mat-button [type]="submit" [disabled]="!formControl.valid" (click)="stopEdit()">Grabar</button>      
+    </div>
+  </form>
+</div>

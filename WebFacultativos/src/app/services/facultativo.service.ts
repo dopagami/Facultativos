@@ -3,7 +3,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import { Facultativo } from '../models/facultativo';
-import { ENGINE_METHOD_DIGESTS } from 'constants';
+// import { ENGINE_METHOD_DIGESTS } from 'constants';
 
 @Injectable()
 export class FacultativoService {

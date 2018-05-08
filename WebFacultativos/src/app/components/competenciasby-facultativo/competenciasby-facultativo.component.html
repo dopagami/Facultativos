@@ -1,0 +1,141 @@
+<div class="container">
+  <div class="row">
+
+    <div class="col-12 tipoPrivilegios">
+      <ol type="A">
+        <li data-content="A">
+          <a>Sí capacitado y autorizado </a>
+        </li>
+        <li data-content="B">
+          <a>Sí capacitado y autorizado, previa consulta, acompañado o bajo supervisión </a>
+        </li>
+        <li data-content="C">
+          <a>No capacitado o no autorizado </a>
+        </li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<hr>
+
+
+<mat-toolbar>Asistencia área de Cirugía General </mat-toolbar>
+<mat-accordion class="accordion-headers-align">
+  <mat-expansion-panel [expanded]="false" (opened)="setStep(0)" hideToggle="true">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Valoración preoperatoria del paciente
+      </mat-panel-title>
+
+    </mat-expansion-panel-header>
+
+    <mat-form-field class="width50 MT10">
+      <mat-select placeholder="Valoración del riesgo quirúrgico" [formControl]="formControl">
+        <mat-option *ngFor="let privilegio of listPrivilegios" required [value]="privilegio.value">
+          {{ privilegio.viewValue }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="formControl.hasError('required')">Por favor, elige una opción</mat-error>
+      <mat-hint>{{formControl.value?.viewValue}}</mat-hint>
+    </mat-form-field>
+
+    <mat-form-field class="width49">
+      <input matInput placeholder="Observaciones">
+    </mat-form-field>
+
+
+    <mat-form-field class="width50 MT10">
+      <mat-select placeholder="Valoración y manejo nutricional" [formControl]="formControl">
+        <mat-option *ngFor="let privilegio of listPrivilegios" required [value]="privilegio.value">
+          {{ privilegio.viewValue }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="formControl.hasError('required')">Por favor, elige una opción</mat-error>
+      <mat-hint>{{formControl.value?.viewValue}}</mat-hint>
+    </mat-form-field>
+
+    <mat-form-field class="width49">
+      <input matInput placeholder="Observaciones">
+    </mat-form-field>
+
+    <mat-form-field class="width50 MT10">
+      <mat-select placeholder="Valoración de la co-morbilidad" [formControl]="formControl">
+        <mat-option *ngFor="let privilegio of listPrivilegios" required [value]="privilegio.value">
+          {{ privilegio.viewValue }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="formControl.hasError('required')">Por favor, elige una opción</mat-error>
+      <mat-hint>{{formControl.value?.viewValue}}</mat-hint>
+    </mat-form-field>
+
+    <mat-form-field class="width49">
+      <input matInput placeholder="Observaciones">
+    </mat-form-field>
+
+
+    <mat-action-row>
+      <button mat-button color="primary" (click)="nextStep()">Siguiente</button>
+    </mat-action-row>
+  </mat-expansion-panel>
+
+
+  <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle="true">
+    <mat-expansion-panel-header>
+      <mat-panel-title color="accent">
+        Cuidados del paciente quirúrgico
+      </mat-panel-title>
+
+    </mat-expansion-panel-header>
+
+    <mat-form-field class="width50 MT10">
+      <mat-select placeholder="Analgesia" [formControl]="formControl">
+        <mat-option *ngFor="let privilegio of listPrivilegios" required [value]="privilegio.value">
+          {{ privilegio.viewValue }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="formControl.hasError('required')">Por favor, elige una opción</mat-error>
+      <mat-hint>{{formControl.value?.viewValue}}</mat-hint>
+    </mat-form-field>
+
+    <mat-form-field class="width49">
+      <input matInput placeholder="Observaciones">
+    </mat-form-field>
+
+    <mat-form-field class="width50">
+      <mat-select placeholder="Cuidados respiratorios" [formControl]="formControl">
+        <mat-option *ngFor="let privilegio of listPrivilegios" required [value]="privilegio.value">
+          {{ privilegio.viewValue }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="formControl.hasError('required')">Por favor, elige una opción</mat-error>
+      <mat-hint>{{formControl.value?.viewValue}}</mat-hint>
+    </mat-form-field>
+
+    <mat-form-field class="width49">
+      <input matInput placeholder="Observaciones">
+    </mat-form-field>
+
+
+    <mat-action-row>
+      <button mat-button color="warn" (click)="prevStep()">Anterior</button>
+      <button mat-button color="primary" (click)="nextStep()">Siguiente</button>
+    </mat-action-row>
+  </mat-expansion-panel>
+
+  <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle="true">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Infecciones en cirugía y cirugía de las infecciones
+      </mat-panel-title>
+
+    </mat-expansion-panel-header>
+
+
+    <mat-action-row>
+      <button mat-button color="warn" (click)="prevStep()">Anterior</button>
+      <button mat-button color="primary" (click)="nextStep()">Fin</button>
+    </mat-action-row>
+  </mat-expansion-panel>
+
+</mat-accordion>
