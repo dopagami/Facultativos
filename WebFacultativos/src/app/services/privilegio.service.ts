@@ -11,8 +11,6 @@ import 'rxjs/add/operator/finally';
 
 // Variables Globales
 import * as myGlobals from '../../shared/globals';
-
-
 import { KeycloakService } from 'keycloak-angular';
 
 @Injectable()
@@ -42,11 +40,9 @@ export class PrivilegioService {
     return this.dialogData;
   }
 
-
   // setHeader('Access-Control-Allow-Origin', 'http://localhost:8888');
   /** CRUD METHODS */
   getAllPrivilegios(): void {
-
 
     this.httpClient.get<Privilegio[]>(myGlobals.API_URL).subscribe(data => {
       this.dataChange.next(data);
@@ -55,6 +51,12 @@ export class PrivilegioService {
         console.log(error.name + ' ' + error.message);
       });
   }
+
+  getPrivilegios(): Observable<Privilegio[]> {
+    const headers = new HttpHeaders().set('Content-Type', 'application/json; charset=UTF-8');
+    return this.httpClient.get<Privilegio[]>(myGlobals.API_URL, { headers: headers }).map(res => res);
+  }
+
 
   // AÃ±adir privilegio (almacena de manera temportal (para pruebas)
   addPrivilegiotemp(privilegio: Privilegio): void {

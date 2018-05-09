@@ -1,0 +1,113 @@
+<!-- <div class="container">
+  <div class="row">
+
+    <div class="flex-container mat-elevation-z8 col-md-10 offset-md-1">
+      <mat-toolbar color="basic">
+        <span>Mantenimiento de privilegios</span>
+      </mat-toolbar>
+
+      <hr>
+
+      <mat-form-field>
+        <input matInput placeholder="Valor">
+      </mat-form-field>
+
+      <mat-form-field>
+        <textarea matInput placeholder="Descripción"></textarea>
+      </mat-form-field>
+
+     <div class="button-row">
+        <button mat-raised-button>Grabar</button>
+      </div>
+
+      <br>
+
+
+
+    </div>
+  </div>
+</div> -->
+
+<mat-toolbar color="default">
+  <span>Mantenimiento de privilegios</span>
+  <span class="spacer"></span>
+  <!-- Reload data:
+  <button mat-icon-button (click)="refresh()">
+    <mat-icon>refresh</mat-icon>
+  </button> -->
+</mat-toolbar>
+
+<div class="container mat-elevation-z8">
+
+  <div class="form">
+    <br>
+    <mat-form-field>
+      <input matInput #filter placeholder="Búsqueda">
+    </mat-form-field>
+
+  </div>
+
+  <mat-table #table [dataSource]="dataSource" matSort class="mat-cell">
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+    <!-- ID Column -->
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Id</mat-header-cell>
+      <mat-cell *matCellDef="let row" >{{row.IDPrivilegio}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="valor">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Código</mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.Valor | uppercase}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="descripcion">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Descripción</mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.Descripcion}}</mat-cell>
+    </ng-container>
+
+    
+    <!-- actions -->
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef>
+
+          <div fxLayout="row" fxLayoutAlign="end end">
+       
+              <a class="addNewButton"><button  mat-mini-fab (click)="addNew()" class="primary"><mat-icon>add</mat-icon></button></a>
+         </div>
+         <br>
+       
+        <!-- <button mat-icon-button color="primary" (click)="addNew()">
+          <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
+        </button> -->
+      </mat-header-cell>
+
+      <mat-cell *matCellDef="let row; let i=index;">
+        <button mat-icon-button class="secundaryColor" (click)="startEdit(i, row.IDPrivilegio, row.Valor, row.Descripcion)">
+          <mat-icon aria-label="Edit">edit</mat-icon>
+        </button>
+
+        <button mat-icon-button class="secundaryColor" (click)="deleteItem(i, row.IDPrivilegio, row.Valor, row.Descripcion)">
+          <mat-icon aria-label="Delete">delete</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+
+
+  <div class="no-results" [style.display]="dataSource.renderedData.length == 0 ? '' : 'none'">
+    No hay resultados
+  </div>
+
+  <mat-paginator #paginator
+                 [length]="dataSource.filteredData.length"
+                 [pageIndex]="0"
+                 [pageSize]="10"
+                 [pageSizeOptions]="[5, 10, 25]">
+  </mat-paginator>
+</div>

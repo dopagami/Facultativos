@@ -3,14 +3,14 @@ import { PrivilegioService } from '../../services/privilegio.service';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { MatDialog, MatPaginator, MatSort } from '@angular/material';
 import { Privilegio } from '../../models/privilegio.model';
-import { Observable } from 'rxjs/Observable';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+
 import { DataSource } from '@angular/cdk/collections';
-import 'rxjs/add/observable/merge';
-import 'rxjs/add/observable/fromEvent';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/debounceTime';
-import 'rxjs/add/operator/distinctUntilChanged';
+
+
+// tslint:disable-next-line:import-blacklist
+import {Observable, BehaviorSubject} from 'rxjs/Rx';
+
+
 import { AddComponent } from './dialogs/add/add.component';
 import { EditComponent } from './dialogs/edit/edit.component';
 import { DeleteComponent } from './dialogs/delete/delete.component';
