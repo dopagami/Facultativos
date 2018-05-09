@@ -779,6 +779,26 @@
             Número de colegiado del facultativo.
             </summary>        
         </member>
+        <member name="P:FacultativosWebApi.Models.Facultativo.Categoria">
+            <summary>
+            Categoría del facultativo.
+            </summary>        
+        </member>
+        <member name="P:FacultativosWebApi.Models.Facultativo.Puesto">
+            <summary>
+            Puesto del facultativo.
+            </summary>        
+        </member>
+        <member name="P:FacultativosWebApi.Models.Facultativo.Departamento">
+            <summary>
+            Departamento del facultativo.
+            </summary>        
+        </member>
+        <member name="P:FacultativosWebApi.Models.Facultativo.Centro">
+            <summary>
+            Centro del facultativo.
+            </summary>        
+        </member>
         <member name="T:FacultativosWebApi.Models.Grupo">
              <summary>
             

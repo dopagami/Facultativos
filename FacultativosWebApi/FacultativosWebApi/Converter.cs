@@ -287,6 +287,10 @@ namespace FacultativosWebApi
                 facultativo.Apellido2 = System.Convert.ToString(row["SG02APE2"]);
                 if (!Convert.IsDBNull(row["SG02NUMCOLEGIADO"]))
                     facultativo.NumColegiado = System.Convert.ToInt32(row["SG02NUMCOLEGIADO"]);
+                facultativo.Categoria = System.Convert.ToString(row["AD30DESCATEGORIA"]);
+                facultativo.Puesto = System.Convert.ToString(row["AD31DESPUESTO"]);
+                facultativo.Departamento = System.Convert.ToString(row["AD02DESDPTO"]);
+                facultativo.Centro = System.Convert.ToString(row["AD74DESCENTRO"]);
 
                 facultativos.Add(facultativo);
             }

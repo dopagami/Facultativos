@@ -34,5 +34,21 @@ namespace FacultativosWebApi.Models
         /// Número de colegiado del facultativo.
         /// </summary>        
         public int NumColegiado { get; set; }
+        /// <summary>
+        /// Categoría del facultativo.
+        /// </summary>        
+        public string Categoria { get; set; }
+        /// <summary>
+        /// Puesto del facultativo.
+        /// </summary>        
+        public string Puesto { get; set; }
+        /// <summary>
+        /// Departamento del facultativo.
+        /// </summary>        
+        public string Departamento { get; set; }
+        /// <summary>
+        /// Centro del facultativo.
+        /// </summary>        
+        public string Centro { get; set; }
     }
 }
