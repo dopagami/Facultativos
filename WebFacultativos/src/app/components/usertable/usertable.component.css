@@ -36,3 +36,8 @@ mat-toolbar{
   background-color: #424242;
   color:#FFFFFF;
 }
+
+mat-cell{
+  cursor: pointer;
+
+}

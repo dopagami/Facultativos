@@ -6,6 +6,8 @@ import { debug } from 'util';
 import { MatExpansionModule, MatSelectModule } from '@angular/material';
 import { PrivilegioService } from '../../services/privilegio.service';
 import { FormControl, Validators } from '@angular/forms';
+import { FacultativosComponent } from '../facultativos/facultativos.component';
+import { UsertableComponent } from '../usertable/usertable.component';
 // import * as $ from 'jquery';
 
 @Component({
@@ -16,27 +18,43 @@ import { FormControl, Validators } from '@angular/forms';
 export class FacultativoComponent implements OnInit {
   step = 0;
   public element: any = {};
+  idparam: string;
+  selected = false;
   private ELEMENTS = Array<Facultativo>();
-  
+ //  public ELEMENT_DATA: Facultativo[] = [];
+  public  facultativo: any;
+
   formControl = new FormControl('', [Validators.required]);
 
   constructor( private activatedrouter: ActivatedRoute,
               private facultativoService: FacultativoService,
               private privilegiosService: PrivilegioService,
               private router: Router
+
+
   ) {
 
     // Nos suscribimos al router para obtener los parámetros URL.
     this.activatedrouter.params.subscribe(params => {
-      // _mydata es un Observable del servicio.. nos suscribimos y filtramos.
-      this.facultativoService._mydata.subscribe(resul => {
-        this.element = resul[(params['id']) - 1]; // los Array empiezan en 0
+      console.log(params);
+      this.idparam = params['id'];
+      // this.element = this.facultativoService.getRowSelected();
+
+
+      this.facultativoService.getFacultativo(params['id'], params['dpto'] ).subscribe(results => {
+        this.element = results;
       });
+
+      // }
+     // console.log(this.facultativo.nombre);
+      // this.el =  this.facultativoService.getFacultativobyid(params['id']);
+      // this.facultativoService.getFacultativo(params['id']).subscribe(resul => {
+      //     this.element = resul;
+      // });
     });
-
-
-   
   }
+
+
 
 
   // Animación de Card
@@ -70,11 +88,13 @@ export class FacultativoComponent implements OnInit {
   }
 
   goCompetencias(): void {
-    this.router.navigate(['/competencias', this.element.id]);
+    this.router.navigate(['/competencias', this.element.IDFacultativo]);
   }
 
   ngOnInit() {
-
+debugger;
+    if (!this.selected) {
+    
+    }
   }
-
 }

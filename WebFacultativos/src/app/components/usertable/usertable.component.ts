@@ -17,13 +17,15 @@ import { RouterLink, Router } from '@angular/router';
 })
 
 export class UsertableComponent implements OnInit {
-  name: any = {};
+
   selectedRowIndex: any;
   public ELEMENT_DATA: Facultativo[] = [];
   public tbDataSource: any;
+  public facultativo: any;
   // public displayedColumns;
 
-  displayedColumns = ['id', 'apellido1', 'apellido2', 'categoria'];
+  // Columnas a mostrar y  orden de las mismas
+  displayedColumns = ['nombre', 'apellido1', 'apellido2', 'departamento', 'centro'];
 
 
   // Ordenación de columnas
@@ -42,21 +44,18 @@ export class UsertableComponent implements OnInit {
 
   // Marcamos la fila seleccionada
   highlight(row) {
-    console.log(row);
-    this.selectedRowIndex = row.id;
 
-    this.name = row.id;
+    this.selectedRowIndex = row.IDFacultativo;
 
-    // navegar
-     this.router.navigate(['/usuario', this.selectedRowIndex]);
-
+    // Navegar
+     this.router.navigate(['/usuario', this.selectedRowIndex, row.IDDepartamento]);
   }
 
   constructor(
     // private routerlink: RouterLink,
     private router: Router,
     private userService: FacultativoService) {
-    this.userService.getUser().subscribe(results => {
+    this.userService.getFacultativos().subscribe(results => {
       if (!results) { return; }
 
       this.ELEMENT_DATA = results;
@@ -64,12 +63,11 @@ export class UsertableComponent implements OnInit {
       this.tbDataSource.sort = this.sort; // Ordenación
       this.tbDataSource.paginator = this.paginator; // Paginación
 
-      console.log(this.ELEMENT_DATA);
     });
   }
 
   ngOnInit() {
-
+    this.tbDataSource.filter = 'Jor';
   }
 
 }
@@ -79,7 +77,7 @@ class UserDataSource extends DataSource<any> {
     super();
   }
   connect(): Observable<Facultativo[]> {
-    return this.userService.getUser();
+    return this.userService.getFacultativos();
   }
   disconnect() { }
 }

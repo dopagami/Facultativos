@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 
 
 export const API_URL = 'http://mk22788p/api/Privilegios';
+export const API_URL_ROOT = 'http://mk22788p/api';
 
 @Injectable()
 export class Globals {

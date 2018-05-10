@@ -114,8 +114,7 @@ export class PrivilegiosComponent implements OnInit {
     this.index = i;
     this.id = id;
     const dialogRef = this.dialog.open(DeleteComponent, {
-      data: { id: id, valor: valor, descripcion: descripcion },
-      height: '35vh'
+      data: { id: id, valor: valor, descripcion: descripcion }
     });
 
     dialogRef.afterClosed().subscribe(result => {

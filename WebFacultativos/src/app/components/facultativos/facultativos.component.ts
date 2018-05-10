@@ -107,14 +107,14 @@ export class ExampleDataSource extends DataSource<Facultativo> {
       this._paginator.page
     ];
 
-    this._exampleDatabase.getUser();
-console.log(this._exampleDatabase);
+    this._exampleDatabase.getFacultativos();
+
     return Observable.merge(...displayDataChanges).map(() => {
 
       // Filter data
       this.filteredData = this._exampleDatabase.data.slice().filter((facultativo: Facultativo) => {
         // const searchStr = (privilegio.IDPrivilegio + privilegio.Valor + privilegio.Descripcion);
-        const searchStr = (facultativo.id + facultativo.title);
+        const searchStr = (facultativo.IDFacultativo + facultativo.Nombre);
         return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
       });
 
@@ -143,8 +143,8 @@ console.log(this._exampleDatabase);
       let propertyB: number | string = '';
 
       switch (this._sort.active) {
-        case 'id': [propertyA, propertyB] = [a.id, b.id]; break;
-        case 'title': [propertyA, propertyB] = [a.title, b.title]; break;
+        case 'id': [propertyA, propertyB] = [a.IDFacultativo, b.IDFacultativo]; break;
+        case 'title': [propertyA, propertyB] = [a.Nombre, b.Nombre]; break;
         // case 'descripcion': [propertyA, propertyB] = [a.Descripcion, b.Descripcion]; break;
       }
 

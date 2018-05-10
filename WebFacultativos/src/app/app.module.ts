@@ -67,6 +67,7 @@ import { CompetenciasbyFacultativoComponent } from './components/competenciasby-
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -84,6 +85,7 @@ import { CompetenciasbyFacultativoComponent } from './components/competenciasby-
     UsertableComponent,
     FacultativoComponent,
     CompetenciasbyFacultativoComponent
+
   ],
   imports: [
     BrowserModule,
