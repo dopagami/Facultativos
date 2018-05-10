@@ -273,5 +273,30 @@ namespace FacultativosWebApi
             }
             return areas.AsEnumerable();
         }
+
+        public static IEnumerable<Facultativo> toFacultativos(DataTable dtFacultativos)
+        {
+            var facultativos = new List<Facultativo>();
+            foreach (DataRow row in dtFacultativos.Rows)
+            {
+                var facultativo = new Facultativo();
+
+                facultativo.IDFacultativo = System.Convert.ToString(row["SG02COD"]);
+                facultativo.Nombre = System.Convert.ToString(row["SG02NOM"]);
+                facultativo.Apellido1 = System.Convert.ToString(row["SG02APE1"]);
+                facultativo.Apellido2 = System.Convert.ToString(row["SG02APE2"]);
+                if (!Convert.IsDBNull(row["SG02NUMCOLEGIADO"]))
+                    facultativo.NumColegiado = System.Convert.ToInt32(row["SG02NUMCOLEGIADO"]);
+                facultativo.Categoria = System.Convert.ToString(row["AD30DESCATEGORIA"]);
+                facultativo.Puesto = System.Convert.ToString(row["AD31DESPUESTO"]);
+                facultativo.IDDepartamento = System.Convert.ToInt32(row["AD02CODDPTO"]);
+                facultativo.Departamento = System.Convert.ToString(row["AD02DESDPTO"]);
+                facultativo.Centro = System.Convert.ToString(row["AD74DESCENTRO"]);
+                facultativo.email = System.Convert.ToString(row["SG02EMAIL"]);
+
+                facultativos.Add(facultativo);
+            }
+            return facultativos.AsEnumerable();
+        }
     }
 }

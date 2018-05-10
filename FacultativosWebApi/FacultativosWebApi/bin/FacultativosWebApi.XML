@@ -551,6 +551,22 @@
             </summary>
             <param name="id">Identificador del cuestionario.</param>
         </member>
+        <member name="T:FacultativosWebApi.Controllers.FacultativosController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:FacultativosWebApi.Controllers.FacultativosController.Get">
+            <summary>
+            Obtiene todos los facultativos.
+            </summary>        
+        </member>
+        <member name="M:FacultativosWebApi.Controllers.FacultativosController.Get(System.String,System.String)">
+            <summary>
+            Obtiene un facultativo por identificador.
+            </summary>
+            <param name="id">Identificador del facultativo.</param>
+        </member>
         <member name="T:FacultativosWebApi.Controllers.GruposController">
             <summary>
             
@@ -732,6 +748,66 @@
             <summary>
             Preguntas del cuestionario.
             </summary>
+        </member>
+        <member name="T:FacultativosWebApi.Models.Facultativo">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FacultativosWebApi.Models.Facultativo.IDFacultativo">
+            <summary>
+            Identificador del facultativo.
+            </summary>
+        </member>
+        <member name="P:FacultativosWebApi.Models.Facultativo.Nombre">
+            <summary>
+            Nombre del facultativo.
+            </summary>
+        </member>
+        <member name="P:FacultativosWebApi.Models.Facultativo.Apellido1">
+            <summary>
+            Primer apellido del facultativo.
+            </summary>
+        </member>
+        <member name="P:FacultativosWebApi.Models.Facultativo.Apellido2">
+            <summary>
+            Segundo apellido del facultativo.
+            </summary>
+        </member>
+        <member name="P:FacultativosWebApi.Models.Facultativo.NumColegiado">
+            <summary>
+            Número de colegiado del facultativo.
+            </summary>        
+        </member>
+        <member name="P:FacultativosWebApi.Models.Facultativo.Categoria">
+            <summary>
+            Categoría del facultativo.
+            </summary>        
+        </member>
+        <member name="P:FacultativosWebApi.Models.Facultativo.Puesto">
+            <summary>
+            Puesto del facultativo.
+            </summary>        
+        </member>
+        <member name="P:FacultativosWebApi.Models.Facultativo.IDDepartamento">
+            <summary>
+            Identificador del departamento del facultativo.
+            </summary>        
+        </member>
+        <member name="P:FacultativosWebApi.Models.Facultativo.Departamento">
+            <summary>
+            Departamento del facultativo.
+            </summary>        
+        </member>
+        <member name="P:FacultativosWebApi.Models.Facultativo.Centro">
+            <summary>
+            Centro del facultativo.
+            </summary>        
+        </member>
+        <member name="P:FacultativosWebApi.Models.Facultativo.email">
+            <summary>
+            Correo electrónico del facultativo.
+            </summary>        
         </member>
         <member name="T:FacultativosWebApi.Models.Grupo">
              <summary>
