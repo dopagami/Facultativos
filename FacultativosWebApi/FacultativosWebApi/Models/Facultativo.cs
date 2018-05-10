@@ -43,6 +43,10 @@ namespace FacultativosWebApi.Models
         /// </summary>        
         public string Puesto { get; set; }
         /// <summary>
+        /// Identificador del departamento del facultativo.
+        /// </summary>        
+        public int IDDepartamento { get; set; }
+        /// <summary>
         /// Departamento del facultativo.
         /// </summary>        
         public string Departamento { get; set; }
@@ -50,5 +54,9 @@ namespace FacultativosWebApi.Models
         /// Centro del facultativo.
         /// </summary>        
         public string Centro { get; set; }
+        /// <summary>
+        /// Correo electrónico del facultativo.
+        /// </summary>        
+        public string email { get; set; }
     }
 }

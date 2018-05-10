@@ -41,14 +41,15 @@ namespace FacultativosWebApi.Controllers
         /// Obtiene un facultativo por identificador.
         /// </summary>
         /// <param name="id">Identificador del facultativo.</param>
+        [Route("api/Facultativos/{id}/{dpto}")]
         [ResponseType(typeof(IEnumerable<Facultativo>))]
-        // GET: api/Facultativos/5
-        public IHttpActionResult Get(string id)
+        // GET: api/Facultativos/5/109
+        public IHttpActionResult Get(string id, string dpto)
         {
             FacultativosProvider pPreguntas = new FacultativosProvider();
             try
             {
-                var searchResults = pPreguntas.GetFacultativo(id);
+                var searchResults = pPreguntas.GetFacultativo(id, dpto);
                 if (searchResults == null)
                     return NotFound();
                 return Ok(searchResults);

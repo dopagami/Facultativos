@@ -12,7 +12,7 @@ namespace FacultativosWebApi.Providers
         {
             try
             {
-                return Converter.toFacultativos(DAL.DataService.Execute("SELECT S.SG02COD, S.SG02NOM, S.SG02APE1, S.SG02APE2, S.SG02NUMCOLEGIADO, AD30.AD30DESCATEGORIA, AD31.AD31DESPUESTO, AD02.AD02DESDPTO, AD74.AD74DESCENTRO " +
+                return Converter.toFacultativos(DAL.DataService.Execute("SELECT S.SG02COD, S.SG02NOM, S.SG02APE1, S.SG02APE2, S.SG02NUMCOLEGIADO, S.SG02EMAIL, AD30.AD30DESCATEGORIA, AD31.AD31DESPUESTO, AD02.AD02CODDPTO, AD02.AD02DESDPTO, AD74.AD74DESCENTRO " +
                                                                 "FROM SG0200 S INNER JOIN AD0300 AD03 " +
                                                                 "ON S.SG02COD = AD03.SG02COD " +
                                                                 "INNER JOIN AD0200 AD02 " + 
@@ -31,11 +31,11 @@ namespace FacultativosWebApi.Providers
             }
         }
 
-        public Facultativo GetFacultativo(string id)
+        public Facultativo GetFacultativo(string id, string dpto)
         {
             try
             {
-                return Converter.toFacultativos(DAL.DataService.Execute("SELECT S.SG02COD, S.SG02NOM, S.SG02APE1, S.SG02APE2, S.SG02NUMCOLEGIADO, AD30.AD30DESCATEGORIA, AD31.AD31DESPUESTO, AD02.AD02DESDPTO, AD74.AD74DESCENTRO " +
+                return Converter.toFacultativos(DAL.DataService.Execute("SELECT S.SG02COD, S.SG02NOM, S.SG02APE1, S.SG02APE2, S.SG02NUMCOLEGIADO, S.SG02EMAIL, AD30.AD30DESCATEGORIA, AD31.AD31DESPUESTO, AD02.AD02CODDPTO, AD02.AD02DESDPTO, AD74.AD74DESCENTRO " +
                                                                 "FROM SG0200 S INNER JOIN AD0300 AD03 " +
                                                                 "ON S.SG02COD = AD03.SG02COD " +
                                                                 "INNER JOIN AD3000 AD30 " +
@@ -47,8 +47,9 @@ namespace FacultativosWebApi.Providers
                                                                 "INNER JOIN AD7400 AD74 " +
                                                                 "ON AD02.AD74CODCENTRO = AD74.AD74CODCENTRO " +
                                                                 "WHERE AD03.AD31CODPUESTO IN(1, 5) " +
-                                                                "AND S.SG02COD = :pID",
-                                                                "pID", id)).FirstOrDefault();
+                                                                "AND S.SG02COD = :pID " +
+                                                                "AND AD02.AD02CODDPTO = :pDpto",
+                                                                "pID", id, "pDpto", dpto)).FirstOrDefault();
             }
             catch (Exception ex)
             {

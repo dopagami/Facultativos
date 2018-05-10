@@ -561,7 +561,7 @@
             Obtiene todos los facultativos.
             </summary>        
         </member>
-        <member name="M:FacultativosWebApi.Controllers.FacultativosController.Get(System.String)">
+        <member name="M:FacultativosWebApi.Controllers.FacultativosController.Get(System.String,System.String)">
             <summary>
             Obtiene un facultativo por identificador.
             </summary>
@@ -789,6 +789,11 @@
             Puesto del facultativo.
             </summary>        
         </member>
+        <member name="P:FacultativosWebApi.Models.Facultativo.IDDepartamento">
+            <summary>
+            Identificador del departamento del facultativo.
+            </summary>        
+        </member>
         <member name="P:FacultativosWebApi.Models.Facultativo.Departamento">
             <summary>
             Departamento del facultativo.
@@ -797,6 +802,11 @@
         <member name="P:FacultativosWebApi.Models.Facultativo.Centro">
             <summary>
             Centro del facultativo.
+            </summary>        
+        </member>
+        <member name="P:FacultativosWebApi.Models.Facultativo.email">
+            <summary>
+            Correo electrónico del facultativo.
             </summary>        
         </member>
         <member name="T:FacultativosWebApi.Models.Grupo">
