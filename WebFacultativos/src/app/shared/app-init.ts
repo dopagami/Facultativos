@@ -1,6 +1,7 @@
 import { KeycloakService } from 'keycloak-angular';
 
-
+// Creamos un Interceptor.  Es un tipo de Middleware que actúa de proxy entre el cliente y el servidor.
+// Añadimos funcionalidades genéricas a nuestra comunicación HTTP. Enviaremos en cada petición http el token de usuario. 
 export function initializer(keycloak: KeycloakService): () => Promise<any> {
   return (): Promise<any> => {
     return new Promise(async (resolve, reject) => {
