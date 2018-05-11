@@ -44,7 +44,6 @@ export class UsertableComponent implements OnInit {
 
     this.tbDataSource.filter = filterValue;
 
-
   }
 
   // removeAccents(string) {
