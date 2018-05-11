@@ -37,10 +37,29 @@ export class UsertableComponent implements OnInit {
 
   // Función para filtrar la tabla
   applyFilter(filterValue: string) {
-    filterValue = filterValue.trim(); // Remove whitespace
+
+    filterValue = filterValue.trim(); // Eliminamos espacios en blanco
+    // filterValue = this.removeAccents(filterValue); // Eliminamos tíldes
     filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
+
     this.tbDataSource.filter = filterValue;
+
+
   }
+
+  // removeAccents(string) {
+  //   const accents =
+  //     'ÀÁÂÃÄÅĄàáâãäåąßÒÓÔÕÕÖØÓòóôõöøóÈÉÊËĘèéêëęðÇĆçćÐÌÍÎÏìíîïÙÚÛÜùúûüÑŃñńŠŚšśŸÿýŽŻŹžżź';
+  //   const accentsOut =
+  //     'AAAAAAAaaaaaaaBOOOOOOOOoooooooEEEEEeeeeeeCCccDIIIIiiiiUUUUuuuuNNnnSSssYyyZZZzzz';
+  //   return string
+  //     .split('')
+  //     .map((letter, index) => {
+  //       const accentIndex = accents.indexOf(letter);
+  //       return accentIndex !== -1 ? accentsOut[accentIndex] : letter;
+  //     })
+  //     .join('');
+  // }
 
   // Marcamos la fila seleccionada
   highlight(row) {
@@ -48,15 +67,15 @@ export class UsertableComponent implements OnInit {
     this.selectedRowIndex = row.IDFacultativo;
 
     // Navegar
-     this.router.navigate(['/usuario', this.selectedRowIndex, row.IDDepartamento]);
+    this.router.navigate(['/usuario', this.selectedRowIndex, row.IDDepartamento]);
   }
 
-  constructor(
-    // private routerlink: RouterLink,
-    private router: Router,
+  constructor(private router: Router,
     private userService: FacultativoService) {
     this.userService.getFacultativos().subscribe(results => {
-      if (!results) { return; }
+      if (!results) {
+        return;
+      }
 
       this.ELEMENT_DATA = results;
       this.tbDataSource = new MatTableDataSource<Facultativo>(this.ELEMENT_DATA);
@@ -67,7 +86,7 @@ export class UsertableComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.tbDataSource.filter = 'Jor';
+
   }
 
 }
