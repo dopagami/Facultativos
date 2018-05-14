@@ -43,7 +43,7 @@ export class PrivilegioService {
   // setHeader('Access-Control-Allow-Origin', 'http://localhost:8888');
   /** CRUD METHODS */
   getAllPrivilegios(): void {
-
+    // const headers = new HttpHeaders().set('Content-Type', 'application/json; charset=UTF-8');
     this.httpClient.get<Privilegio[]>(myGlobals.API_URL).subscribe(data => {
       this.dataChange.next(data);
     },

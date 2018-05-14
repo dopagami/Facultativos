@@ -14,15 +14,15 @@ const APP_ROUTES: Routes = [
   // { path: 'usuarios', component: UsertableComponent, canActivate: [AuthGuardService] },
   // { path: 'login', component: LoginComponent },
   // { path: '**', pathMatch: 'full', redirectTo: 'home' },
-  { path: 'home', component: HomeComponent  },
-  { path: 'privilegios', component: PrivilegiosComponent  },
-   { path: 'usuarios', component: UsertableComponent },
-   { path: 'usuario/:id', component: FacultativoComponent },
-  { path: 'facultativos', component: FacultativosComponent},
+  { path: 'home', component: HomeComponent },
+  { path: 'privilegios', component: PrivilegiosComponent },
+  { path: 'usuarios', component: UsertableComponent },
+  { path: 'usuario/:id', component: FacultativoComponent },
+  // { path: 'facultativos', component: FacultativosComponent },
   // { path: 'login', component: LoginComponent },
   { path: '**', pathMatch: 'full', redirectTo: 'home' },
 
 ];
 // Forma para poder usar Hashes
- // export const APP_ROUTING = RouterModule.forRoot(APP_ROUTES, {useHash:true});
- export const APP_ROUTING = RouterModule.forRoot(APP_ROUTES);
+// export const APP_ROUTING = RouterModule.forRoot(APP_ROUTES, {useHash:true});
+export const APP_ROUTING = RouterModule.forRoot(APP_ROUTES);

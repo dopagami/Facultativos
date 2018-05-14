@@ -1,6 +1,6 @@
 <mat-toolbar color="default">
   <span>Privilegios y competencias especiales</span>
-  <span class="spacer"></span>  
+  <span class="spacer"></span>
 </mat-toolbar>
 <div class="flex-container mat-elevation-z8">
   <div class="flex-header">
@@ -11,30 +11,46 @@
   <mat-table [dataSource]="tbDataSource" matSort>
     <ng-container matColumnDef="id">
       <mat-header-cell *matHeaderCellDef mat-sort-header> id </mat-header-cell>
-      <mat-cell *matCellDef="let user"> {{user.id}} </mat-cell>
+      <mat-cell *matCellDef="let user"> {{user.IDFacultativo}} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="apellido1">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Primer apellido </mat-header-cell>
-      <mat-cell *matCellDef="let user"> {{user.apellido1}} </mat-cell>
+      <mat-cell *matCellDef="let user"> {{user.Apellido1}} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="apellido2">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Segundo apellido </mat-header-cell>
-      <mat-cell *matCellDef="let user"> {{user.apellido2}} </mat-cell>
+      <mat-cell *matCellDef="let user"> {{user.Apellido2}} </mat-cell>
     </ng-container>
-    <ng-container matColumnDef="categoria">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Categoría </mat-header-cell>
-      <mat-cell *matCellDef="let user"> {{user.categoria}} </mat-cell>
+
+    <ng-container matColumnDef="nombre">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </mat-header-cell>
+      <mat-cell *matCellDef="let user"> {{user.Nombre}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="numcolegiado">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Nº colegiado </mat-header-cell>
+      <ng-container *matCellDef="let user">
+        <mat-cell> {{user.NumColegiado == 0 ? "" : user.NumColegiado  }} </mat-cell>
+      </ng-container>
+    </ng-container>
+
+    <ng-container matColumnDef="departamento">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Departamento </mat-header-cell>
+      <mat-cell *matCellDef="let user"> {{user.Departamento}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="centro">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Centro </mat-header-cell>
+      <mat-cell *matCellDef="let user"> {{user.Centro}} </mat-cell>
     </ng-container>
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
 
-
-    <mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="{'highlight': selectedRowIndex == row.id}" (click)="highlight(row)">
+    <mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="{'highlight': selectedRowIndex == row.IDFacultativo}"
+      (click)="highlight(row)">
     </mat-row>
 
   </mat-table>
   <mat-paginator #paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 20]" [showFirstLastButtons]="true">
   </mat-paginator>
 </div>
-
-

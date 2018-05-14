@@ -18,7 +18,7 @@ const APP_ROUTES: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'privilegios', component: PrivilegiosComponent },
   { path: 'usuarios', component: UsertableComponent },
-  { path: 'usuario/:id', component: FacultativoComponent },
+  { path: 'usuario/:id/:dpto', component: FacultativoComponent },
   { path: 'facultativos', component: FacultativosComponent },
   { path: 'competencias/:id', component: CompetenciasbyFacultativoComponent },
 

@@ -1,4 +1,4 @@
-<div class="container">
+<!-- <div class="container">
   <div class="row">
 
     <div class="col-12 tipoPrivilegios">
@@ -17,7 +17,7 @@
   </div>
 </div>
 
-<hr>
+<hr> -->
 
 
 <mat-toolbar>Asistencia área de Cirugía General </mat-toolbar>
@@ -32,8 +32,8 @@
 
     <mat-form-field class="width50 MT10">
       <mat-select placeholder="Valoración del riesgo quirúrgico" [formControl]="formControl">
-        <mat-option *ngFor="let privilegio of listPrivilegios" required [value]="privilegio.value">
-          {{ privilegio.viewValue }}
+        <mat-option *ngFor="let privilegio of listPrivilegios" required [value]="privilegio.Valor">
+          {{privilegio.Valor + " - " +  privilegio.Descripcion }}
         </mat-option>
       </mat-select>
       <mat-error *ngIf="formControl.hasError('required')">Por favor, elige una opción</mat-error>
@@ -47,12 +47,12 @@
 
     <mat-form-field class="width50 MT10">
       <mat-select placeholder="Valoración y manejo nutricional" [formControl]="formControl">
-        <mat-option *ngFor="let privilegio of listPrivilegios" required [value]="privilegio.value">
-          {{ privilegio.viewValue }}
+        <mat-option *ngFor="let privilegio of listPrivilegios" required [value]="privilegio.Valor">
+          {{privilegio.Valor + " - " +  privilegio.Descripcion }}
         </mat-option>
       </mat-select>
       <mat-error *ngIf="formControl.hasError('required')">Por favor, elige una opción</mat-error>
-      <mat-hint>{{formControl.value?.viewValue}}</mat-hint>
+      <mat-hint>{{formControl.value?.Descripcion}}</mat-hint>
     </mat-form-field>
 
     <mat-form-field class="width49">
@@ -61,12 +61,12 @@
 
     <mat-form-field class="width50 MT10">
       <mat-select placeholder="Valoración de la co-morbilidad" [formControl]="formControl">
-        <mat-option *ngFor="let privilegio of listPrivilegios" required [value]="privilegio.value">
-          {{ privilegio.viewValue }}
+        <mat-option *ngFor="let privilegio of listPrivilegios" required [value]="privilegio.Valor">
+          {{ privilegio.Descripcion }}
         </mat-option>
       </mat-select>
       <mat-error *ngIf="formControl.hasError('required')">Por favor, elige una opción</mat-error>
-      <mat-hint>{{formControl.value?.viewValue}}</mat-hint>
+      <mat-hint>{{formControl.value?.Descripcion}}</mat-hint>
     </mat-form-field>
 
     <mat-form-field class="width49">
@@ -90,12 +90,12 @@
 
     <mat-form-field class="width50 MT10">
       <mat-select placeholder="Analgesia" [formControl]="formControl">
-        <mat-option *ngFor="let privilegio of listPrivilegios" required [value]="privilegio.value">
-          {{ privilegio.viewValue }}
+        <mat-option *ngFor="let privilegio of listPrivilegios" required [value]="privilegio.Valor">
+          {{privilegio.Valor + " - " +  privilegio.Descripcion }}
         </mat-option>
       </mat-select>
       <mat-error *ngIf="formControl.hasError('required')">Por favor, elige una opción</mat-error>
-      <mat-hint>{{formControl.value?.viewValue}}</mat-hint>
+      <mat-hint>{{formControl.value?.Descripcion}}</mat-hint>
     </mat-form-field>
 
     <mat-form-field class="width49">
@@ -104,8 +104,8 @@
 
     <mat-form-field class="width50">
       <mat-select placeholder="Cuidados respiratorios" [formControl]="formControl">
-        <mat-option *ngFor="let privilegio of listPrivilegios" required [value]="privilegio.value">
-          {{ privilegio.viewValue }}
+        <mat-option *ngFor="let privilegio of listPrivilegios" required [value]="privilegio.Valor">
+          {{privilegio.Valor + " - " +  privilegio.Descripcion }}
         </mat-option>
       </mat-select>
       <mat-error *ngIf="formControl.hasError('required')">Por favor, elige una opción</mat-error>

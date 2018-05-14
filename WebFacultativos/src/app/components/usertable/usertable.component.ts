@@ -17,13 +17,15 @@ import { RouterLink, Router } from '@angular/router';
 })
 
 export class UsertableComponent implements OnInit {
-  name: any = {};
+
   selectedRowIndex: any;
   public ELEMENT_DATA: Facultativo[] = [];
   public tbDataSource: any;
+  public facultativo: any;
   // public displayedColumns;
 
-  displayedColumns = ['id', 'apellido1', 'apellido2', 'categoria'];
+  // Columnas a mostrar y  orden de las mismas
+  displayedColumns = ['nombre', 'apellido1', 'apellido2', 'departamento', 'centro'];
 
 
   // Ordenación de columnas
@@ -35,36 +37,51 @@ export class UsertableComponent implements OnInit {
 
   // Función para filtrar la tabla
   applyFilter(filterValue: string) {
-    filterValue = filterValue.trim(); // Remove whitespace
+
+    filterValue = filterValue.trim(); // Eliminamos espacios en blanco
+    // filterValue = this.removeAccents(filterValue); // Eliminamos tíldes
     filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
+
     this.tbDataSource.filter = filterValue;
+
+
   }
+
+  // removeAccents(string) {
+  //   const accents =
+  //     'ÀÁÂÃÄÅĄàáâãäåąßÒÓÔÕÕÖØÓòóôõöøóÈÉÊËĘèéêëęðÇĆçćÐÌÍÎÏìíîïÙÚÛÜùúûüÑŃñńŠŚšśŸÿýŽŻŹžżź';
+  //   const accentsOut =
+  //     'AAAAAAAaaaaaaaBOOOOOOOOoooooooEEEEEeeeeeeCCccDIIIIiiiiUUUUuuuuNNnnSSssYyyZZZzzz';
+  //   return string
+  //     .split('')
+  //     .map((letter, index) => {
+  //       const accentIndex = accents.indexOf(letter);
+  //       return accentIndex !== -1 ? accentsOut[accentIndex] : letter;
+  //     })
+  //     .join('');
+  // }
 
   // Marcamos la fila seleccionada
   highlight(row) {
-    console.log(row);
-    this.selectedRowIndex = row.id;
 
-    this.name = row.id;
+    this.selectedRowIndex = row.IDFacultativo;
 
-    // navegar
-     this.router.navigate(['/usuario', this.selectedRowIndex]);
-
+    // Navegar
+    this.router.navigate(['/usuario', this.selectedRowIndex, row.IDDepartamento]);
   }
 
-  constructor(
-    // private routerlink: RouterLink,
-    private router: Router,
+  constructor(private router: Router,
     private userService: FacultativoService) {
-    this.userService.getUser().subscribe(results => {
-      if (!results) { return; }
+    this.userService.getFacultativos().subscribe(results => {
+      if (!results) {
+        return;
+      }
 
       this.ELEMENT_DATA = results;
       this.tbDataSource = new MatTableDataSource<Facultativo>(this.ELEMENT_DATA);
       this.tbDataSource.sort = this.sort; // Ordenación
       this.tbDataSource.paginator = this.paginator; // Paginación
 
-      console.log(this.ELEMENT_DATA);
     });
   }
 
@@ -79,7 +96,7 @@ class UserDataSource extends DataSource<any> {
     super();
   }
   connect(): Observable<Facultativo[]> {
-    return this.userService.getUser();
+    return this.userService.getFacultativos();
   }
   disconnect() { }
 }

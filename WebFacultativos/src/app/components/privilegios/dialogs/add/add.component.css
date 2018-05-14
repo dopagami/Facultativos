@@ -23,12 +23,12 @@ input:focus, textarea:focus {
   outline-color: transparent;
   outline-style: none;
   box-shadow: none;
-}
+} */
 
 /* .mat-dialog-content{
   height: 25vh;
 
-} */
+}
 
 /*ARREGLO MODALES (REVISAR)*/
 html.cdk-global-scrollblock {
