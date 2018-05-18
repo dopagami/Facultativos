@@ -24,3 +24,6 @@ D:\Usuarios\dovemoda\Desktop\FacultativosEscritorio\FacultativosEscritorio\bin\D
 D:\Usuarios\dovemoda\Desktop\FacultativosEscritorio\FacultativosEscritorio\bin\Debug\FacultativosEscritorio.pdb
 D:\Usuarios\dovemoda\Desktop\FacultativosEscritorio\FacultativosEscritorio\obj\Debug\FacultativosEscritorio.exe.manifest
 D:\Usuarios\dovemoda\Desktop\FacultativosEscritorio\FacultativosEscritorio\obj\Debug\FacultativosEscritorio.application
+D:\Proyectos\GITHUB\Facultativos\FacultativosEscritorio\FacultativosEscritorio\bin\Debug\FacultativosEscritorio.exe.config
+D:\Proyectos\GITHUB\Facultativos\FacultativosEscritorio\FacultativosEscritorio\obj\Debug\FacultativosEscritorio.exe
+D:\Proyectos\GITHUB\Facultativos\FacultativosEscritorio\FacultativosEscritorio\obj\Debug\FacultativosEscritorio.pdb

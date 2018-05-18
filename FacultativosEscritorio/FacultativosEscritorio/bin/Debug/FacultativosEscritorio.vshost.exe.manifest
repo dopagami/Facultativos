@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="FacultativosEscritorio.exe" size="8704">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="FacultativosEscritorio.exe" size="9728">
       <assemblyIdentity name="FacultativosEscritorio" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>zVHDDHMh+EREMjhMK21DLNrxg2ZT9u+xP/m05etL354=</dsig:DigestValue>
+        <dsig:DigestValue>h8VXQ2DdImqY8vZcQduGDz/zRdhN3mKS9PoczAOQLU4=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
