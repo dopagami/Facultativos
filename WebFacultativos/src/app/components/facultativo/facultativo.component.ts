@@ -8,6 +8,12 @@ import { PrivilegioService } from '../../services/privilegio.service';
 import { FormControl, Validators } from '@angular/forms';
 import { FacultativosComponent } from '../facultativos/facultativos.component';
 import { UsertableComponent } from '../usertable/usertable.component';
+
+
+import {DomSanitizer} from '@angular/platform-browser';
+import { encode } from 'punycode';
+import { escape } from 'querystring';
+
 // import * as $ from 'jquery';
 
 @Component({
@@ -15,7 +21,9 @@ import { UsertableComponent } from '../usertable/usertable.component';
   templateUrl: './facultativo.component.html',
   styleUrls: ['./facultativo.component.css']
 })
+
 export class FacultativoComponent implements OnInit {
+  winform: any;
   step = 0;
   public element: any = {};
   idparam: string;
@@ -26,13 +34,17 @@ export class FacultativoComponent implements OnInit {
 
   formControl = new FormControl('', [Validators.required]);
 
-  constructor( private activatedrouter: ActivatedRoute,
-              private facultativoService: FacultativoService,
-              private privilegiosService: PrivilegioService,
-              private router: Router
-
-
+  constructor(  private activatedrouter: ActivatedRoute,
+                private facultativoService: FacultativoService,
+                private privilegiosService: PrivilegioService,
+                private router: Router,
+                private dom: DomSanitizer
   ) {
+
+
+
+
+
 
     // Nos suscribimos al router para obtener los parámetros URL.
     this.activatedrouter.params.subscribe(params => {
@@ -91,10 +103,12 @@ export class FacultativoComponent implements OnInit {
     this.router.navigate(['/competencias', this.element.IDFacultativo]);
   }
 
+  getParameters(): void {
+    // tslint:disable-next-line:max-line-length
+    this.winform = this.dom.bypassSecurityTrustUrl('CUN://' + this.element.Nombre + ' ' + this.element.Apellido1 + ' ' + this.element.Apellido2);
+  }
+
   ngOnInit() {
-debugger;
-    if (!this.selected) {
-    
-    }
+
   }
 }

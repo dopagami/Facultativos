@@ -25,7 +25,7 @@
           </h2>
           <div class="mc-content">
             <div class="img-container">
-              <img class="img-fluid" src="https://t1.uc.ltmcdn.com/images/5/5/8/img_como_prepararse_para_una_consulta_medica_17855_600.jpg">
+              <img class="img-fluid" src="../../../assets/img/imgFacultativo.jpg">
             </div>
             <div class="mc-description">
 
@@ -62,12 +62,20 @@
               <li *ngSwitchCase="'MAD'">
                 <a>Centro: Madrid</a>
               </li>           
-              <li>
+              <!-- <li>
                 <a mat-button (click)="goCompetencias()">
                   <i class="material-icons">
                     launch </i>
                   Accede a las competencias</a>
-              </li>
+              </li> -->
+
+              <li>
+                  <a (click) = "getParameters()" [href]="winform">
+                    <i class="fa fa-windows">
+                      </i>
+                     Datos del facultativo</a>
+                </li>
+              
             </ol>
           </i>
         </div>
@@ -85,6 +93,10 @@
   </section>
 
   <hr>
+
+  <!-- <a class="btn btn-secondary" (click) = "getParameters()" [href]="winform">Abrir aplicación</a> -->
+
+
 
   <h1 clasS="text-center">Departamento de {{element.Departamento}}</h1>
 
@@ -255,6 +267,7 @@
   </mat-tab-group> -->
 
 
+  
 
 
 </div>

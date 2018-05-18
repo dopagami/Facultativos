@@ -1,14 +1,14 @@
 import { KeycloakService } from 'keycloak-angular';
 
 // Creamos un Interceptor.  Es un tipo de Middleware que actúa de proxy entre el cliente y el servidor.
-// Añadimos funcionalidades genéricas a nuestra comunicación HTTP. Enviaremos en cada petición http el token de usuario. 
+// Añadimos funcionalidades genéricas a nuestra comunicación HTTP. Enviaremos en cada petición http el token de usuario.
 export function initializer(keycloak: KeycloakService): () => Promise<any> {
   return (): Promise<any> => {
     return new Promise(async (resolve, reject) => {
       try {
         await keycloak.init({
           config: {
-            url: 'http://mk22788p:8081/auth',
+            url:  'http://facultativoskeycloak.ibermatica.com/auth',
             realm: 'PruebaRealm',
             clientId: 'demo-app',
             'credentials': {
@@ -17,7 +17,7 @@ export function initializer(keycloak: KeycloakService): () => Promise<any> {
           },
           initOptions: {
             onLoad: 'login-required',
-            checkLoginIframe: false
+            checkLoginIframe: true
           },
           // Aquí incluiremos las urls que queremos que no envíen Token en el header
           bearerExcludedUrls: [

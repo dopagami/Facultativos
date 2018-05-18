@@ -20,32 +20,59 @@
 <hr> -->
 
 
-<mat-toolbar>Asistencia área de Cirugía General </mat-toolbar>
+<mat-toolbar> {{ dpto}} </mat-toolbar>
+
+
 <mat-accordion class="accordion-headers-align">
-  <mat-expansion-panel [expanded]="false" (opened)="setStep(0)" hideToggle="true">
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-        Valoración preoperatoria del paciente
-      </mat-panel-title>
-
-    </mat-expansion-panel-header>
-
-    <mat-form-field class="width50 MT10">
-      <mat-select placeholder="Valoración del riesgo quirúrgico" [formControl]="formControl">
-        <mat-option *ngFor="let privilegio of listPrivilegios" required [value]="privilegio.Valor">
-          {{privilegio.Valor + " - " +  privilegio.Descripcion }}
-        </mat-option>
-      </mat-select>
-      <mat-error *ngIf="formControl.hasError('required')">Por favor, elige una opción</mat-error>
-      <mat-hint>{{formControl.value?.viewValue}}</mat-hint>
-    </mat-form-field>
-
-    <mat-form-field class="width49">
-      <input matInput placeholder="Observaciones">
-    </mat-form-field>
+  <!-- <mat-label *ngIf="listCuestionario['Areas']; else null"> hola</mat-label>   -->
 
 
-    <mat-form-field class="width50 MT10">
+ 
+
+  
+  <!-- <ng-container *ngFor="let area of listCuestionario['Areas']">
+      <h1>{{area.Descripcion}}</h1>
+      <ul>
+        <li *ngFor="let grupo of area.Grupos">{{grupo.Descripcion}}</li>
+      </ul>
+    </ng-container> -->
+
+
+
+
+
+
+    
+    <ng-container *ngFor="let area of listCuestionario['Areas']">
+    <mat-label #area> {{area.Descripcion}}</mat-label>
+    <h1>{{area.Descripcion}}</h1>
+    <mat-expansion-panel [expanded]="false" #prueba (opened)="setStep(0)" hideToggle="true" *ngFor="let grupo of area.Grupos">
+
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{grupo.Descripcion}}
+        </mat-panel-title>
+
+      </mat-expansion-panel-header>
+
+
+      <mat-form-field class="width50 MT10" *ngFor="let pregunta of grupo.Preguntas ">
+        <mat-select placeholder="{{pregunta.Descripcion}}" [formControl]="formControl">
+          <mat-option *ngFor="let privilegio of listPrivilegios" required [value]="privilegio.Valor">
+            {{privilegio.Valor + " - " + privilegio.Descripcion }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="formControl.hasError('required')">Por favor, elige una opción</mat-error>      
+      </mat-form-field> 
+
+      <mat-form-field class="width49">
+        <input matInput placeholder="Observaciones">
+      </mat-form-field>
+
+    </mat-expansion-panel>
+ 
+</ng-container> 
+  <mat-form-field class="width50 MT10">
       <mat-select placeholder="Valoración y manejo nutricional" [formControl]="formControl">
         <mat-option *ngFor="let privilegio of listPrivilegios" required [value]="privilegio.Valor">
           {{privilegio.Valor + " - " +  privilegio.Descripcion }}
@@ -77,65 +104,9 @@
     <mat-action-row>
       <button mat-button color="primary" (click)="nextStep()">Siguiente</button>
     </mat-action-row>
-  </mat-expansion-panel>
 
 
-  <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle="true">
-    <mat-expansion-panel-header>
-      <mat-panel-title color="accent">
-        Cuidados del paciente quirúrgico
-      </mat-panel-title>
-
-    </mat-expansion-panel-header>
-
-    <mat-form-field class="width50 MT10">
-      <mat-select placeholder="Analgesia" [formControl]="formControl">
-        <mat-option *ngFor="let privilegio of listPrivilegios" required [value]="privilegio.Valor">
-          {{privilegio.Valor + " - " +  privilegio.Descripcion }}
-        </mat-option>
-      </mat-select>
-      <mat-error *ngIf="formControl.hasError('required')">Por favor, elige una opción</mat-error>
-      <mat-hint>{{formControl.value?.Descripcion}}</mat-hint>
-    </mat-form-field>
-
-    <mat-form-field class="width49">
-      <input matInput placeholder="Observaciones">
-    </mat-form-field>
-
-    <mat-form-field class="width50">
-      <mat-select placeholder="Cuidados respiratorios" [formControl]="formControl">
-        <mat-option *ngFor="let privilegio of listPrivilegios" required [value]="privilegio.Valor">
-          {{privilegio.Valor + " - " +  privilegio.Descripcion }}
-        </mat-option>
-      </mat-select>
-      <mat-error *ngIf="formControl.hasError('required')">Por favor, elige una opción</mat-error>
-      <mat-hint>{{formControl.value?.viewValue}}</mat-hint>
-    </mat-form-field>
-
-    <mat-form-field class="width49">
-      <input matInput placeholder="Observaciones">
-    </mat-form-field>
 
 
-    <mat-action-row>
-      <button mat-button color="warn" (click)="prevStep()">Anterior</button>
-      <button mat-button color="primary" (click)="nextStep()">Siguiente</button>
-    </mat-action-row>
-  </mat-expansion-panel>
-
-  <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle="true">
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-        Infecciones en cirugía y cirugía de las infecciones
-      </mat-panel-title>
-
-    </mat-expansion-panel-header>
-
-
-    <mat-action-row>
-      <button mat-button color="warn" (click)="prevStep()">Anterior</button>
-      <button mat-button color="primary" (click)="nextStep()">Fin</button>
-    </mat-action-row>
-  </mat-expansion-panel>
 
 </mat-accordion>

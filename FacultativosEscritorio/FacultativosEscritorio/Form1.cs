@@ -12,10 +12,14 @@ namespace FacultativosEscritorio
 {
     public partial class Form1 : Form
     {
-        public Form1()
+        public string parametros;
+        public Form1(string args)
         {
+            parametros = args;
             InitializeComponent();
         }
+
+       
 
         private void Form1_LostFocus(object sender, EventArgs e)
         {
@@ -24,6 +28,7 @@ namespace FacultativosEscritorio
             //    this.Focus();
             //}
             this.Focus();
+            
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -40,5 +45,13 @@ namespace FacultativosEscritorio
         {
             System.Diagnostics.Process.Start("www.cun.es");
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            // this.textBox1.Text = parametros;
+            this.label1.Text = parametros;
+        }
+
+     
     }
 }

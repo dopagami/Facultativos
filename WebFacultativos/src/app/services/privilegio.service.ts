@@ -44,7 +44,7 @@ export class PrivilegioService {
   /** CRUD METHODS */
   getAllPrivilegios(): void {
     // const headers = new HttpHeaders().set('Content-Type', 'application/json; charset=UTF-8');
-    this.httpClient.get<Privilegio[]>(myGlobals.API_URL).subscribe(data => {
+    this.httpClient.get<Privilegio[]>(myGlobals.API_URL_ROOT + '/Privilegios').subscribe(data => {
       this.dataChange.next(data);
     },
       (error: HttpErrorResponse) => {
@@ -54,7 +54,7 @@ export class PrivilegioService {
 
   getPrivilegios(): Observable<Privilegio[]> {
     const headers = new HttpHeaders().set('Content-Type', 'application/json; charset=UTF-8');
-    return this.httpClient.get<Privilegio[]>(myGlobals.API_URL, { headers: headers }).map(res => res);
+    return this.httpClient.get<Privilegio[]>(myGlobals.API_URL_ROOT + '/Privilegios', { headers: headers }).map(res => res);
   }
 
 
@@ -67,7 +67,7 @@ export class PrivilegioService {
   addPrivilegio(privilegio: Privilegio): Observable<any> {
     const headers = new HttpHeaders().set('Content-Type', 'application/json; charset=UTF-8');
 
-    return this.httpClient.post<any>(myGlobals.API_URL, privilegio, { headers: headers })
+    return this.httpClient.post<any>(myGlobals.API_URL_ROOT + '/Privilegios', privilegio, { headers: headers })
       .map(res => res);
   }
 
@@ -76,7 +76,7 @@ export class PrivilegioService {
   deleteItem(id: number): Observable<any> {
     const headers = new HttpHeaders().set('Content-Type', 'application/json; charset=UTF-8');
 
-    return this.httpClient.delete(myGlobals.API_URL + '/' + id, { headers: headers })
+    return this.httpClient.delete(myGlobals.API_URL_ROOT + '/Privilegios/' + id, { headers: headers })
       .map(res => res);
   }
 
@@ -84,7 +84,7 @@ export class PrivilegioService {
   updatePrivilegio(privilegio: Privilegio): Observable<any> {
     const headers = new HttpHeaders().set('Content-Type', 'application/json; charset=UTF-8');
 
-    return this.httpClient.put<any>(myGlobals.API_URL + '/' + privilegio.IDPrivilegio, privilegio, { headers: headers })
+    return this.httpClient.put<any>(myGlobals.API_URL_ROOT + '/Privilegios/' + privilegio.IDPrivilegio, privilegio, { headers: headers })
       .map(res => res);
   }
 }

@@ -10,3 +10,6 @@ D:\Proyectos\CUN\Facultativos\FacultativosEscritorio\FacultativosEscritorio\obj\
 D:\Proyectos\CUN\Facultativos\FacultativosEscritorio\FacultativosEscritorio\obj\Release\FacultativosEscritorio.application
 D:\Proyectos\CUN\Facultativos\FacultativosEscritorio\FacultativosEscritorio\obj\Release\FacultativosEscritorio.exe
 D:\Proyectos\CUN\Facultativos\FacultativosEscritorio\FacultativosEscritorio\obj\Release\FacultativosEscritorio.pdb
+D:\Usuarios\dovemoda\Desktop\FacultativosEscritorio\FacultativosEscritorio\bin\Release\FacultativosEscritorio.exe.config
+D:\Usuarios\dovemoda\Desktop\FacultativosEscritorio\FacultativosEscritorio\obj\Release\FacultativosEscritorio.exe
+D:\Usuarios\dovemoda\Desktop\FacultativosEscritorio\FacultativosEscritorio\obj\Release\FacultativosEscritorio.pdb

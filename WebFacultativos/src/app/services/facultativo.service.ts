@@ -19,7 +19,8 @@ export class FacultativoService {
   constructor(private http: HttpClient) { }
 
   getFacultativo(id: string, dpto: string): Observable<Facultativo> {
-    return this.http.get<Facultativo>(myGlobals.API_URL_ROOT + '/Facultativos/' + id + '/' + dpto);
+    this.element = this.http.get<Facultativo>(myGlobals.API_URL_ROOT + '/Facultativos/' + id + '/' + dpto);
+    return  this.element;
   }
 
   getFacultativos(): Observable<Facultativo[]> {

@@ -64,8 +64,7 @@ import { HeaderComponent } from './components/shared/header/header.component';
 import { SidenavComponent } from './components/shared/sidenav/sidenav.component';
 import { FacultativoComponent } from './components/facultativo/facultativo.component';
 import { CompetenciasbyFacultativoComponent } from './components/competenciasby-facultativo/competenciasby-facultativo.component';
-
-
+import { CuestionarioService } from './services/cuestionario.service';
 
 
 @NgModule({
@@ -126,6 +125,7 @@ import { CompetenciasbyFacultativoComponent } from './components/competenciasby-
                 AuthGuardService,
                 MatSnackBarModule,
                 UsertableComponent,
+                CuestionarioService,
                 Globals,
               { provide: MatPaginatorIntl, useClass: MatPaginatorIntlSpanish},
               {

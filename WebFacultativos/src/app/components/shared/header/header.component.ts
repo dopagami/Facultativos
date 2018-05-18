@@ -20,7 +20,7 @@ export class HeaderComponent implements OnInit {
   }
 
   onLogout() {
-    // this.authService.logout();                      // {3} Hacemos Logout
-     this.KeycloakService.logout();
+    // this.authService.logout();
+     this.KeycloakService.logout(); // {3} Hacemos Logout
   }
 }
