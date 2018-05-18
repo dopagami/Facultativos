@@ -62,6 +62,8 @@ namespace FacultativosWebApi
 
                     area.Descripcion = System.Convert.ToString(row["DESCRIPCIONAREA"]);
 
+                    area.IDCuestionario = System.Convert.ToInt32(row["IDCUESTIONARIO"]);
+
                     cuestionario.Areas.Add(area);
                 }
 
@@ -75,6 +77,8 @@ namespace FacultativosWebApi
                     grupo.IDGrupo = System.Convert.ToInt32(row["IDGRUPO"]);
 
                     grupo.Descripcion = System.Convert.ToString(row["DESCRIPCIONGRUPO"]);
+
+                    grupo.IDCuestionario = System.Convert.ToInt32(row["IDCUESTIONARIO"]);
 
                     //Si el grupo pertenece a un área se añade a ese área del cuestionario, si no se añade al cuestionario
                     if (!string.IsNullOrEmpty(row["IDAREA"].ToString())) {
@@ -95,6 +99,8 @@ namespace FacultativosWebApi
                     pregunta.IDPregunta = System.Convert.ToInt32(row["IDPREGUNTA"]);
 
                     pregunta.Descripcion = System.Convert.ToString(row["DESCRIPCIONPREGUNTA"]);
+
+                    pregunta.IDCuestionario = System.Convert.ToInt32(row["IDCUESTIONARIO"]);
 
                     //Si la pregunta no tiene ni grupo ni area se añade al cuestionario
                     if (string.IsNullOrEmpty(row["IDGRUPO"].ToString()) && string.IsNullOrEmpty(row["IDAREA"].ToString()))
