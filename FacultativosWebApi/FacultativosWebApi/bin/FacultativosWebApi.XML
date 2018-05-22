@@ -809,6 +809,11 @@
             Correo electrónico del facultativo.
             </summary>        
         </member>
+        <member name="P:FacultativosWebApi.Models.Facultativo.CodRecurso">
+            <summary>
+            Identificador del recurso.
+            </summary>
+        </member>
         <member name="T:FacultativosWebApi.Models.Grupo">
              <summary>
             

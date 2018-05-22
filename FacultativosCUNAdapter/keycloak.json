@@ -1,9 +1,10 @@
 {
   "realm": "PruebaRealm",
-  "auth-server-url": "http://mk22788p:8081/auth",
+  "auth-server-url": "http://facultativoskeycloak.ibermatica.com/auth",
   "ssl-required": "external",
   "resource": "cun-app",
   "public-client": true,
   "use-resource-role-mappings": true,
-  "confidential-port": 0
+  "confidential-port": 0,
+  "checkLoginIframe": false
 }

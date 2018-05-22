@@ -12,7 +12,7 @@ namespace FacultativosWebApi.Providers
         {
             try
             {
-                return Converter.toFacultativos(DAL.DataService.Execute("SELECT S.SG02COD, S.SG02NOM, S.SG02APE1, S.SG02APE2, S.SG02NUMCOLEGIADO, S.SG02EMAIL, AD30.AD30DESCATEGORIA, AD31.AD31DESPUESTO, AD02.AD02CODDPTO, AD02.AD02DESDPTO, AD74.AD74DESCENTRO " +
+                return Converter.toFacultativos(DAL.DataService.Execute("SELECT S.SG02COD, S.SG02NOM, S.SG02APE1, S.SG02APE2, S.SG02NUMCOLEGIADO, S.SG02EMAIL, AD30.AD30DESCATEGORIA, AD31.AD31DESPUESTO, AD02.AD02CODDPTO, AD02.AD02DESDPTO, AD74.AD74DESCENTRO, AG11.AG11CODRECURSO " +
                                                                 "FROM SG0200 S INNER JOIN AD0300 AD03 " +
                                                                 "ON S.SG02COD = AD03.SG02COD " +
                                                                 "INNER JOIN AD0200 AD02 " + 
@@ -23,6 +23,8 @@ namespace FacultativosWebApi.Providers
                                                                 "ON AD03.AD31CODPUESTO = AD31.AD31CODPUESTO " +
                                                                 "INNER JOIN AD7400 AD74 " + 
                                                                 "ON AD02.AD74CODCENTRO = AD74.AD74CODCENTRO " +
+                                                                "INNER JOIN AG1100 AG11 " +
+                                                                "ON S.SG02COD = AG11.SG02COD " +
                                                                 "WHERE AD03.AD31CODPUESTO IN(1, 5)"));
             }
             catch (Exception ex)
@@ -35,7 +37,7 @@ namespace FacultativosWebApi.Providers
         {
             try
             {
-                return Converter.toFacultativos(DAL.DataService.Execute("SELECT S.SG02COD, S.SG02NOM, S.SG02APE1, S.SG02APE2, S.SG02NUMCOLEGIADO, S.SG02EMAIL, AD30.AD30DESCATEGORIA, AD31.AD31DESPUESTO, AD02.AD02CODDPTO, AD02.AD02DESDPTO, AD74.AD74DESCENTRO " +
+                return Converter.toFacultativos(DAL.DataService.Execute("SELECT S.SG02COD, S.SG02NOM, S.SG02APE1, S.SG02APE2, S.SG02NUMCOLEGIADO, S.SG02EMAIL, AD30.AD30DESCATEGORIA, AD31.AD31DESPUESTO, AD02.AD02CODDPTO, AD02.AD02DESDPTO, AD74.AD74DESCENTRO, AG11.AG11CODRECURSO " +
                                                                 "FROM SG0200 S INNER JOIN AD0300 AD03 " +
                                                                 "ON S.SG02COD = AD03.SG02COD " +
                                                                 "INNER JOIN AD3000 AD30 " +
@@ -46,6 +48,8 @@ namespace FacultativosWebApi.Providers
                                                                 "ON AD03.AD31CODPUESTO = AD31.AD31CODPUESTO " +
                                                                 "INNER JOIN AD7400 AD74 " +
                                                                 "ON AD02.AD74CODCENTRO = AD74.AD74CODCENTRO " +
+                                                                "INNER JOIN AG1100 AG11 " +
+                                                                "ON S.SG02COD = AG11.SG02COD " +
                                                                 "WHERE AD03.AD31CODPUESTO IN(1, 5) " +
                                                                 "AND S.SG02COD = :pID " +
                                                                 "AND AD02.AD02CODDPTO = :pDpto",

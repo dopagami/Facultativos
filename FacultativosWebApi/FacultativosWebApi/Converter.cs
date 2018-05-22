@@ -299,6 +299,7 @@ namespace FacultativosWebApi
                 facultativo.Departamento = System.Convert.ToString(row["AD02DESDPTO"]);
                 facultativo.Centro = System.Convert.ToString(row["AD74DESCENTRO"]);
                 facultativo.email = System.Convert.ToString(row["SG02EMAIL"]);
+                facultativo.CodRecurso = System.Convert.ToString(row["AG11CODRECURSO"]);
 
                 facultativos.Add(facultativo);
             }

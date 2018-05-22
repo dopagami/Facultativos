@@ -3,18 +3,15 @@
   <assemblyIdentity name="FacultativosEscritorio.application" version="1.0.0.0" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <description asmv2:publisher="FacultativosEscritorio" asmv2:product="FacultativosEscritorio" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <deployment install="true" mapFileExtensions="true" />
-  <compatibleFrameworks xmlns="urn:schemas-microsoft-com:clickonce.v2">
-    <framework targetVersion="4.5" profile="Full" supportedRuntime="4.0.30319" />
-  </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="FacultativosEscritorio.exe.manifest" size="3612">
+    <dependentAssembly dependencyType="install" codebase="FacultativosEscritorio.exe.manifest" size="4448">
       <assemblyIdentity name="FacultativosEscritorio.exe" version="1.0.0.0" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
-        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>WfZM9G0L1fAraXPkeEWnLeJ6sy2zplk8R629e7/dhTQ=</dsig:DigestValue>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+        <dsig:DigestValue>6zukwsmL8j3u5grKZ84DUP/a/EU=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

@@ -58,5 +58,9 @@ namespace FacultativosWebApi.Models
         /// Correo electrónico del facultativo.
         /// </summary>        
         public string email { get; set; }
+        /// <summary>
+        /// Identificador del recurso.
+        /// </summary>
+        public string CodRecurso { get; set; }
     }
 }
