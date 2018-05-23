@@ -568,7 +568,7 @@
             Obtiene todos los facultativos.
             </summary>        
         </member>
-        <member name="M:FacultativosWebApi.Controllers.FacultativosController.Get(System.Int32,System.Int32)">
+        <member name="M:FacultativosWebApi.Controllers.FacultativosController.Get(System.String,System.Int32)">
             <summary>
             Obtiene un facultativo por identificador.
             </summary>

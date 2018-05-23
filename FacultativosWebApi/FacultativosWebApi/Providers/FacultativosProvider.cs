@@ -33,7 +33,7 @@ namespace FacultativosWebApi.Providers
             }
         }
 
-        public Facultativo GetFacultativo(int idFacultativo, int idDpto)
+        public Facultativo GetFacultativo(string idFacultativo, int idDpto)
         {
             try
             {

@@ -405,7 +405,7 @@ namespace FacultativosWebApi
             {
                 var facultativo = new Facultativo();
 
-                facultativo.IDFacultativo = System.Convert.ToInt32(row["SG02COD"]);
+                facultativo.IDFacultativo = System.Convert.ToString(row["SG02COD"]);
                 facultativo.Nombre = System.Convert.ToString(row["SG02NOM"]);
                 facultativo.Apellido1 = System.Convert.ToString(row["SG02APE1"]);
                 facultativo.Apellido2 = System.Convert.ToString(row["SG02APE2"]);

@@ -45,7 +45,7 @@ namespace FacultativosWebApi.Controllers
         [Route("api/Facultativos/{idFacultativo}/{idDpto}")]
         [ResponseType(typeof(IEnumerable<Facultativo>))]
         // GET: api/Facultativos/5/109
-        public IHttpActionResult Get(int idFacultativo, int idDpto)
+        public IHttpActionResult Get(string idFacultativo, int idDpto)
         {
             FacultativosProvider pPreguntas = new FacultativosProvider();
             try
