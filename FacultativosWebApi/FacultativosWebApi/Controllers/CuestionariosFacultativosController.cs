@@ -10,6 +10,7 @@ using System.Web.Http.Description;
 
 namespace FacultativosWebApi.Controllers
 {
+    [Authorize(Roles = "facultativos")]
     public class CuestionariosFacultativosController : ApiController
     {
         // GET: api/CuestionariosFacultativos
