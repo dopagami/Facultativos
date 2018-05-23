@@ -551,6 +551,13 @@
             </summary>
             <param name="id">Identificador del cuestionario.</param>
         </member>
+        <member name="M:FacultativosWebApi.Controllers.CuestionariosFacultativosController.Get(System.Int32,System.Int32)">
+            <summary>
+            Obtiene un cuestionario de un facultativo y un departamento
+            </summary>
+            <param name="idFacultativo">ID del facultativo</param>
+            <param name="idDpto">ID del departamento</param>
+        </member>
         <member name="T:FacultativosWebApi.Controllers.FacultativosController">
             <summary>
             
@@ -561,11 +568,12 @@
             Obtiene todos los facultativos.
             </summary>        
         </member>
-        <member name="M:FacultativosWebApi.Controllers.FacultativosController.Get(System.String,System.String)">
+        <member name="M:FacultativosWebApi.Controllers.FacultativosController.Get(System.String,System.Int32)">
             <summary>
             Obtiene un facultativo por identificador.
             </summary>
-            <param name="id">Identificador del facultativo.</param>
+            <param name="idFacultativo">ID del facultativo</param>
+            <param name="idDpto">ID del departamento</param>
         </member>
         <member name="T:FacultativosWebApi.Controllers.GruposController">
             <summary>
@@ -809,6 +817,11 @@
             Correo electrónico del facultativo.
             </summary>        
         </member>
+        <member name="P:FacultativosWebApi.Models.Facultativo.CodRecurso">
+            <summary>
+            Identificador del recurso.
+            </summary>
+        </member>
         <member name="T:FacultativosWebApi.Models.Grupo">
              <summary>
             
@@ -898,6 +911,23 @@
             <summary>
             Valor del privilegio.
             </summary>
+        </member>
+        <member name="P:FacultativosWebApi.Models.PreguntaFacultativo.IDRespuestaFacultativo">
+            <summary>
+            Identificador de la respuesta.
+            </summary>
+        </member>
+        <member name="P:FacultativosWebApi.Models.PreguntaFacultativo.RespuestaFacultativo">
+            <summary>
+            Descripción de la respuesta.
+            </summary>
+        </member>
+        <member name="M:FacultativosWebApi.Providers.CuestionariosFacultativosProvider.GetCuestionarioFacultativo(System.Int32,System.Int32)">
+            <summary>
+            Looks up some data by ID.
+            </summary>
+            <param name="idFacultativo">ID del facultativo</param>
+            <param name="idDpto">ID del departamento</param>
         </member>
         <member name="T:FacultativosWebApi.Providers.CuestionariosProvider">
             <summary>

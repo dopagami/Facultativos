@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <!--<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>-->
+    <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+    <title></title>
+    <meta charset="utf-8" />
+    <!--<script src="https://cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.min.js"></script>-->
+    <!--<script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>-->
+    <!--<script type="text/javascript" src="lt-ie-9.min.js"></script>-->
+    <!--<script type="text/javascript" src="json2.js"></script>-->
+    <script type="text/javascript" src="Polyfill.js"></script>
+    <script type="text/javascript" src="history.min.js"></script>
+    <script type="text/javascript" src="keycloak.js"></script>
+    <script>
+        var keycloak = Keycloak();
+        keycloak.init({ onLoad: 'login-required' }).success(function (authenticated) {		
+            authenticated ? console.log(keycloak.tokenParsed) : alert('not authenticated');
+        }).error(function () {
+            alert('failed to initialize');
+        });
+    </script>
+</head>
+<body>
+</body>
+</html>
