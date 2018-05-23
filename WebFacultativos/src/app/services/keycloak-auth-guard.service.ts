@@ -4,7 +4,8 @@ import { KeycloakService, KeycloakAuthGuard } from 'keycloak-angular';
 
 @Injectable()
 export class AppAuthGuard extends KeycloakAuthGuard {
-  constructor(protected router: Router, protected keycloakAngular: KeycloakService) {
+  constructor(protected router: Router,
+    protected keycloakAngular: KeycloakService) {
     super(router, keycloakAngular);
   }
 

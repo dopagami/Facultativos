@@ -10,6 +10,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 // Keycloak
 import { KeycloakService, KeycloakAngularModule } from 'keycloak-angular';
 import { initializer } from './shared/app-init';
+
 // import * as $ from 'jquery';
 
 import {
@@ -66,7 +67,6 @@ import { FacultativoComponent } from './components/facultativo/facultativo.compo
 import { CompetenciasbyFacultativoComponent } from './components/competenciasby-facultativo/competenciasby-facultativo.component';
 import { CuestionarioService } from './services/cuestionario.service';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -113,6 +113,7 @@ import { CuestionarioService } from './services/cuestionario.service';
     [KeycloakAngularModule],
     MatExpansionModule,
     MatSelectModule
+
   ],
   exports: [
     FormsModule,

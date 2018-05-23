@@ -1,0 +1,54 @@
+.flex-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.flex-container>* {
+    width: 100%;
+}
+
+mat-toolbar {
+    background-color: #424242;
+    color: #FFFFFF;
+}
+
+.mat-form-field {
+    font-size: 14px;
+    width: 100%;
+}
+
+button:focus {
+    outline-color: transparent;
+    outline-style: none;
+}
+
+button {
+    margin-top: 20px;
+}
+
+/* .mat-table {
+    overflow: auto;
+    max-height: 350px;
+  } */
+
+.secundaryColor {
+    color: #6d6d6d;
+}
+
+.addNewButton {
+    margin-top: -20px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+}
+
+.primary {
+    background-color: #B71C1C;
+}
+
+.primaryDark {
+    background-color: #7F0000;
+}
+
+.primaryLight {
+    background-color: #F05545;
+}

@@ -29,6 +29,8 @@ export class FacultativoService {
     return this._mydata;
   }
 
+  
+
   // Método temporal hasta que tengamos el método en el Web API
   getFacultativoTemp(id: number): any {
     this._mydata.subscribe(results => {

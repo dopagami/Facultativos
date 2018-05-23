@@ -16,10 +16,11 @@ export class CuestionarioService {
 
   // get Cuestionario
   getCuestionario(id: number): Observable<Cuestionario[]> {
-
     return this.httpClient.get<Cuestionario[]>(myGlobals.API_URL_ROOT + '/Cuestionarios/' + id);
   }
 
-
+  getDetail():Observable<any> {
+    return this.httpClient.get<any[]>('http://facultativosapi.ibermatica.com/api/CuestionariosFacultativos/1/1')
+  }
 
 }

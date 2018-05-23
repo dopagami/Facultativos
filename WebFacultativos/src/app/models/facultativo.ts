@@ -10,5 +10,6 @@ export interface Facultativo {
     IDDepartamento: number;
     Centro: number;
     email: string;
+    CodRecurso: string;
 
   }

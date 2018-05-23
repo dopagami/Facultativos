@@ -1,0 +1,69 @@
+<!-- <mat-toolbar color="primary">
+	<div fxHide.gt-sm>
+		<button mat-icon-button (click)="onToggleSidenav()">
+			<mat-icon>menu</mat-icon>
+		</button>
+	</div>
+	<div>
+		<a routerLink="/"><img alt="Logo CUN" src="../../../../assets/img/logoCUN.png" id="logo"></a>
+	</div>
+	<div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.sm>
+		<ul fxLayout fxLayoutGap="10px" class="navbar-nav mr-auto">
+				<li class="nav-item" routerLinkActive="active">
+						<a class="nav-link" [routerLink]="['home']">Home
+						  <span class="sr-only">(current)</span>
+						</a>
+					  </li>
+					  <li class="nav-item" routerLinkActive="active">
+						<a class="nav-link" [routerLink]="['privilegios']">Privilegios</a>
+					  </li>
+					
+				   
+					  <li class="nav-item" routerLinkActive="active">
+						<a class="nav-link pointer" (click)="onLogout()">Logout</a>
+					  </li>
+		</ul>
+	</div>
+</mat-toolbar> -->
+
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-cun">
+  <button class="navbar-toggler" (click)="onToggleSidenav()" type="button" data-toggle="collapse" aria-controls="navbarSupportedContent"
+    aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+ 
+  <a class="navbar-brand" [routerLink]="['home']">
+    <img src="assets/img/logoCUN.png" alt="Clínica Universidad de Navarra">
+  </a>
+ 
+
+  <div class="collapse navbar-collapse">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" [routerLink]="['home']">Home
+          <span class="sr-only">(current)</span>
+        </a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" [routerLink]="['privilegios']">Privilegios</a>
+      </li>
+      <!-- <li class="nav-item" routerLinkActive="active">
+			  <a class="nav-link" [routerLink]="['facultativos']">Facultativos</a>
+      </li> -->
+      
+      <li class="nav-item" routerLinkActive="active">
+			  <a class="nav-link" [routerLink]="['usuarios']">Facultativos</a>
+			</li>
+
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link pointer" (click)="onLogout()">Logout</a>
+      </li>
+
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Buscar">
+      <button class="btn btn-dark my-2 my-sm-0" type="submit">Buscar</button>
+    </form>
+  </div>
+</nav>
