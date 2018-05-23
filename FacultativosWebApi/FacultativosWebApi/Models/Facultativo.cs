@@ -14,7 +14,7 @@ namespace FacultativosWebApi.Models
         /// <summary>
         /// Identificador del facultativo.
         /// </summary>
-        public string IDFacultativo { get; set; }
+        public int IDFacultativo { get; set; }
         /// <summary>
         /// Nombre del facultativo.
         /// </summary>

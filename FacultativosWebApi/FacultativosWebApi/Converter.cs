@@ -102,6 +102,8 @@ namespace FacultativosWebApi
 
                     pregunta.IDCuestionario = System.Convert.ToInt32(row["IDCUESTIONARIO"]);
 
+                    pregunta.Orden = System.Convert.ToInt32(row["ORDEN"]);
+
                     //Si la pregunta no tiene ni grupo ni area se añade al cuestionario
                     if (string.IsNullOrEmpty(row["IDGRUPO"].ToString()) && string.IsNullOrEmpty(row["IDAREA"].ToString()))
                     {
@@ -129,6 +131,122 @@ namespace FacultativosWebApi
                             area.Preguntas.Add(pregunta);
                         }
                     }                    
+                }
+            }
+
+            if (cuestionario != null) cuestionarios.Add(cuestionario);
+            return cuestionarios.AsEnumerable();
+        }
+
+        public static IEnumerable<Cuestionario> toCuestionariosFacultativos(DataTable dtCuestionarios)
+        {
+            List<Cuestionario> cuestionarios = new List<Cuestionario>();
+            Cuestionario cuestionario = null;
+
+            foreach (DataRow row in dtCuestionarios.Rows)
+            {
+                //Cuestionarios
+                if (System.Convert.ToString(row["nivel"]) == "1")
+                {
+                    if (cuestionario != null) cuestionarios.Add(cuestionario);
+                    cuestionario = new Cuestionario();
+
+                    cuestionario.IDCuestionario = System.Convert.ToInt32(row["IDCUESTIONARIO"]);
+
+                    cuestionario.Descripcion = System.Convert.ToString(row["DESCRIPCIONCUESTIONARIO"]);
+
+                    cuestionario.Areas = new List<Area>();
+
+                    cuestionario.Grupos = new List<Grupo>();
+
+                    cuestionario.Preguntas = new List<Pregunta>();
+                }
+
+                //Areas
+                if (System.Convert.ToString(row["nivel"]) == "2")
+                {
+                    Area area = new Area();
+
+                    area.Grupos = new List<Grupo>();
+
+                    area.Preguntas = new List<Pregunta>();
+
+                    area.IDArea = System.Convert.ToInt32(row["IDAREA"]);
+
+                    area.Descripcion = System.Convert.ToString(row["DESCRIPCIONAREA"]);
+
+                    area.IDCuestionario = System.Convert.ToInt32(row["IDCUESTIONARIO"]);
+
+                    cuestionario.Areas.Add(area);
+                }
+
+                //Grupos
+                if (System.Convert.ToString(row["nivel"]) == "3")
+                {
+                    Grupo grupo = new Grupo();
+
+                    grupo.Preguntas = new List<Pregunta>();
+
+                    grupo.IDGrupo = System.Convert.ToInt32(row["IDGRUPO"]);
+
+                    grupo.Descripcion = System.Convert.ToString(row["DESCRIPCIONGRUPO"]);
+
+                    grupo.IDCuestionario = System.Convert.ToInt32(row["IDCUESTIONARIO"]);
+
+                    //Si el grupo pertenece a un área se añade a ese área del cuestionario, si no se añade al cuestionario
+                    if (!string.IsNullOrEmpty(row["IDAREA"].ToString()))
+                    {
+                        Area area = cuestionario.Areas.Last();
+                        area.Grupos.Add(grupo);
+                    }
+                    else
+                    {
+                        cuestionario.Grupos.Add(grupo);
+                    }
+                }
+
+                //Preguntas
+                if (System.Convert.ToString(row["nivel"]) == "4")
+                {
+                    PreguntaFacultativo preguntaFacultativo = new PreguntaFacultativo();
+
+                    preguntaFacultativo.IDPregunta = System.Convert.ToInt32(row["IDPREGUNTA"]);
+
+                    preguntaFacultativo.Descripcion = System.Convert.ToString(row["DESCRIPCIONPREGUNTA"]);
+
+                    preguntaFacultativo.IDCuestionario = System.Convert.ToInt32(row["IDCUESTIONARIO"]);
+
+                    preguntaFacultativo.Respuesta = System.Convert.ToString(row["RESPUESTAPREGUNTA"]);
+
+                    preguntaFacultativo.Orden = System.Convert.ToInt32(row["ORDEN"]);
+
+                    //Si la pregunta no tiene ni grupo ni area se añade al cuestionario
+                    if (string.IsNullOrEmpty(row["IDGRUPO"].ToString()) && string.IsNullOrEmpty(row["IDAREA"].ToString()))
+                    {
+                        cuestionario.Preguntas.Add(preguntaFacultativo);
+                    }
+                    else
+                    {   //si tiene grupo 
+                        if (!string.IsNullOrEmpty(row["IDGRUPO"].ToString()))
+                        {   //y tiene area se añade al grupo del area del cuestionario
+                            if (!string.IsNullOrEmpty(row["IDAREA"].ToString()))
+                            {
+                                Area area = cuestionario.Areas.Last();
+                                Grupo grupo = area.Grupos.Last();
+                                grupo.Preguntas.Add(preguntaFacultativo);
+                            }
+                            else //si no tiene area se añade al grupo del cuestionario
+                            {
+                                Grupo grupo = cuestionario.Grupos.Last();
+                                grupo.Preguntas.Add(preguntaFacultativo);
+                            }
+                        }//si no tiene grupo y tiene area, se añade al area del cuestionario
+                        else
+                        {
+                            Area area = cuestionario.Areas.Last();
+                            area.Preguntas.Add(preguntaFacultativo);
+                        }
+                    }
                 }
             }
 
@@ -287,7 +405,7 @@ namespace FacultativosWebApi
             {
                 var facultativo = new Facultativo();
 
-                facultativo.IDFacultativo = System.Convert.ToString(row["SG02COD"]);
+                facultativo.IDFacultativo = System.Convert.ToInt32(row["SG02COD"]);
                 facultativo.Nombre = System.Convert.ToString(row["SG02NOM"]);
                 facultativo.Apellido1 = System.Convert.ToString(row["SG02APE1"]);
                 facultativo.Apellido2 = System.Convert.ToString(row["SG02APE2"]);
