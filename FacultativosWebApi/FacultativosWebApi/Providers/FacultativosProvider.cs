@@ -33,7 +33,7 @@ namespace FacultativosWebApi.Providers
             }
         }
 
-        public Facultativo GetFacultativo(string id, string dpto)
+        public Facultativo GetFacultativo(int idFacultativo, int idDpto)
         {
             try
             {
@@ -53,7 +53,7 @@ namespace FacultativosWebApi.Providers
                                                                 "WHERE AD03.AD31CODPUESTO IN(1, 5) " +
                                                                 "AND S.SG02COD = :pID " +
                                                                 "AND AD02.AD02CODDPTO = :pDpto",
-                                                                "pID", id, "pDpto", dpto)).FirstOrDefault();
+                                                                "pID", idFacultativo, "pDpto", idDpto)).FirstOrDefault();
             }
             catch (Exception ex)
             {

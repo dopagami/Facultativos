@@ -568,11 +568,12 @@
             Obtiene todos los facultativos.
             </summary>        
         </member>
-        <member name="M:FacultativosWebApi.Controllers.FacultativosController.Get(System.String,System.String)">
+        <member name="M:FacultativosWebApi.Controllers.FacultativosController.Get(System.Int32,System.Int32)">
             <summary>
             Obtiene un facultativo por identificador.
             </summary>
-            <param name="id">Identificador del facultativo.</param>
+            <param name="idFacultativo">ID del facultativo</param>
+            <param name="idDpto">ID del departamento</param>
         </member>
         <member name="T:FacultativosWebApi.Controllers.GruposController">
             <summary>
