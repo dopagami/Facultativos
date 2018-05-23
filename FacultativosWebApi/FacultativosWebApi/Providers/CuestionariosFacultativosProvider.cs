@@ -27,6 +27,7 @@ namespace FacultativosWebApi.Providers
                         "NULL DESCRIPCIONPREGUNTA, " +
                         "MC.IDDEPARTAMENTO IDDEPARTAMENTO, " +
                         "NULL RESPUESTAPREGUNTA, " +
+                        "NULL IDRESPUESTAPREGUNTA, " +
                         "1 NIVEL, " +
                         "NULL ORDEN " +
                         "FROM MAESTROCUESTIONARIOS MC INNER JOIN CUESTIONARIOSFACULTATIVOSDPTO C " +
@@ -44,6 +45,7 @@ namespace FacultativosWebApi.Providers
                         "NULL DESCRIPCIONPREGUNTA, " +
                         "NULL IDDEPARTAMENTO, " +
                         "NULL RESPUESTAPREGUNTA, " +
+                        "NULL IDRESPUESTAPREGUNTA, " +
                         "2 NIVEL, " +
                         "MA.ORDEN ORDEN " +
                         "FROM MAESTROAREAS MA INNER JOIN MAESTROCUESTIONARIOS MC " +
@@ -63,6 +65,7 @@ namespace FacultativosWebApi.Providers
                         "NULL DESCRIPCIONPREGUNTA, " +
                         "NULL IDDEPARTAMENTO, " +
                         "NULL RESPUESTAPREGUNTA, " +
+                        "NULL IDRESPUESTAPREGUNTA, " +
                         "3 NIVEL, " +
                         "MG.ORDEN ORDEN " +
                         "FROM MAESTROGRUPOS MG " +
@@ -86,6 +89,7 @@ namespace FacultativosWebApi.Providers
                         "MP.DESCRIPCION DESCRIPCIONPREGUNTA, " +
                         "NULL IDDEPARTAMENTO, " +
                         "MPR.DESCRIPCION RESPUESTAPREGUNTA, " +
+                        "R.IDRESPUESTASFACULTATIVOSDPTO IDRESPUESTAPREGUNTA, " +
                         "4 NIVEL, " +
                         "MP.ORDEN ORDEN " +
                         "FROM MAESTROPREGUNTAS MP " +

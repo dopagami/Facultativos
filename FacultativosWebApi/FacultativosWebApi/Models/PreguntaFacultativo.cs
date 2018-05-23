@@ -41,8 +41,12 @@ namespace FacultativosWebApi.Models
         //public int Orden { get; set; }
 
         /// <summary>
-        /// Descripción de la pregunta.
+        /// Identificador de la respuesta.
         /// </summary>
-        public string Respuesta { get; set; }
+        public int? IDRespuestaFacultativo { get; set; }
+        /// <summary>
+        /// Descripción de la respuesta.
+        /// </summary>
+        public string RespuestaFacultativo { get; set; }        
     }
 }

@@ -216,7 +216,10 @@ namespace FacultativosWebApi
 
                     preguntaFacultativo.IDCuestionario = System.Convert.ToInt32(row["IDCUESTIONARIO"]);
 
-                    preguntaFacultativo.Respuesta = System.Convert.ToString(row["RESPUESTAPREGUNTA"]);
+                    preguntaFacultativo.RespuestaFacultativo = System.Convert.ToString(row["RESPUESTAPREGUNTA"]);
+
+                    if (!Convert.IsDBNull(row["IDRESPUESTAPREGUNTA"]))
+                        preguntaFacultativo.IDRespuestaFacultativo = System.Convert.ToInt32(row["IDRESPUESTAPREGUNTA"]);
 
                     preguntaFacultativo.Orden = System.Convert.ToInt32(row["ORDEN"]);
 

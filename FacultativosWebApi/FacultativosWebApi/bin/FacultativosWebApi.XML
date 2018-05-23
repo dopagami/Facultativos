@@ -912,9 +912,14 @@
             Valor del privilegio.
             </summary>
         </member>
-        <member name="P:FacultativosWebApi.Models.PreguntaFacultativo.Respuesta">
+        <member name="P:FacultativosWebApi.Models.PreguntaFacultativo.IDRespuestaFacultativo">
             <summary>
-            Descripción de la pregunta.
+            Identificador de la respuesta.
+            </summary>
+        </member>
+        <member name="P:FacultativosWebApi.Models.PreguntaFacultativo.RespuestaFacultativo">
+            <summary>
+            Descripción de la respuesta.
             </summary>
         </member>
         <member name="M:FacultativosWebApi.Providers.CuestionariosFacultativosProvider.GetCuestionarioFacultativo(System.Int32,System.Int32)">
