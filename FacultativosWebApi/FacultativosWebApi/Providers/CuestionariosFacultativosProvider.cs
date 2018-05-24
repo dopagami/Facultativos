@@ -27,6 +27,7 @@ namespace FacultativosWebApi.Providers
                         "NULL DESCRIPCIONPREGUNTA, " +
                         "MC.IDDEPARTAMENTO IDDEPARTAMENTO, " +
                         "NULL RESPUESTAPREGUNTA, " +
+                        "NULL OBSERVACIONESRESPUESTA, " +
                         "NULL IDRESPUESTAPREGUNTA, " +
                         "1 NIVEL, " +
                         "NULL ORDEN " +
@@ -45,6 +46,7 @@ namespace FacultativosWebApi.Providers
                         "NULL DESCRIPCIONPREGUNTA, " +
                         "NULL IDDEPARTAMENTO, " +
                         "NULL RESPUESTAPREGUNTA, " +
+                        "NULL OBSERVACIONESRESPUESTA, " +
                         "NULL IDRESPUESTAPREGUNTA, " +
                         "2 NIVEL, " +
                         "MA.ORDEN ORDEN " +
@@ -65,6 +67,7 @@ namespace FacultativosWebApi.Providers
                         "NULL DESCRIPCIONPREGUNTA, " +
                         "NULL IDDEPARTAMENTO, " +
                         "NULL RESPUESTAPREGUNTA, " +
+                        "NULL OBSERVACIONESRESPUESTA, " +
                         "NULL IDRESPUESTAPREGUNTA, " +
                         "3 NIVEL, " +
                         "MG.ORDEN ORDEN " +
@@ -88,7 +91,8 @@ namespace FacultativosWebApi.Providers
                         "MP.IDPREGUNTA, " +
                         "MP.DESCRIPCION DESCRIPCIONPREGUNTA, " +
                         "NULL IDDEPARTAMENTO, " +
-                        "MPR.DESCRIPCION RESPUESTAPREGUNTA, " +
+                        "MPR.IDPRIVILEGIO RESPUESTAPREGUNTA, " +
+                        "R.OBSERVACIONES OBSERVACIONESRESPUESTA, " +
                         "R.IDRESPUESTASFACULTATIVOSDPTO IDRESPUESTAPREGUNTA, " +
                         "4 NIVEL, " +
                         "MP.ORDEN ORDEN " +

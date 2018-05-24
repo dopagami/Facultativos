@@ -192,7 +192,9 @@ namespace FacultativosWebApi.DAL
                 paramRV.Value = 1;
                 command.Parameters.Add(paramRV);
                 data = command.ExecuteNonQuery();
-                RV = System.Convert.ToInt32(command.Parameters[command.Parameters.Count - 1].Value);
+                //RV = System.Convert.ToInt32(command.Parameters[command.Parameters.Count - 1].Value);
+                bool result = Int32.TryParse(command.Parameters[command.Parameters.Count - 1].Value.ToString(), out RV);
+                if (!result) RV = 1;
 
                 if (transaction == null) connection.Close();
 

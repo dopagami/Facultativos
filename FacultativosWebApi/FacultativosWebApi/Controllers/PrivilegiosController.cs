@@ -46,7 +46,7 @@ namespace FacultativosWebApi.Controllers
         /// <param name="id">Identificador del privilegio.</param>
         [ResponseType(typeof(IEnumerable<Privilegio>))]
         // GET: api/Privilegios/5
-        public IHttpActionResult Get(int id)
+        public IHttpActionResult Get(string id)
         {
             PrivilegiosProvider pPrivilegios = new PrivilegiosProvider();
             try
@@ -79,7 +79,7 @@ namespace FacultativosWebApi.Controllers
 
             try
             {
-                privilegio.IDPrivilegio = pPrivilegios.PostPrivilegio(privilegio);
+                pPrivilegios.PostPrivilegio(privilegio);
             }
             catch (Exception ex)
             {
@@ -93,7 +93,8 @@ namespace FacultativosWebApi.Controllers
                 }
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = privilegio.IDPrivilegio }, privilegio);
+            //return CreatedAtRoute("DefaultApi", new { id = privilegio.IDPrivilegio }, privilegio);
+            return Ok(privilegio);
         }
 
         /// <summary>
@@ -103,7 +104,7 @@ namespace FacultativosWebApi.Controllers
         /// <param name="privilegio"></param>
         [ResponseType(typeof(Privilegio))]
         // PUT: api/Privilegios/5
-        public IHttpActionResult Put(int id, [FromBody]Privilegio privilegio)
+        public IHttpActionResult Put(string id, [FromBody]Privilegio privilegio)
         {
             if (!ModelState.IsValid)
             {
@@ -144,7 +145,7 @@ namespace FacultativosWebApi.Controllers
         /// <param name="id">Identificador del privilegio.</param>
         [ResponseType(typeof(void))]
         //// DELETE: api/Privilegios/5
-        public IHttpActionResult Delete(int id)
+        public IHttpActionResult Delete(string id)
         {
             PrivilegiosProvider pPrivilegios = new PrivilegiosProvider();
 

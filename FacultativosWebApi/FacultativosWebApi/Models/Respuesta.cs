@@ -6,7 +6,7 @@ using System.Web;
 
 namespace FacultativosWebApi.Models
 {
-    public class PreguntaFacultativo:Pregunta
+    public class Respuesta:Pregunta
     {
         ///// <summary>
         ///// Identificador de la pregunta.
@@ -41,12 +41,24 @@ namespace FacultativosWebApi.Models
         //public int Orden { get; set; }
 
         /// <summary>
-        /// Identificador de la respuesta.
+        /// Identificador de la respuesta del facultativo.
         /// </summary>
         public int? IDRespuestaFacultativo { get; set; }
         /// <summary>
-        /// Descripción de la respuesta.
+        /// Identificador del facultativo.
         /// </summary>
-        public string RespuestaFacultativo { get; set; }        
+        public int? IDFacultativo { get; set; }
+        /// <summary>
+        /// Identificador del departamento.
+        /// </summary>
+        public int? IDDepartamento { get; set; }
+        /// <summary>
+        /// Identificador del privilegio respondido.
+        /// </summary>
+        public string IDPrivilegio { get; set; }
+        /// <summary>
+        /// Observaciones de la respuesta.
+        /// </summary>
+        public string ObservacionesRespuesta { get; set; }
     }
 }

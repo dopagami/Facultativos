@@ -17,16 +17,12 @@ namespace FacultativosWebApi.Models
         /// <summary>
         /// Identificador del privilegio.
         /// </summary>
-        public int IDPrivilegio { get; set; }
+        [Required]
+        public string IDPrivilegio { get; set; }
         /// <summary>
         /// Descripción del privilegio.
         /// </summary>
         [Required]
         public string Descripcion { get; set; }
-        /// <summary>
-        /// Valor del privilegio.
-        /// </summary>
-        [Required]
-        public string Valor { get; set; }
     }
 }

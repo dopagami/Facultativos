@@ -24,7 +24,7 @@ namespace FacultativosWebApi.Providers
             }
         }
 
-        public Privilegio GetPrivilegio(int id)
+        public Privilegio GetPrivilegio(string id)
         {
             try
             {
@@ -42,12 +42,10 @@ namespace FacultativosWebApi.Providers
         {
             try
             {
-                return DAL.DataService.ExecuteNonQueryRV("INSERT INTO MAESTROPRIVILEGIOS(DESCRIPCION, VALOR) " +
-                                "VALUES(:pDesc, :pValor) " +
-                                "RETURNING IDPRIVILEGIO INTO :pIDRT",
-                                "pDesc", privilegio.Descripcion,
-                                "pValor", privilegio.Valor.ToUpper(),
-                                "pIDRT");
+                return DAL.DataService.ExecuteNonQueryRV("INSERT INTO MAESTROPRIVILEGIOS(IDPRIVILEGIO, DESCRIPCION) " +
+                                "VALUES(:pID, :pDesc) ",
+                                "pID", privilegio.IDPrivilegio.ToUpper(),
+                                "pDesc", privilegio.Descripcion);
             }
             catch (Exception ex)
             {
@@ -60,11 +58,9 @@ namespace FacultativosWebApi.Providers
             try
             {
                 return DAL.DataService.ExecuteNonQuery("UPDATE MAESTROPRIVILEGIOS " +
-                                "SET DESCRIPCION = :pDesc, " +
-                                " VALOR = :pValor " +
+                                "SET DESCRIPCION = :pDesc " +
                                 " WHERE IDPRIVILEGIO = :pID",
                                 "pDesc", privilegio.Descripcion,
-                                "pValor", privilegio.Valor,
                                 "pID", privilegio.IDPrivilegio);
             }
             catch (Exception ex)
@@ -73,7 +69,7 @@ namespace FacultativosWebApi.Providers
             }
         }
 
-        public Int32 DeletePrivilegio(int id)
+        public Int32 DeletePrivilegio(string id)
         {
             try
             {

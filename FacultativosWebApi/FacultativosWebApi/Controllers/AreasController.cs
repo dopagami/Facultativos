@@ -21,12 +21,15 @@ namespace FacultativosWebApi.Controllers
         /// </summary>
         [ResponseType(typeof(Area))]
         // GET: api/Areas
-        public IEnumerable<Area> Get()
+        public IHttpActionResult Get()
         {
             AreasProvider pAreas = new AreasProvider();
             try
-            {                
-                return pAreas.GetAreas();
+            {
+                var searchResults = pAreas.GetAreas();
+                if (searchResults == null)
+                    return NotFound();
+                return Ok(searchResults);
             }
             catch (Exception ex)
             {
