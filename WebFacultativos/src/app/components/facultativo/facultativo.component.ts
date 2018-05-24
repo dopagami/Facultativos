@@ -41,18 +41,13 @@ export class FacultativoComponent implements OnInit {
                 private dom: DomSanitizer
   ) {
 
-
-
-
-
-
     // Nos suscribimos al router para obtener los parámetros URL.
     this.activatedrouter.params.subscribe(params => {
       console.log(params);
       this.idparam = params['id'];
       // this.element = this.facultativoService.getRowSelected();
 
-
+      // Obtiene los datos de un facultativo
       this.facultativoService.getFacultativo(params['id'], params['dpto'] ).subscribe(results => {
         this.element = results;
       });
@@ -65,9 +60,6 @@ export class FacultativoComponent implements OnInit {
       // });
     });
   }
-
-
-
 
   // Animación de Card
   setAnimationCard(obj): void {
@@ -105,7 +97,8 @@ export class FacultativoComponent implements OnInit {
 
   getParameters(): void {
     // tslint:disable-next-line:max-line-length
-    this.winform = this.dom.bypassSecurityTrustUrl('CUN://' + this.element.Nombre + ' ' + this.element.Apellido1 + ' ' + this.element.Apellido2);
+    // this.winform = this.dom.bypassSecurityTrustUrl('CUN://' + this.element.Nombre + ' ' + this.element.Apellido1 + ' ' + this.element.Apellido2);
+    this.winform = this.dom.bypassSecurityTrustUrl('CUN://' + this.element.IDDepartamento + ' || ' + this.element.CodRecurso);
   }
 
   ngOnInit() {

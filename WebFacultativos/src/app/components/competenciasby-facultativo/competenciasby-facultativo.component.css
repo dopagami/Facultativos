@@ -121,6 +121,9 @@ mat-expansion-panel-header:active{
     vertical-align: bottom;
 }
 
+.wrap{
+    padding: 0 24px;
+}
 
 
 
