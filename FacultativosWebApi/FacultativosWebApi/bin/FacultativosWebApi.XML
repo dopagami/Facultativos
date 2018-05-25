@@ -945,6 +945,11 @@
             Identificador del privilegio respondido.
             </summary>
         </member>
+        <member name="P:FacultativosWebApi.Models.Respuesta.DesPrivilegio">
+            <summary>
+            Descripción del privilegio respondido.
+            </summary>
+        </member>
         <member name="P:FacultativosWebApi.Models.Respuesta.ObservacionesRespuesta">
             <summary>
             Observaciones de la respuesta.

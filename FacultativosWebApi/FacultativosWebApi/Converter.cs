@@ -224,6 +224,9 @@ namespace FacultativosWebApi
                     if (!Convert.IsDBNull(row["IDRESPUESTAPREGUNTA"]))
                         respuesta.IDRespuestaFacultativo = System.Convert.ToInt32(row["IDRESPUESTAPREGUNTA"]);
 
+                    if (!Convert.IsDBNull(row["DESCRIPCIONRESPUESTA"]))
+                        respuesta.DesPrivilegio = System.Convert.ToString(row["DESCRIPCIONRESPUESTA"]);
+
                     respuesta.Orden = System.Convert.ToInt32(row["ORDEN"]);
 
                     //Si la pregunta no tiene ni grupo ni area se añade al cuestionario

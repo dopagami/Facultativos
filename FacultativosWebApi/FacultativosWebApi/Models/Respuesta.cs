@@ -57,6 +57,10 @@ namespace FacultativosWebApi.Models
         /// </summary>
         public string IDPrivilegio { get; set; }
         /// <summary>
+        /// Descripción del privilegio respondido.
+        /// </summary>
+        public string DesPrivilegio { get; set; }
+        /// <summary>
         /// Observaciones de la respuesta.
         /// </summary>
         public string ObservacionesRespuesta { get; set; }
