@@ -655,7 +655,7 @@
             Obtiene todos los privilegios.
             </summary>
         </member>
-        <member name="M:FacultativosWebApi.Controllers.PrivilegiosController.Get(System.Int32)">
+        <member name="M:FacultativosWebApi.Controllers.PrivilegiosController.Get(System.String)">
             <summary>
             Obtiene un privilegio por identificador.
             </summary>
@@ -667,18 +667,36 @@
             </summary>
             <param name="privilegio">El campo IDPrivilegio será ignorado en la petición</param>
         </member>
-        <member name="M:FacultativosWebApi.Controllers.PrivilegiosController.Put(System.Int32,FacultativosWebApi.Models.Privilegio)">
+        <member name="M:FacultativosWebApi.Controllers.PrivilegiosController.Put(System.String,FacultativosWebApi.Models.Privilegio)">
             <summary>
             Modifica un privilegio por identificador.
             </summary>
             <param name="id">Identificador del privilegio.</param>
             <param name="privilegio"></param>
         </member>
-        <member name="M:FacultativosWebApi.Controllers.PrivilegiosController.Delete(System.Int32)">
+        <member name="M:FacultativosWebApi.Controllers.PrivilegiosController.Delete(System.String)">
             <summary>
             Elimina un privilegio por identificador.
             </summary>
             <param name="id">Identificador del privilegio.</param>
+        </member>
+        <member name="M:FacultativosWebApi.Controllers.RespuestasController.Post(System.Collections.Generic.IEnumerable{FacultativosWebApi.Models.Respuesta})">
+            <summary>
+            Crea una respuesta a una pregunta
+            </summary>
+            <param name="Respuestas">El campo IDRespuestaFacultativo será ignorado en la petición</param>
+        </member>
+        <member name="M:FacultativosWebApi.Controllers.RespuestasController.Put(System.Collections.Generic.IEnumerable{FacultativosWebApi.Models.Respuesta})">
+            <summary>
+            Modifica una respuesta de una pregunta por identificador.
+            </summary>
+            <param name="Respuestas">Colección de respuesta a modificar</param>
+        </member>
+        <member name="M:FacultativosWebApi.Controllers.RespuestasController.Delete(System.Collections.Generic.IEnumerable{FacultativosWebApi.Models.Respuesta})">
+            <summary>
+            Elimina una respuesta por identificador.
+            </summary>
+            <param name="Respuestas">Colección de respuesta a eliminar</param>
         </member>
         <member name="F:FacultativosWebApi.Jwt.JwtManager.Secret">
             <summary>
@@ -907,19 +925,34 @@
             Descripción del privilegio.
             </summary>
         </member>
-        <member name="P:FacultativosWebApi.Models.Privilegio.Valor">
+        <member name="P:FacultativosWebApi.Models.Respuesta.IDRespuestaFacultativo">
             <summary>
-            Valor del privilegio.
+            Identificador de la respuesta del facultativo.
             </summary>
         </member>
-        <member name="P:FacultativosWebApi.Models.PreguntaFacultativo.IDRespuestaFacultativo">
+        <member name="P:FacultativosWebApi.Models.Respuesta.IDFacultativo">
             <summary>
-            Identificador de la respuesta.
+            Identificador del facultativo.
             </summary>
         </member>
-        <member name="P:FacultativosWebApi.Models.PreguntaFacultativo.RespuestaFacultativo">
+        <member name="P:FacultativosWebApi.Models.Respuesta.IDDepartamento">
             <summary>
-            Descripción de la respuesta.
+            Identificador del departamento.
+            </summary>
+        </member>
+        <member name="P:FacultativosWebApi.Models.Respuesta.IDPrivilegio">
+            <summary>
+            Identificador del privilegio respondido.
+            </summary>
+        </member>
+        <member name="P:FacultativosWebApi.Models.Respuesta.DesPrivilegio">
+            <summary>
+            Descripción del privilegio respondido.
+            </summary>
+        </member>
+        <member name="P:FacultativosWebApi.Models.Respuesta.ObservacionesRespuesta">
+            <summary>
+            Observaciones de la respuesta.
             </summary>
         </member>
         <member name="M:FacultativosWebApi.Providers.CuestionariosFacultativosProvider.GetCuestionarioFacultativo(System.Int32,System.Int32)">

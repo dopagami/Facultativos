@@ -16,9 +16,8 @@ namespace FacultativosWebApi
             {
                 var privilegio = new Privilegio();
 
-                privilegio.IDPrivilegio = System.Convert.ToInt32(row["IDPRIVILEGIO"]);
+                privilegio.IDPrivilegio = System.Convert.ToString(row["IDPRIVILEGIO"]);
                 privilegio.Descripcion = System.Convert.ToString(row["DESCRIPCION"]);
-                privilegio.Valor = System.Convert.ToString(row["VALOR"]);
 
                 privilegios.Add(privilegio);
             }
@@ -205,28 +204,35 @@ namespace FacultativosWebApi
                     }
                 }
 
-                //Preguntas
+                //Preguntas y respuestas
                 if (System.Convert.ToString(row["nivel"]) == "4")
                 {
-                    PreguntaFacultativo preguntaFacultativo = new PreguntaFacultativo();
+                    Respuesta respuesta = new Respuesta();
 
-                    preguntaFacultativo.IDPregunta = System.Convert.ToInt32(row["IDPREGUNTA"]);
+                    respuesta.IDPregunta = System.Convert.ToInt32(row["IDPREGUNTA"]);
 
-                    preguntaFacultativo.Descripcion = System.Convert.ToString(row["DESCRIPCIONPREGUNTA"]);
+                    respuesta.Descripcion = System.Convert.ToString(row["DESCRIPCIONPREGUNTA"]);
 
-                    preguntaFacultativo.IDCuestionario = System.Convert.ToInt32(row["IDCUESTIONARIO"]);
+                    respuesta.IDCuestionario = System.Convert.ToInt32(row["IDCUESTIONARIO"]);
 
-                    preguntaFacultativo.RespuestaFacultativo = System.Convert.ToString(row["RESPUESTAPREGUNTA"]);
+                    if (System.Convert.ToString(row["RESPUESTAPREGUNTA"]) != String.Empty)
+                        respuesta.IDPrivilegio = System.Convert.ToString(row["RESPUESTAPREGUNTA"]);
+
+                    if (System.Convert.ToString(row["OBSERVACIONESRESPUESTA"]) != String.Empty)
+                        respuesta.ObservacionesRespuesta = System.Convert.ToString(row["OBSERVACIONESRESPUESTA"]);
 
                     if (!Convert.IsDBNull(row["IDRESPUESTAPREGUNTA"]))
-                        preguntaFacultativo.IDRespuestaFacultativo = System.Convert.ToInt32(row["IDRESPUESTAPREGUNTA"]);
+                        respuesta.IDRespuestaFacultativo = System.Convert.ToInt32(row["IDRESPUESTAPREGUNTA"]);
 
-                    preguntaFacultativo.Orden = System.Convert.ToInt32(row["ORDEN"]);
+                    if (!Convert.IsDBNull(row["DESCRIPCIONRESPUESTA"]))
+                        respuesta.DesPrivilegio = System.Convert.ToString(row["DESCRIPCIONRESPUESTA"]);
+
+                    respuesta.Orden = System.Convert.ToInt32(row["ORDEN"]);
 
                     //Si la pregunta no tiene ni grupo ni area se añade al cuestionario
                     if (string.IsNullOrEmpty(row["IDGRUPO"].ToString()) && string.IsNullOrEmpty(row["IDAREA"].ToString()))
                     {
-                        cuestionario.Preguntas.Add(preguntaFacultativo);
+                        cuestionario.Preguntas.Add(respuesta);
                     }
                     else
                     {   //si tiene grupo 
@@ -236,18 +242,18 @@ namespace FacultativosWebApi
                             {
                                 Area area = cuestionario.Areas.Last();
                                 Grupo grupo = area.Grupos.Last();
-                                grupo.Preguntas.Add(preguntaFacultativo);
+                                grupo.Preguntas.Add(respuesta);
                             }
                             else //si no tiene area se añade al grupo del cuestionario
                             {
                                 Grupo grupo = cuestionario.Grupos.Last();
-                                grupo.Preguntas.Add(preguntaFacultativo);
+                                grupo.Preguntas.Add(respuesta);
                             }
                         }//si no tiene grupo y tiene area, se añade al area del cuestionario
                         else
                         {
                             Area area = cuestionario.Areas.Last();
-                            area.Preguntas.Add(preguntaFacultativo);
+                            area.Preguntas.Add(respuesta);
                         }
                     }
                 }

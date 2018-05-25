@@ -29,7 +29,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
-    <Optimize>true</Optimize>
+    <Optimize>false</Optimize>
     <OutputPath>bin\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
@@ -216,6 +216,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PreguntasController.cs" />
     <Compile Include="Controllers\PrivilegiosController.cs" />
+    <Compile Include="Controllers\RespuestasController.cs" />
     <Compile Include="Converter.cs" />
     <Compile Include="DataService.cs" />
     <Compile Include="Filters\AddChallengeOnUnauthorizedResult.cs" />
@@ -232,7 +233,7 @@
     <Compile Include="Models\Grupo.cs" />
     <Compile Include="Models\Pregunta.cs" />
     <Compile Include="Models\Privilegio.cs" />
-    <Compile Include="Models\PreguntaFacultativo.cs" />
+    <Compile Include="Models\Respuesta.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\AreasProvider.cs" />
     <Compile Include="Providers\CuestionariosFacultativosProvider.cs" />
@@ -241,6 +242,7 @@
     <Compile Include="Providers\GruposProvider.cs" />
     <Compile Include="Providers\PreguntasProvider.cs" />
     <Compile Include="Providers\PrivilegiosProvider.cs" />
+    <Compile Include="Providers\RespuestasProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />

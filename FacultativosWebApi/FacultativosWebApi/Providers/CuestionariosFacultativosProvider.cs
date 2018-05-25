@@ -27,9 +27,11 @@ namespace FacultativosWebApi.Providers
                         "NULL DESCRIPCIONPREGUNTA, " +
                         "MC.IDDEPARTAMENTO IDDEPARTAMENTO, " +
                         "NULL RESPUESTAPREGUNTA, " +
+                        "NULL DESCRIPCIONRESPUESTA, " +
+                        "NULL OBSERVACIONESRESPUESTA, " +
                         "NULL IDRESPUESTAPREGUNTA, " +
                         "1 NIVEL, " +
-                        "NULL ORDEN " +
+                        "1 ORDEN " +
                         "FROM MAESTROCUESTIONARIOS MC INNER JOIN CUESTIONARIOSFACULTATIVOSDPTO C " +
                         "ON MC.IDCUESTIONARIO = C.IDCUESTIONARIO " +
                         "WHERE C.IDFACULTATIVO = " + idFacultativo.ToString() + " " +
@@ -45,6 +47,8 @@ namespace FacultativosWebApi.Providers
                         "NULL DESCRIPCIONPREGUNTA, " +
                         "NULL IDDEPARTAMENTO, " +
                         "NULL RESPUESTAPREGUNTA, " +
+                        "NULL DESCRIPCIONRESPUESTA, " +
+                        "NULL OBSERVACIONESRESPUESTA, " +
                         "NULL IDRESPUESTAPREGUNTA, " +
                         "2 NIVEL, " +
                         "MA.ORDEN ORDEN " +
@@ -65,6 +69,8 @@ namespace FacultativosWebApi.Providers
                         "NULL DESCRIPCIONPREGUNTA, " +
                         "NULL IDDEPARTAMENTO, " +
                         "NULL RESPUESTAPREGUNTA, " +
+                        "NULL DESCRIPCIONRESPUESTA, " +
+                        "NULL OBSERVACIONESRESPUESTA, " +
                         "NULL IDRESPUESTAPREGUNTA, " +
                         "3 NIVEL, " +
                         "MG.ORDEN ORDEN " +
@@ -88,7 +94,9 @@ namespace FacultativosWebApi.Providers
                         "MP.IDPREGUNTA, " +
                         "MP.DESCRIPCION DESCRIPCIONPREGUNTA, " +
                         "NULL IDDEPARTAMENTO, " +
-                        "MPR.DESCRIPCION RESPUESTAPREGUNTA, " +
+                        "MPR.IDPRIVILEGIO RESPUESTAPREGUNTA, " +
+                        "MPR.DESCRIPCION DESCRIPCIONRESPUESTA, " +
+                        "R.OBSERVACIONES OBSERVACIONESRESPUESTA, " +
                         "R.IDRESPUESTASFACULTATIVOSDPTO IDRESPUESTAPREGUNTA, " +
                         "4 NIVEL, " +
                         "MP.ORDEN ORDEN " +
@@ -109,7 +117,7 @@ namespace FacultativosWebApi.Providers
                         "ON R.IDPRIVILEGIO = MPR.IDPRIVILEGIO " +
                         "WHERE C.IDFACULTATIVO = " + idFacultativo.ToString() + " " +
                         "AND C.IDDEPARTAMENTO = " + idDpto.ToString() + " " +
-                        "ORDER BY IDCUESTIONARIO, NIVEL, ORDEN; ")).FirstOrDefault();
+                        "ORDER BY ORDEN; ")).FirstOrDefault();
             }
             catch (Exception ex)
             {
