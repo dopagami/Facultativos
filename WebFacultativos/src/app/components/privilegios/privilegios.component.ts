@@ -28,7 +28,7 @@ export class PrivilegiosComponent implements OnInit {
   exampleDatabase: PrivilegioService | null;
   dataSource: ExampleDataSource | null;
   index: number;
-  id: number;
+  id: string;
   privilegiotemp: Privilegio;
 
 
@@ -65,7 +65,7 @@ export class PrivilegiosComponent implements OnInit {
 
   // ADD
   addNew(privilegio: Privilegio) {
-
+   
     const dialogRef = this.dialog.open(AddComponent, {
       data: { privilegio: privilegio },
      // height: '400px',
@@ -85,7 +85,7 @@ export class PrivilegiosComponent implements OnInit {
   }
 
   // EDIT
-  startEdit(i: number, id: number, valor: string, descripcion: string) {
+  startEdit(i: number, id: string, valor: string, descripcion: string) {
     this.id = id;
     // index row es usado sólo para debugar
     this.index = i;
@@ -110,7 +110,7 @@ export class PrivilegiosComponent implements OnInit {
   }
 
   // DELETE
-  deleteItem(i: number, id: number, valor: string, descripcion: string) {
+  deleteItem(i: number, id: string, valor: string, descripcion: string) {
     this.index = i;
     this.id = id;
     const dialogRef = this.dialog.open(DeleteComponent, {

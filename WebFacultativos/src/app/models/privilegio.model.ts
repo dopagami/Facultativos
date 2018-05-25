@@ -1,5 +1,5 @@
 export interface Privilegio {
-    IDPrivilegio: number | null;
+    IDPrivilegio: string | null;
     Valor: string;
     Descripcion: string;
 }

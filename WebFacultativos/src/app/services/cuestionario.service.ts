@@ -19,7 +19,8 @@ export class CuestionarioService {
     return this.httpClient.get<Cuestionario[]>(myGlobals.API_URL_ROOT + '/Cuestionarios/' + id);
   }
 
-  getDetail():Observable<any> {
+  // Parámetros (id cuestionario: id  facultativo)
+  getDetail(): Observable<any> {
     return this.httpClient.get<any[]>('http://facultativosapi.ibermatica.com/api/CuestionariosFacultativos/1/1')
   }
 
