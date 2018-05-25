@@ -6,6 +6,7 @@
   <ng-container *ngFor="let area of listCuestionario['Areas']">
 
     <h4>{{area.Descripcion}}</h4>
+    <hr>
 
     <mat-expansion-panel [expanded]="false" hideToggle="false" *ngFor="let grupo of area.Grupos">
 
@@ -24,11 +25,9 @@
         <mat-form-field class="width50 MT10">
 
           <mat-select placeholder="{{pregunta.Descripcion}}" [(value)]="pregunta.IDPrivilegio">
-
             <mat-option *ngFor="let privilegio of listPrivilegios" [value]="privilegio.IDPrivilegio">
               {{privilegio.IDPrivilegio + " - " + privilegio.Descripcion }}
             </mat-option>
-
           </mat-select>
 
           <!--ESto sobraría usando el two way binding-->
@@ -41,7 +40,7 @@
         </mat-form-field>
 
         <mat-form-field class="width49" *ngIf="grupo.Preguntas.length > 0">
-          <input matInput value="{{pregunta.ObservacionesRespuesta}}" placeholder="Observaciones">
+          <input matInput [value]="pregunta.ObservacionesRespuesta" placeholder="Observaciones">
         </mat-form-field>
       </ng-container>
     </mat-expansion-panel>
