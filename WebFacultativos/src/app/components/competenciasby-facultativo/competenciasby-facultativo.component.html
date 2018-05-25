@@ -6,6 +6,7 @@
   <ng-container *ngFor="let area of listCuestionario['Areas']">
 
     <h4>{{area.Descripcion}}</h4>
+    
     <hr>
 
     <mat-expansion-panel [expanded]="false" hideToggle="false" *ngFor="let grupo of area.Grupos">
