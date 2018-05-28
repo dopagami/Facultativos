@@ -10,7 +10,7 @@
 
 
 
-    
+    <hr>
       
 
 
@@ -80,7 +80,7 @@
 
       <ng-container *ngFor="let pregunta of grupo.Preguntas">
         <mat-form-field class="width50 MT10">
-          <mat-select placeholder="{{pregunta.Descripcion}}" [formControl]="formControl">
+          <mat-select  placeholder="{{pregunta.Descripcion}}" [formControl]="formControl">
             <mat-option *ngFor="let privilegio of listPrivilegios" required [value]="privilegio.Valor">
               {{privilegio.Valor + " - " + privilegio.Descripcion }}
             </mat-option>
