@@ -5,16 +5,11 @@
 
   <ng-container *ngFor="let area of listCuestionario['Areas']">
 
-
     <h4>{{area.Descripcion}}</h4>
-
-
-
+    
     <hr>
-      
 
-
-    <mat-expansion-panel [expanded]="false"  hideToggle="false" *ngFor="let grupo of area.Grupos">
+    <mat-expansion-panel [expanded]="false" hideToggle="false" *ngFor="let grupo of area.Grupos">
 
       <mat-expansion-panel-header *ngIf="grupo.Preguntas.length > 0; else noQuestions">
         <mat-panel-title>
@@ -24,50 +19,40 @@
 
       <ng-template #noQuestions>
         <label class="wrap">{{grupo.Descripcion}}</label>
+    
       </ng-template>
 
       <ng-container *ngFor="let pregunta of grupo.Preguntas">
         <mat-form-field class="width50 MT10">
 
-
-
-           
-
-
-
-          <mat-select *ngIf="pregunta.IDPrivilegio !== null" placeholder="{{pregunta.Descripcion}}" [(value)]="pregunta.IDPrivilegio">
-              
-              <mat-option *ngFor="let privilegio of listPrivilegios"  [value]="privilegio.IDPrivilegio">
-                {{privilegio.IDPrivilegio + " - " + privilegio.Descripcion }}
-              </mat-option>
-              
-            </mat-select>
-
-       
-
-          <mat-select *ngIf="pregunta.IDPrivilegio === null" placeholder="{{pregunta.Descripcion}}" [formControl]="formControl">
-            <mat-option *ngFor="let privilegio of listPrivilegios" required [value]="privilegio.IDPrivilegio">
+          <mat-select placeholder="{{pregunta.Descripcion}}" [(value)]="pregunta.IDPrivilegio">
+            <mat-option *ngFor="let privilegio of listPrivilegios" [value]="privilegio.IDPrivilegio">
               {{privilegio.IDPrivilegio + " - " + privilegio.Descripcion }}
             </mat-option>
           </mat-select>
 
+          <!--ESto sobraría usando el two way binding-->
+          <!-- <mat-select *ngIf="pregunta.IDPrivilegio === null" placeholder="{{pregunta.Descripcion}}" [formControl]="formControl">
+              <mat-option *ngFor="let privilegio of listPrivilegios" required [value]="privilegio.IDPrivilegio">
+                {{privilegio.IDPrivilegio + " - " + privilegio.Descripcion }}
+              </mat-option>
+            </mat-select> -->
           <mat-error *ngIf="formControl.hasError('required')">Por favor, elige una opción</mat-error>
         </mat-form-field>
 
-        <!-- {{selectedValue}} -->
-
-
         <mat-form-field class="width49" *ngIf="grupo.Preguntas.length > 0">
-          <input matInput value="{{pregunta.ObservacionesRespuesta}}" placeholder="Observaciones">
+          <input matInput [value]="pregunta.ObservacionesRespuesta" placeholder="Observaciones">
         </mat-form-field>
       </ng-container>
     </mat-expansion-panel>
   </ng-container>
 
 
+
+
   <!-- Estructura de sólo grupos-->
   <ng-container *ngFor="let grupo of listCuestionario['Grupos']">
-    <mat-expansion-panel [expanded]="false"  hideToggle="false">
+    <mat-expansion-panel [expanded]="false" hideToggle="false">
       <mat-expansion-panel-header *ngIf="grupo.Preguntas.length > 0; else noQuestions">
         <mat-panel-title>
           {{grupo.Descripcion}}
@@ -80,7 +65,7 @@
 
       <ng-container *ngFor="let pregunta of grupo.Preguntas">
         <mat-form-field class="width50 MT10">
-          <mat-select  placeholder="{{pregunta.Descripcion}}" [formControl]="formControl">
+          <mat-select placeholder="{{pregunta.Descripcion}}" [formControl]="formControl">
             <mat-option *ngFor="let privilegio of listPrivilegios" required [value]="privilegio.Valor">
               {{privilegio.Valor + " - " + privilegio.Descripcion }}
             </mat-option>

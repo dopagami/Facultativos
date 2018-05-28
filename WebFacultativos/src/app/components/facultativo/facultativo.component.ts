@@ -98,7 +98,7 @@ export class FacultativoComponent implements OnInit {
   getParameters(): void {
     // tslint:disable-next-line:max-line-length
     // this.winform = this.dom.bypassSecurityTrustUrl('CUN://' + this.element.Nombre + ' ' + this.element.Apellido1 + ' ' + this.element.Apellido2);
-    this.winform = this.dom.bypassSecurityTrustUrl('CUN://' + this.element.IDDepartamento + '||' + this.element.CodRecurso);
+    this.winform = this.dom.bypassSecurityTrustUrl('CUN://' + this.element.IDDepartamento + ' || ' + this.element.CodRecurso);
   }
 
   ngOnInit() {

@@ -16,9 +16,12 @@ import { takeUntil } from 'rxjs/operators';
   styleUrls: ['./competenciasby-facultativo.component.css']
 })
 
-export class CompetenciasbyFacultativoComponent implements OnInit {
+export class CompetenciasbyFacultativoComponent implements OnInit, OnDestroy {
 
   private onDestroy$ = new Subject<any>();
+  selectedValue = "B"
+  selected= "option1";
+
   step: any = 0;
   formControl = new FormControl('', [Validators.required]);
   public listPrivilegios = Array<Privilegio>();
@@ -34,6 +37,7 @@ export class CompetenciasbyFacultativoComponent implements OnInit {
         this.dpto = res.Departamento;
       });
 
+      
   }
 
   // Funciones Accordeion Panel
@@ -49,27 +53,42 @@ export class CompetenciasbyFacultativoComponent implements OnInit {
   //   this.step--;
   // }
 
+  getValue(id: string) {
+    this.selectedValue = id;
+    console.log('idValorSeleccionado ' + this.selectedValue);
+  }
 
   ngOnInit() {
     // Nos suscribimos al observable para obtener los privilegios
     this.privilegiosService.getPrivilegios()
+      .takeUntil(this.onDestroy$)
       .subscribe(data => {
         this.listPrivilegios = data;
         // this.onDestroy$.next(data);
       });
 
+    // Nos suscribimos al observable para obtener un cuestionario dado
+    // this.cuestionarioService.getCuestionario(1)
+    // .takeUntil(this.onDestroy$)
+    //   .subscribe(data => {
+    //   this.listCuestionario = data;
+    //   console.log(this.listCuestionario);
+    // });
+
     // Pasar id cuestionario e id facultativo.
     this.cuestionarioService.getDetail()
+      .takeUntil(this.onDestroy$)
       .subscribe(data => {
         this.listCuestionario = data;
         console.log(this.listCuestionario);
       });
+
+      
   }
 
-  // Obligatorio hacer unsuscribe para evitar Memeory Leak. http, routerlink, async pipe gestionan automáticamente el unsuscribe.
-  // ngOnDestroy() {
-  //   this.onDestroy$.next();
-  //   this.onDestroy$.complete();
-  // }
+  ngOnDestroy() {
+    this.onDestroy$.next();
+    this.onDestroy$.complete();
+  }
 
 }
